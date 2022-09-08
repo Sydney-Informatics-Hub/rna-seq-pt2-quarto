@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.345">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RNA-Seq using Nextflow - Submitting and monitoring Artemis Jobs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../lesson.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">RNA-Seq using Nextflow</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html">Setup</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
+ <span class="dropdown-text">Recap day 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Nextflow to RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
+ <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
+ <span class="dropdown-text">DE analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
+ <span class="dropdown-text">DE genes to enrichments</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#artemis-job-queues" id="toc-artemis-job-queues" class="nav-link active" data-scroll-target="#artemis-job-queues">Artemis Job Queues</a></li>
+  <li><a href="#submitting-jobs" id="toc-submitting-jobs" class="nav-link" data-scroll-target="#submitting-jobs">Submitting Jobs</a>
+  <ul class="collapse">
+  <li><a href="#adjusting-pbs-directives" id="toc-adjusting-pbs-directives" class="nav-link" data-scroll-target="#adjusting-pbs-directives">Adjusting PBS directives</a></li>
+  <li><a href="#submitting-pbs-scripts-to-artemis" id="toc-submitting-pbs-scripts-to-artemis" class="nav-link" data-scroll-target="#submitting-pbs-scripts-to-artemis">Submitting PBS scripts to Artemis</a></li>
+  </ul></li>
+  <li><a href="#monitoring-artemis-jobs" id="toc-monitoring-artemis-jobs" class="nav-link" data-scroll-target="#monitoring-artemis-jobs">Monitoring Artemis jobs</a>
+  <ul class="collapse">
+  <li><a href="#qstat" id="toc-qstat" class="nav-link" data-scroll-target="#qstat">qstat</a></li>
+  <li><a href="#jobstat" id="toc-jobstat" class="nav-link" data-scroll-target="#jobstat">jobstat</a></li>
+  <li><a href="#pbs-log-files" id="toc-pbs-log-files" class="nav-link" data-scroll-target="#pbs-log-files">PBS log files</a></li>
+  <li><a href="#did-what-we-expected-happen" id="toc-did-what-we-expected-happen" class="nav-link" data-scroll-target="#did-what-we-expected-happen">Did what we expected happen?</a></li>
+  </ul></li>
+  <li><a href="#practise-makes-perfect-matlab" id="toc-practise-makes-perfect-matlab" class="nav-link" data-scroll-target="#practise-makes-perfect-matlab">Practise makes perfect: Matlab</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Submitting and monitoring Artemis Jobs</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>In this episode we practice <strong>submitting</strong> and <strong>monitoring</strong> jobs on Artemis. We also explore the different <strong>job queues</strong> available.</p>
+<section id="artemis-job-queues" class="level2">
+<h2 class="anchored" data-anchor-id="artemis-job-queues">Artemis Job Queues</h2>
+<p>Artemis’ scheduler reserves portions of the cluster for different job types, in order to make access fairer for all users. However, the most commonly used queues are not specified in a resource request, but are allocated automatically based on what resources are requested. These primary queues all fall under the <strong>defaultQ</strong> (which is also the default queue set for any job that does not specify its queue with a <code>-q</code> directive).</p>
+<p>The queues under <strong>defaultQ</strong> are <em>small</em>, <em>normal</em>, <em>large</em>, <em>highmem</em> and <em>gpu</em>. Jobs are allocated to them according to the resource limits set for each queue: jobs will only run in a queue whose limits it satisfies. Recall that resources are requested with <code>-l</code> directives. The resource limits for each queue are listed below. Importantly, as soon as GPU resources are requested, jobs are assigned to the GPU queue – there is no other queue with GPU resources.</p>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Queue</th>
+<th style="text-align: center;">Invocation</th>
+<th style="text-align: center;">Max Walltime</th>
+<th style="text-align: center;">Max Cores per<br>Job / User / Node</th>
+<th style="text-align: center;">Memory (GB) per<br>Node / Core</th>
+<th style="text-align: center;">Fair Share Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">-small<br>-normal<br>-large<br>-highmem<br>-gpu</td>
+<td style="text-align: center;"><br><br><strong>defaultQ</strong><br><br></td>
+<td style="text-align: center;">1 day<br>7 days<br>21 days<br>21 days<br>7 days</td>
+<td style="text-align: center;">24 / 128 / 24<br>96 / 128 / 32 <br>288 / 288 / 32<br>192 / 192 / 64<br>252 / 252 / 36</td>
+<td style="text-align: center;">123 / &lt; 20<br>123 / &lt; 20<br>123 / &lt; 20<br>123-6144 / &gt; 20<br>185 / –</td>
+<td style="text-align: center;">10<br>10<br>10<br>50<br>50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">small express</td>
+<td style="text-align: center;"><strong>small-express</strong></td>
+<td style="text-align: center;">12 hours</td>
+<td style="text-align: center;">4 / 40 / 4</td>
+<td style="text-align: center;">123 / –</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">scavenger</td>
+<td style="text-align: center;"><strong>scavenger</strong></td>
+<td style="text-align: center;">2 days</td>
+<td style="text-align: center;">288 / 288 / 24</td>
+<td style="text-align: center;">123 / –</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data transfer</td>
+<td style="text-align: center;"><strong>dtq</strong></td>
+<td style="text-align: center;">10 days</td>
+<td style="text-align: center;">2 / 16 / 2</td>
+<td style="text-align: center;">16 / –</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">interactive</td>
+<td style="text-align: center;"><code>qsub -I</code></td>
+<td style="text-align: center;">4 hours</td>
+<td style="text-align: center;">4 / 4 / 4</td>
+<td style="text-align: center;">123 / –</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+<p>Take note of the maxima for each queue. Note especially the <em>maximum cores per node</em>: if you request more than this number of CPUs in a <code>-l select=</code> directive, your job <strong>can never run</strong>. The highest limit for CPU <em>cores / node</em> is 64, as this is the number of cores of the largest CPUs available on Artemis.</p>
+<p>Each queue also has a different contribution factor to your <em>Fair Share</em> count. For example, use of <strong>small-express</strong> will accumulate Fair Share 50 times faster than using the <strong>defaultQ</strong>.</p>
+<p>There are also a number of additional queues which are not part of <strong>defaultQ</strong>. These are:</p>
+<table class="table">
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Queue</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">small-express</td>
+<td style="text-align: left;">For quick jobs that require few resources.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">scavenger</td>
+<td style="text-align: left;">Allows jobs to use any idle resources available in other people’s <em>allocations</em>; however, <strong>your job will be suspended if the allocation owner requests those resources!</strong><br>Suspended scavenger jobs will be <strong>killed</strong> after 24 hours.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">dtq</td>
+<td style="text-align: left;">This queue is reserved for transferring data into or out of Artemis. Users may <strong>not</strong> try to perform computation in these queues, and the system generally won’t let you.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">interactive</td>
+<td style="text-align: left;">This is the queue for <em>interactive</em> jobs. It can only be accessed via a <code>qsub -I</code> command.</td>
+</tr>
+</tbody>
+</table>
+<section id="allocations" class="level4">
+<h4 class="anchored" data-anchor-id="allocations">Allocations</h4>
+<p><strong>Scavenger</strong> uses idle resources available in <em>allocations</em>. An allocation refers to Artemis resources (ie nodes) which have been assigned to certain research groups for priority use. Allocations can be purchased, won, or granted via the <a href="https://informatics.sydney.edu.au/services/fas/">Facilities Access Scheme</a>. Remember, your <strong>scavenger</strong> jobs will be <em>paused</em> (suspended) if the allocation owner requests those resources; they’ll be <em>killed</em> if they are suspended for longer than 24 hours. This makes <strong>scavenger</strong> an excellent option if you have many small jobs that you can easily re-run if they happen to be killed; some users get thousands of ‘free’ CPU-hours from scavenging!</p>
+</section>
+</section>
+<section id="submitting-jobs" class="level2">
+<h2 class="anchored" data-anchor-id="submitting-jobs">Submitting Jobs</h2>
+<section id="adjusting-pbs-directives" class="level3">
+<h3 class="anchored">Adjusting PBS directives</h3>
+<p>We’re now ready to <strong>submit</strong> a compute job to Artemis. Navigate to the <strong>sample data</strong> we extracted, and open <strong>basic.pbs</strong> in your preferred text editor.</p>
+<pre><code>nano basic.pbs</code></pre>
+<p>{: .language-bash}</p>
+<figure class="figure">
+<a name="nanobasic"></a> <img src="{{ page.root }}/fig/04_nanobasic2.png" style="margin:10px;height:420px" class="figure-img">
+<figcaption class="figure-caption">
+The <b>basic.pbs</b> PBS script.
+</figcaption>
+</figure>
+<p><br></p>
+<p>We need to make a few edits before we can submit this script. Can you guess what they are?</p>
+<blockquote class="blockquote">
+<h2 id="change-1" class="anchored" data-anchor-id="adjusting-pbs-directives">Change #1</h2>
+<p>Specify your <strong>project</strong>.</p>
+<p>Use the <code>-P</code> PBS directive to specify the <em><strong>Training</strong></em> project, using its <em>short name</em>. ~~~ #PBS -P Training ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-2" class="anchored">Change #2</h2>
+<p>Give your job a <strong>name</strong></p>
+<p>Use the <code>-N</code> PBS directive to give your job an easily identifiable name. You might run <strong>lots</strong> of jobs at the same time, so you want to be able to keep track of them!</p>
+<pre><code>#PBS -N Basic_hayim</code></pre>
+<p>{: .language-bash} Substitute a job name of your choice! {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-3" class="anchored">Change #3</h2>
+<p>Tailor your <strong>resource</strong> requests.</p>
+<p>Use the <code>-l</code> PBS directive to request appropriate compute <strong>resources</strong> and <strong>walltime</strong> for your job.</p>
+<p>This script will not be asked to do much, as it’ll just be a first test, so request just <strong>1 minute</strong> of walltime, and the minimum RAM, <strong>1 GB</strong>. ~~~ #PBS -l select=1:ncpus=1:mem=1GB #PBS -l walltime=00:01:00 ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-4" class="anchored">Change #4</h2>
+<p>Specify a <strong>job queue</strong>.</p>
+<p>Use the <code>-q</code> PBS directive to send the job to the <strong>defaultQ</strong> queue. You can also try <strong>small-express</strong> if you like; whose jobs start sooner? ~~~ #PBS -q defaultQ ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="optional-set-up-email-notification" class="anchored">Optional: Set up email notification</h2>
+<p>Set up <strong>email notification</strong> for your job.</p>
+<p>Use the <code>-M</code> and <code>-m</code> PBS directive to specify a destination email address, and the events you wish to be notified about. You can receive notifications for when your job <strong>(b)</strong>egins, <strong>(e)</strong>nds or <strong>(a)</strong>borts. ~~~ #PBS -M hayim.dar@sydney.edu.au #PBS -m abe ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<p>To begin, we’re going to run a very simple ‘test’ job, so <u>delete everything below the directives</u>, from <code># Load modules</code> onward, and replace with</p>
+<pre><code>cd /project/Training/&lt;YourName&gt;
+
+mkdir New_job
+cp basic.pbs New_job/copy.pbs
+perl hello.pl &lt;YourName&gt;</code></pre>
+<p>{: .language-bash}</p>
+<p>PBS uses your <strong>/home/&lt;unikey&gt;</strong> directory as your default <em>working directory</em> in which to start all PBS scripts. Since your data is not likely to ever be in your home directory, the first command in any script will probably involve setting or changing to the correct folder.</p>
+<p>The rest of these commands (i) create a new folder, (ii) make a copy of the <strong>basic.pbs</strong> file within the new folder, and (iii) run a ‘<em>Perl</em>’ script using the <code>perl</code> programming language and interpreter. The script <strong>hello.pl</strong> accepts one argument.</p>
+<p>Save this PBS script (on nano <kbd>Ctrl</kbd>+<kbd>o</kbd>), and exit the editor (on nano <kbd>Ctrl</kbd>+<kbd>x</kbd>).</p>
+</section>
+<section id="submitting-pbs-scripts-to-artemis" class="level3">
+<h3 class="anchored" data-anchor-id="submitting-pbs-scripts-to-artemis">Submitting PBS scripts to Artemis</h3>
+<p>Finally, submit the PBS script <strong>basic.pbs</strong> to the Artemis scheduler, using <code>qsub</code>:</p>
+<pre><code>qsub basic.pbs</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ qsub basic.pbs
+2556851.pbsserver</code></pre>
+<p>{: .output}</p>
+<p>Congratulations, you have now submitted your first Artemis job! :tada::tada:</p>
+</section>
+</section>
+<section id="monitoring-artemis-jobs" class="level2">
+<h2 class="anchored" data-anchor-id="monitoring-artemis-jobs">Monitoring Artemis jobs</h2>
+<section id="qstat" class="level3">
+<h3 class="anchored" data-anchor-id="qstat">qstat</h3>
+<p>You’ve submitted a job, but how can you check what it’s doing, if it’s finished, and what it’s done?</p>
+<p>Note that when we submitted our PBS script above, we received the feedback</p>
+<pre><code>2557008.pbsserver</code></pre>
+<p>{: .output}</p>
+<p>This number, <strong>XXXXXX.pbsserver</strong> is the <strong>job ID</strong> number for this job, and is how we can track its status.</p>
+<p>We can query a current Artemis job using the PBS command <code>qstat</code> and the <strong>job ID</strong>. The flag <code>-x</code> will give us job info for historical jobs, so include it to see our job even if it has already completed</p>
+<pre><code>qstat -x 2557008</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ qstat -x 2557008
+Job id            Name             User              Time Use S Queue
+----------------  ---------------- ----------------  -------- - -----
+2557008.pbsserver Basic_hayim      jdar4135                 0 Q small</code></pre>
+<p>{: .output}</p>
+<p><strong>qstat</strong> shows that my job, <strong>2556851.pbsserver</strong>, with the name I gave it, <strong>Index_hayim</strong>, is currently <em>queued</em> in the <strong>small</strong> job queue. The <em><strong>job status</strong></em> column <code>S</code> shows whether a job is <strong>(Q)</strong>ueued, <strong>(R)</strong>unning, <strong>(E)</strong>xiting, <strong>(H)</strong>eld, <strong>(F)</strong>ininshed, or is a <strong>(B)</strong>atch array job. More status codes can be found in the docs (<code>man qstat</code>).</p>
+<p><strong>qstat</strong> has many other options. Some common ones are:</p>
+<table class="table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Flag</th>
+<th>Option</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>-T</code></td>
+<td>show an <em>estimated Start Time</em> for jobs</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>-w</code></td>
+<td>print wider output columns, for when your job names are longer than 10 characters</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>-u</code></td>
+<td>show jobs for a specific <em>user</em> (Unikey)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>-x</code></td>
+<td>show finished jobs also</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>-f</code></td>
+<td>show full job details</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>-Q</code></td>
+<td>print out numbers of jobs queued and running in for all of Artemis’ job queues</td>
+</tr>
+</tbody>
+</table>
+<p>Print out the entire job list, by not specifying a <strong>job ID</strong>, with estimated start times, by running <code>qstat -T</code>. How far down are our training jobs?</p>
+</section>
+<section id="jobstat" class="level3">
+<h3 class="anchored" data-anchor-id="jobstat">jobstat</h3>
+<p>Artemis provides another tool for checking your jobs, which also shows some extra information about Artemis. This is <code>jobstat</code>:</p>
+<pre><code>[jdar4135@login3 hayim]$ jobstat
+......
+System Status --------------------------------------------
+CPU hours for jobs currently executing: 1482286.8
+CPU hours for jobs queued:              489049.4
+Storage Quota Usage ------------------------------------------------
+/home                             jdar4135       5.214G          10G
+/project              RDS-CORE-Training-RW       34.07G           1T
+/project                   RDS-CORE-CLC-RW           4k           1T
+/project                   RDS-CORE-ICT-RW       514.3M           1T
+/project            RDS-CORE-SIHclassic-RW         240k           1T
+/project            RDS-CORE-SIHsandbox-RW       236.7G           1T
+Storage Usage (Filesystems totals) ---------------------------------
+Filesystem Used     Free
+/scratch   378.1Tb  1.5%</code></pre>
+<p>{: .output}</p>
+<p>Neat!</p>
+<p><br> By this time, our tiny test jobs should have run and competed. Check again</p>
+<pre><code>qstat -x 2556851</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ qstat -x 2557008
+Job id            Name             User              Time Use S Queue
+----------------  ---------------- ----------------  -------- - -----
+2557008.pbsserver Basic_hayim      jdar4135          00:00:00 F small</code></pre>
+<p>{: .output}</p>
+<p>My job finished! Has yours? If you requested email notifications, did you get any?</p>
+</section>
+<section id="pbs-log-files" class="level3">
+<h3 class="anchored">PBS log files</h3>
+<p>Now, list the contents of your working directory</p>
+<pre><code>ls -lsh</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ ls -lsh
+total 271M
+-rw-r----- 1 jdar4135 RDS-CORE-Training-RW 116M Nov 30  2016 134_R1.fastq.gz
+-rw-r----- 1 jdar4135 RDS-CORE-Training-RW 117M Nov 30  2016 134_R2.fastq.gz
+-rw-r----- 1 jdar4135 RDS-CORE-Training-RW  748 Oct 25 11:48 align.pbs
+-rw-r----- 1 jdar4135 RDS-CORE-Training-RW  203 Oct 25 14:34 basic.pbs
+-rw-r----- 1 jdar4135 RDS-CORE-Training-RW  39M Nov 30  2016 canfam3_chr5.fasta
+......</code></pre>
+<p>{: .output}</p>
+<p>Notice anything new? There should be three new files, all beginning with your <strong>job name</strong> ~~~ -rw——- 1 jdar4135 RDS-CORE-Training-RW 0 Oct 25 15:35 Index_hayim.e2557008 -rw——- 1 jdar4135 RDS-CORE-Training-RW 31 Oct 25 15:35 Index_hayim.o2557008 -rw-r–r– 1 jdar4135 RDS-CORE-Training-RW 1.3K Oct 25 15:35 Index_hayim.o2557008_usage ~~~ {: .output}</p>
+<p>These are the <strong>log files</strong> for your job:</p>
+<p>|:–|—| | JobName.<strong>e</strong>JobID | <strong>E</strong>rror log: This is where error messages – those usually printed to <strong>stderr</strong> – are recorded | | JobName.<strong>o</strong>JobID | <strong>O</strong>utput log: This is where output messages – those usually printed to <strong>stdout</strong> – are recorded | | JobName.<strong>o</strong>JobID_usage | <strong>Usage</strong> report: gives a short summary of the <strong>resources</strong> used by your job |</p>
+<p>Check whether there were any errors in your job by inspecting the contents of the <strong>error</strong> log with <code>cat</code>:</p>
+<pre><code>[jdar4135@login3 hayim]$ cat Index_hayim.e2557008</code></pre>
+<p>{: .output}</p>
+<p>Empty! That’s a good sign. Now let’s have a look at the <strong>output</strong> log:</p>
+<pre><code>[jdar4135@login3 hayim]$ cat Index_hayim.o2557008
+Hello, world! My name is Hayim.</code></pre>
+<p>{: .output}</p>
+<p>The output from the <strong>hello.pl</strong> script appears in the PBS output log as expected.</p>
+<p>Finally, let’s have a look at the resource <strong>usage</strong> report:</p>
+<pre><code>[jdar4135@login3 hayim]$ cat Index_hayim.o2557008_usage
+-- Job Summary -------------------------------------------------------
+Job Id: 2557008.pbsserver for user jdar4135 in queue small
+Job Name: Index_hayim
+Project: RDS-CORE-Training-RW
+Exit Status: 0
+Job run as chunks (hpc016:ncpus=1:mem=1048576kb)
+Walltime requested:   00:01:00 :      Walltime used:   00:00:03
+                               :   walltime percent:       5.0%
+-- Nodes Summary -----------------------------------------------------
+-- node hpc016 summary
+    Cpus requested:          1 :          Cpus Used:    unknown
+          Cpu Time:    unknown :        Cpu percent:    unknown
+     Mem requested:      1.0GB :           Mem used:    unknown
+                               :        Mem percent:    unknown
+
+-- WARNINGS ----------------------------------------------------------
+
+** Low Walltime utilisation.  While this may be normal, it may help to check the
+** following:
+**   Did the job parameters specify more walltime than necessary? Requesting
+**   lower walltime could help your job to start sooner.
+**   Did your analysis complete as expected or did it crash before completing?
+**   Did the application run more quickly than it should have? Is this analysis
+**   the one you intended to run?
+**
+-- End of Job Summary ------------------------------------------------</code></pre>
+<p>{: .output}</p>
+<p>What does the report show?</p>
+<blockquote class="blockquote">
+<h2 id="exit-status" class="anchored" data-anchor-id="pbs-log-files">Exit status</h2>
+<p>Across *NIX systems and programming generally, an <strong>Exit Status</strong> code of <strong>0</strong> indicates that a program completed successfully.<sup id="a1"><a href="#f1">1</a></sup> Any exit code above 0 usually indicates an error.</p>
+<p>One way to check for errors in your jobs then, is to search for the words ‘<em>Exit Status</em>’ in your log files ~~~ grep -se “Exit Status” * ~~~ {: .language-bash} {: .callout}</p>
+</blockquote>
+</section>
+<section id="did-what-we-expected-happen" class="level3">
+<h3 class="anchored" data-anchor-id="did-what-we-expected-happen">Did what we expected happen?</h3>
+<p>The final test of whether a job ran correctly is to check whether the outputs you were expecting to be produced actually were produced. In our case, the script <strong>basic.pbs</strong> was meant to create a new folder and copy itself into it. We have already seen that <strong>hello.pl</strong> was run successfuly, so check for the rest:</p>
+<p>Our <code>ls</code> command earlier revealed that the new folder was successfully created: ~~~ drwxr-sr-x 2 jdar4135 RDS-CORE-Training-RW 4.0K Oct 25 15:16 New_job ~~~ {: .output}</p>
+<p>so check inside:</p>
+<pre><code>[jdar4135@login3 hayim]$ ls -lh New_job/
+total 512
+-rw-r----- 1 jdar4135 RDS-CORE-Training-RW 203 Oct 25 15:35 copy.pbs</code></pre>
+<p>{: .language-bash}</p>
+<p>Success.</p>
+<p><br> ## Practise makes perfect: Python</p>
+<p>Let’s do that again. This time rather than set submit a script to the scheduler that prints a generic hello world message, we will run python code that performs computation.</p>
+<p>Investigate the <strong><em>computepi_fire.py</em></strong> python file. Given a number of trials to run, this code estimates the number pi by randomly assigning points within a square and comparing the number of points that fall within a circle of radius one relative to the total number of points.</p>
+<p>The script that submits this python code to the scheduler is the <strong><em>estimate_pi.pbs</em></strong> script.</p>
+<pre><code>nano estimate_pi.pbs</code></pre>
+<p>{: .output}</p>
+<p>Things to notice in the script:</p>
+<p>a, A specific version of python is required. The code uses open source software called <strong><em>python fire</em></strong> that exposes python functions and classes to the command line in an easy manner. This dependency is installed with the <strong><em>pip</em></strong> command, a python specific package manager. Python fire requires a python 3X version.</p>
+<p>b, The <strong><em>cd $PBS_O_WORKDIR</em></strong> command changes the directory to the location where the pbs script was submitted. This is an example of a shell variable that has been set by the pbs environment. More examples of environment variables are given at the end of the material.</p>
+<p>c, The code requires an <strong><em>input</em></strong> parameter representing the number of random points used in the simulation. Increasing this will improve the accuracy at the expense of longer run time. Lets try!</p>
+<p>Submit this script to the scheduler. Check the log files for errors and the output.</p>
+<pre><code>qsub estimate_pi.pbs</code></pre>
+<p>{: .output}</p>
+<p>After this, try increasing the simulation number in the pbs script to one million, and practice deleting a job by using the <strong><em>qdel</em></strong> command with the job number that was printed used as an input argument. Here is an example:</p>
+<pre><code>[TRAINING kmar7637@login4 datahpc]$ qsub estimate_pi.pbs
+463292.pbstraining
+[TRAINING kmar7637@login4 datahpc]$ qdel 463292
+qdel: Job has finished</code></pre>
+<p>{: .output}</p>
+<p>Task: If you look again at the python code, there are optional arguments that could make your code even faster (apart from requesting more resources). Can you guess what they are and how to run it???</p>
+</section>
+</section>
+<section id="practise-makes-perfect-matlab" class="level2">
+<h2 class="anchored" data-anchor-id="practise-makes-perfect-matlab">Practise makes perfect: Matlab</h2>
+<p>Lets try one more job submission to reinforce the habit. This time we will submit a completely different matlab script that performs aggregation calculations on a csv file.</p>
+<p>If you are familiar with Matlab on your local machine, using Matlab is a little different here on Artemis. High performance computers generally work best when engaging software via Linux commands. Applications that rely on graphical interfaces (while achievable with a Nomachine interface or X11 forwarding described earlier) generally are slow and buggy. We will submit a pbs script that executes a Matlab script in the advisable manner that suppresses graphical interaction.</p>
+<p>Before we begin, lets investigate the underlying data with bash commands. Working with large data files is covered in other training material - it’s an art in itself - however, we’ll get a feel for what we are working with with the <strong><em>head</em></strong> and <strong><em>wc</em></strong> commands.</p>
+<pre><code>head airline2008.csv
+wc -l airline2008.csv</code></pre>
+<p>{: .output}</p>
+<p>The output reveals the csv file contains 1,754 rows of flight information containing columns that give arrival and departure time information.</p>
+<p>The pbs script <strong><em>airline.pbs</em></strong> runs Matlab data computations on this csv file. A couple of things to notice are:</p>
+<ol type="a">
+<li><p>The extra flags -nodisplay -nosplash suppress the matlab graphical interaction.</p></li>
+<li><p>The command line way to run Matlab with the -r (run) flag. There are a few ways to do it - consult Matlab documentation for more examples.</p></li>
+</ol>
+<pre><code>nano airline.pbs</code></pre>
+<p>{: .output}</p>
+<pre><code>qsub airline.pbs</code></pre>
+<p>{: .output}</p>
+<p>If there are no errors, investigate the output file to find out what date incurred the longest flight delays.</p>
+<hr>
+<p><strong>Notes</strong></p>
+<p><sup id="f1">1<a href="#a1">↩︎</a></sup> It’s important to keep in mind that ‘success’ to the operating system is not necessarily the same thing as ‘success’ in generating the results that you wanted from your job. Even with an exit status of zero, you should still check that your job produced the expected output.</p>
+<p><sup id="f2">2<a href="#a2">↩︎</a></sup> The <code>\</code> backslash in this block allow the code to be broken over multiple lines, allowing for neater code that doesn’t train off the screen. There must be a space before the backslashes, and no space between the backslash and ‘enter’.</p>
+<hr>
+<p><br></p>
+<p>{% include links.md %}</p>
+
+
+</section>
+
+<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

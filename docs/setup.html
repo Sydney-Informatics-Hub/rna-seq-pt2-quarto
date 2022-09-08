@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sydney Informatics Hub Course name - Setup</title>
+<title>RNA-Seq using Nextflow - Setup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ ul.task-list{list-style: none;}
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Sydney Informatics Hub Course name</span>
+    <span class="navbar-title">RNA-Seq using Nextflow</span>
   </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -81,8 +81,37 @@ ul.task-list{list-style: none;}
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
         <li>
-    <a class="dropdown-item" href="./notebooks/01a-fundamentals.html">
- <span class="dropdown-text">Fundamentals</span></a>
+    <a class="dropdown-item" href="./notebooks/1-recap_Day1.html">
+ <span class="dropdown-text">Recap day 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.2_Learning_objectives.html">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Nextflow to RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/3-LoadCountMatrix_and_explore.html">
+ <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+        <li>
+    <a class="dropdown-item" href="./notebooks/4-DE_analysis.html">
+ <span class="dropdown-text">DE analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/6_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
+ <span class="dropdown-text">DE genes to enrichments</span></a>
   </li>  
     </ul>
   </li>
@@ -101,7 +130,19 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#get-a-client" id="toc-get-a-client" class="nav-link active" data-scroll-target="#get-a-client">1. Get a client</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#the-pawsey-supercomputing-research-centre" id="toc-the-pawsey-supercomputing-research-centre" class="nav-link" data-scroll-target="#the-pawsey-supercomputing-research-centre">The Pawsey Supercomputing Research Centre</a></li>
+  <li><a href="#bioinformatics-with-nimbus" id="toc-bioinformatics-with-nimbus" class="nav-link" data-scroll-target="#bioinformatics-with-nimbus">Bioinformatics with Nimbus</a></li>
+  <li><a href="#set-up-your-laptop" id="toc-set-up-your-laptop" class="nav-link" data-scroll-target="#set-up-your-laptop">Set up your laptop</a>
+  <ul class="collapse">
+  <li><a href="#get-a-shell-terminal-emulator" id="toc-get-a-shell-terminal-emulator" class="nav-link" data-scroll-target="#get-a-shell-terminal-emulator">Get a shell terminal emulator</a></li>
+  </ul></li>
+  <li><a href="#connecting-to-a-nimbus-instance" id="toc-connecting-to-a-nimbus-instance" class="nav-link" data-scroll-target="#connecting-to-a-nimbus-instance">Connecting to a Nimbus instance</a>
+  <ul class="collapse">
+  <li><a href="#logging-in-using-a-terminal" id="toc-logging-in-using-a-terminal" class="nav-link" data-scroll-target="#logging-in-using-a-terminal">Logging-in using a terminal</a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -126,9 +167,121 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<section id="get-a-client" class="level1">
-<h1>1. Get a client</h1>
-<p>These are the setup instructions…</p>
+<section id="questions" class="level3 questions">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<ul>
+<li>How do I securely log into a Nimbus VM instance?</li>
+</ul>
+</section>
+<section id="objectives" class="level3 objectives">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Successfully log in to a Nimbus instance using ssh.</li>
+</ul>
+</section>
+<section id="the-pawsey-supercomputing-research-centre" class="level2">
+<h2 class="anchored" data-anchor-id="the-pawsey-supercomputing-research-centre">The Pawsey Supercomputing Research Centre</h2>
+<p>The <a href="https://pawsey.org.au/about-us/about-pawsey/">Pawsey Supercomputing Research Centre</a> is one of two, Tier-1, High Performance Computing facilities in Australia, whose primary function is to accelerate scientific research for the benefit of the nation. Pawsey service and expertise in supercomputing, data, cloud services and visualisation, enables research across a spread of domains including astronomy, life sciences, medicine, energy, resources and artificial intelligence.</p>
+</section>
+<section id="bioinformatics-with-nimbus" class="level2">
+<h2 class="anchored" data-anchor-id="bioinformatics-with-nimbus">Bioinformatics with Nimbus</h2>
+<p>Nimbus cloud from Pawsey can help the reserachers scale their problems and make them solvable in a reasonable timeframe. Nimbus instance is a virtual machine (VM) located on Nimbus servers, that you use in place of your laptop or desktop computer. Nimbus is a useful solution for bioinformatics applications that may not be suitable for large-scale HPC machines including:</p>
+<ul>
+<li>Developing and refining scalable workflows in prepration for HPC allocation applications.</li>
+<li>Workflows with long runtimes that excede wall time queue limits on HPC facilities.</li>
+<li>Complex data-bound workflows with variable compute resource profiles that are common in bioinformatics pipelines.</li>
+</ul>
+</section>
+<section id="set-up-your-laptop" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-your-laptop">Set up your laptop</h2>
+<section id="get-a-shell-terminal-emulator" class="level3">
+<h3 class="anchored" data-anchor-id="get-a-shell-terminal-emulator">Get a shell terminal emulator</h3>
+<p>To connect to the Nimbus VM, and follow this lesson, you will need a <strong>‘terminal emulator’</strong> program installed on your computer. Often just called a ‘terminal’, or ‘shell terminal’, ‘shell client’, terminal emulators give you a window with a <em>command line interface</em> through which you can send commands to be executed by your computer.</p>
+<section id="a.-linux-systems" class="level4">
+<h4 class="anchored" data-anchor-id="a.-linux-systems">A. Linux systems</h4>
+<p>If you use Linux, then chances are you already know your shell and how to use it. Basically, just open your preferred terminal program and off you go! An X-Window server (X11) may also be useful if you want to be able to use GUIs; again, if you’re using Linux you probably have one, and if you don’t have one, it’s probably because you intentionally disabled it!</p>
+</section>
+<section id="b.-osx-mac-computers-and-laptops" class="level4">
+<h4 class="anchored" data-anchor-id="b.-osx-mac-computers-and-laptops">B. OSX (Mac computers and laptops)</h4>
+<p>Mac operating systems come with a terminal program, called Terminal. Just look for it in your Applications folder, or hit Command-Space and type ‘terminal’. You may find that other, 3rd party terminal programs are more user-friendly and powerful – I use <a href="https://www.iterm2.com/">Iterm2</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/s_terminal_app.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption"><b>Terminal</b> is OSX’s native terminal emulator.</figcaption><p></p>
+</figure>
+</div>
+<p>We also recommend installing <a href="https://www.xquartz.org/">XQuartz</a>, which will replace OSX’s native X-Window server. XQuartz has some extra features that may offer better performance when using GUI programs. You’ll need to log out and back in again after installing XQuartz in order for it to activate.</p>
+</section>
+<section id="c.-windows" class="level4">
+<h4 class="anchored" data-anchor-id="c.-windows">C. Windows</h4>
+<p>If you’re using a Windows machine, don’t panic! You might not have used ‘CMD’ since Windows 95 but, rest assured, Windows still has a couple of terminal programs and shells buried in the Programs menu. However, those aren’t going to work for us, as you’ll need extra programs and utilities to connect to Nimbus, such as an <em>SSH</em> implementation.</p>
+<ul>
+<li>To use Nimbus on a Windows computer, you have a couple of options, as shown below.</li>
+<li>We recommend using the <code>MobaXterm</code> terminal application.</li>
+</ul>
+<section id="i.-mobaxterm" class="level5">
+<h5 class="anchored" data-anchor-id="i.-mobaxterm">i. MobaXterm</h5>
+<p><a href="https://mobaxterm.mobatek.net/download.html">MobaXterm</a> offers a rich experience as a full-featured X-server and terminal emulator for ssh connections, the free version is more than adequate.</p>
+<p><code>Directions</code> to install and start using MobaXterm</p>
+<ul>
+<li>Go to https://mobaxterm.mobatek.net/download.html</li>
+<li>Under ‘Home Edition’ select the <code>Download now</code> button</li>
+<li>Select the MobaXterm Home Edition (Installer edition)</li>
+<li>Once the program is downloaded, install it as you would any other windows program</li>
+<li>Once the program is installed, start the MobaXterm program.<br>
+</li>
+<li>From this screen, click on ‘start local terminal’</li>
+<li>Type in: ssh training@XXX.XXX.XX</li>
+<li>When prompted, enter your password</li>
+</ul>
+</section>
+<section id="ii.-putty" class="level5">
+<h5 class="anchored" data-anchor-id="ii.-putty">ii. PuTTY</h5>
+<p>PuTTY, an SSH and telnet client, is a good simple option. However, note that PuTTY <strong>does not</strong> provide an X11 server, so you won’t be able to use GUI programs with <em>just</em> PuTTY. Head to <a href="https://putty.org">https://putty.org</a> and download PuTTY. You can install it to your computer, or just download the ‘binary’ and run it directly.</p>
+</section>
+<section id="iii.-wsl-and-ubuntu" class="level5">
+<h5 class="anchored" data-anchor-id="iii.-wsl-and-ubuntu">iii. WSL and Ubuntu</h5>
+<p>Install Ubuntu or some other Linux distro on the Windows Subsystem for Linux see <a href="https://ubuntu.com/tutorials/tutorial-ubuntu-on-windows#1-overview">here for details</a>. This one will give you a full suite of Linux functions and I like it for emulating Linux.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="connecting-to-a-nimbus-instance" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-to-a-nimbus-instance">Connecting to a Nimbus instance</h2>
+<p>Loggin into a Nimbus instance requires three things: 1. The <strong>IP Address</strong> (virtual address) of your instance. It is a series of numbers i.e.&nbsp;###.###.###.###. Every participant is provided with an separate IP Address which points to an independant VM instance. 2. Your <strong>login name</strong>: this depends on the name of the Linux OS image you selected and in our case it is <code>training</code>. 3. Your <strong>password</strong>. Every participant is provided with a password</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/Pawsey_VM_instance.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">SSH connection to Nimbus VM instance</figcaption><p></p>
+</figure>
+</div>
+<section id="logging-in-using-a-terminal" class="level3">
+<h3 class="anchored" data-anchor-id="logging-in-using-a-terminal">Logging-in using a terminal</h3>
+<p>The primary means by which we can connect to this VM is via a Secure Shell (SSH) over a Command Line Interface (CLI). Type the following into your terminal, using your login name and the instance’s IP address:</p>
+<pre><code>ssh training@###.###.###.###</code></pre>
+<p>You will receive a message saying:</p>
+<pre><code>The authenticity of host '146.118.67.137 (146.118.67.137)' can't be established.</code></pre>
+<p>Remember your host address will be different than the one above. There will then be a message saying:</p>
+<pre><code>Are you sure you want to continue connecting (yes/no)?</code></pre>
+<p>If you are sure (and/or confirm the fingerprint), answer ‘yes’ to continue. It will then give a warning:</p>
+<pre><code>Warning: Permanently added '146.118.67.137' (ECDSA) to the list of known hosts.</code></pre>
+<pre><code>Enter password:</code></pre>
+<p>Meaning that next time you log in using this key and IP address you won’t receive this message. Having done that, your terminal should then display something like that shown in the figure below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/Nimbus_login_screen.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">figure</figcaption><p></p>
+</figure>
+</div>
+<p><strong>Congratulations, you have now successfully logged on to your instance!</strong></p>
+</section>
+<section id="key-points" class="level3 keypoints">
+<h3 class="anchored" data-anchor-id="key-points">Key points</h3>
+<ul>
+<li>Nimbus VM instances from Pawsey provide on-demand access for scalability.</li>
+<li>We use a ssh client to connect to a Linux instance.</li>
+</ul>
+</section>
 
 
 </section>

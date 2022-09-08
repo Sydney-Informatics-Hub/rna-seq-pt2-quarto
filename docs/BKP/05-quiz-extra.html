@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.345">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RNA-Seq using Nextflow - Quiz! and Case Study</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../lesson.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">RNA-Seq using Nextflow</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html">Setup</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
+ <span class="dropdown-text">Recap day 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Nextflow to RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
+ <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
+ <span class="dropdown-text">DE analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
+ <span class="dropdown-text">DE genes to enrichments</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link active" data-scroll-target="#quiz">Quiz!</a></li>
+  <li><a href="#additional-notes" id="toc-additional-notes" class="nav-link" data-scroll-target="#additional-notes">Additional notes</a>
+  <ul class="collapse">
+  <li><a href="#pbs-environment-variables" id="toc-pbs-environment-variables" class="nav-link" data-scroll-target="#pbs-environment-variables">PBS Environment Variables</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Quiz! and Case Study</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="quiz" class="level2">
+<h2 class="anchored" data-anchor-id="quiz">Quiz!</h2>
+<p>Have a go at the questions below <strong><em>BEFORE</em></strong> revealing the answer!!</p>
+<p>Better yet, <em>wait for the instructor</em> and we’ll go through the quiz all together. :blush:</p>
+<ol type="1">
+<li>How do you submit a job called align.pbs?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="how-do-you-submit-a-job-called-align.pbs" class="anchored">1. How do you submit a job called align.pbs?</h2>
+<pre><code>qsub align.pbs</code></pre>
+<p>{: .language-bash} {: .solution}</p>
+</blockquote>
+<ol start="2" type="1">
+<li>How do you check the status of the job?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer" class="anchored">Answer</h2>
+<pre><code>qstat &lt;JOBID&gt;
+qstat -x -u &lt;UNIKEY&gt;</code></pre>
+<p>{: .language-bash} {: .solution}</p>
+</blockquote>
+<ol start="3" type="1">
+<li>How might you know when the job is finished?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-1" class="anchored">Answer</h2>
+<p>The output of ‘qstat’ shows an ‘F’ in the ‘S’ (status) column. We receive an email from the system indicating termination. We can see the log files for this job (they are only created at completion). {: .solution}</p>
+</blockquote>
+<ol start="4" type="1">
+<li>How much space are you allocated in project, and how do you check how much you have used?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-2" class="anchored">Answer</h2>
+<p>Space per project: 1 TB, command ‘pquota’ {: .solution}</p>
+</blockquote>
+<ol start="5" type="1">
+<li>What log files are produced after a job completes, and what do they contain?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-3" class="anchored">Answer</h2>
+<p><code>JobName.oJobID</code>–standard output (things that are usually printed to terminal)</p>
+<p><code>JobName.eJobID</code>–standard error (OS or application error messages)</p>
+<p><code>JobName.oJobID_usage</code>–job resource usage {: .solution}</p>
+</blockquote>
+<ol start="6" type="1">
+<li>What do the <code>-P</code>,<code>-N</code>, and <code>-q</code> directives indicate to the scheduler?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-4" class="anchored">Answer</h2>
+<pre><code>#PBS -P yourproject # Specify your project.
+#PBS -N yourjobname #Specify the name of you job.
+#PBS -q defaultQ #Request which queue to run your job on.</code></pre>
+<p>{: .language-bash} {: .solution}</p>
+</blockquote>
+<ol start="7" type="1">
+<li>Write the directive requesting 10.5 hours wall time</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-5" class="anchored">Answer</h2>
+<pre><code>#PBS –l walltime=10:30:00</code></pre>
+<p>{: .language-bash} {: .solution}</p>
+</blockquote>
+<ol start="8" type="1">
+<li>Write the directive to specify a 6-core job using 2 GB RAM per core</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-6" class="anchored">Answer</h2>
+<pre><code>#PBS –l select=1:ncpus=6:mem=12GB</code></pre>
+<p>{: .language-bash} or ~~~ #PBS –l select=6:ncpus=1:mem=2GB ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<ol start="9" type="1">
+<li>Your job uses the software ‘beast’. What needs to come before your command to run beast?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-7" class="anchored">Answer</h2>
+<pre><code>module load beast</code></pre>
+<p>{: .language-bash} {: .solution}</p>
+</blockquote>
+<ol start="10" type="1">
+<li>Where should all important input and output data be stored long-term and why?</li>
+</ol>
+<blockquote class="blockquote">
+<h2 id="answer-8" class="anchored">Answer</h2>
+<p>The Research Data Store (RDS). RDS is backed up and Artemis is not! {: .solution}</p>
+</blockquote>
+</section>
+<section id="additional-notes" class="level2">
+<h2 class="anchored" data-anchor-id="additional-notes">Additional notes</h2>
+<section id="pbs-environment-variables" class="level3">
+<h3 class="anchored">PBS Environment Variables</h3>
+<p>Shell <em>‘environment variables’</em> are variables automatically set for you, or specified in a shell’s configuration. When you invoke a PBS shell environment, for example with a <code>qsub</code> command, certain variables are set for you. Some of the more useful are listed below:</p>
+<table class="table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 35%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">PBS variable</th>
+<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>PBS_O_WORKDIR</strong></td>
+<td style="text-align: left;">Is set to the <em>current working directory</em> from which you ran <code>qsub</code></td>
+<td style="text-align: left;"><code>cd $PBS_O_WORKDIR</code> at the beginning of your script will change PBS into the current directory, allowing access to any data stored there</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>NCPUS</strong></td>
+<td style="text-align: left;">The number of CPUs requested via <code>-l select=</code></td>
+<td style="text-align: left;">To ensure you tell any programs the correct number of CPUs they have access to, pass <code>$NCPUS</code> instead of a number as the argument</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>PBS_JOBID</strong></td>
+<td style="text-align: left;">The JobID assigned to the job</td>
+<td style="text-align: left;">Use <code>$PBS_JOBID</code> to give a unique name to any output or log files generated</td>
+</tr>
+</tbody>
+</table>
+<p><br> How might we have used <strong>NCPUS</strong> in the a command within our pbs jobscript?</p>
+<blockquote class="blockquote">
+<h2 id="answer-9" class="anchored" data-anchor-id="pbs-environment-variables">Answer</h2>
+<p>Use the <code>$NCPUS</code> variable to specify the number of threads we want, e.g.&nbsp;in the <code>bwa mem</code> program you can use: ~~~ bwa mem -M -t $NCPUS -R ‘<span class="citation" data-cites="RG">@RG</span>:134:illumina:CONNEACXX:MS_134’ ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<p><br> ### qdel</p>
+<p>If you find you have submitted a job incorrectly, or simply wish to cancel it for whatever reason, you can use <code>qdel</code> to remove it from the <strong>queue</strong>, or remove its historical record with <code>-x</code> if it is finished. ~~~ qdel [-x] JobID [JobID …] ~~~ {: .language-bash}</p>
+<p>More than one JobID may be supplied, separated with spaces.</p>
+<p><br> ### Log files</p>
+<p>The log files we have seen so far use Artemis’ default options and naming conventions. You can specify your own log files and names as follows</p>
+<pre><code>#PBS -o OutputFilename
+#PBS -e InputFilename</code></pre>
+<p>{: .language-bash}</p>
+<p>You can also combine both log files into one, using the <strong>join</strong> directive; <strong>o</strong>e combines both into the output log file, and <strong>e</strong>o combines them in the error file, using the default names unless you specify otherwise. ~~~ #PBS -j oe ~~~ {: .language-bash} ~~~ #PBS -j eo ~~~ {: .language-bash}</p>
+<p>PBS log files are also only created when your job <em>completes</em>. If you want to be able monitor the progress of a program which outputs such information to <strong>stdout</strong> or <strong>stderr</strong>, you can <strong><em>pipe</em></strong> these outputs to a file of your choosing, with <code>&gt;</code>. Eg: ~~~ # Program commands myProg -flag option1 inputFile &gt; myLogFile.txt ~~~ {: .language-bash}</p>
+<p>To redirect both the output (<strong>1</strong>) and error (<strong>2</strong>) streams:</p>
+<pre><code># Program commands
+myProg -flag option1 inputFile 1&gt; myLogFile_$PBS_JOBID.txt 2&gt; myErrorFile_$PBS_JOBID.txt</code></pre>
+<p>{: .language-bash}</p>
+<p>If you redirect a message stream via piping to a file, it will no longer be available to PBS, and so the PBS log for that stream will be empty.</p>
+<p>By default, your log files carry a <a href="https://en.wikipedia.org/wiki/Umask"><strong><em>umask</em></strong></a> of <strong>077</strong>, meaning that no-one else has any permissions to write, execute or even read your logs. If you want other people in your project to be able to read your log files (eg for debugging), then set the <em>umask</em> to <strong>027</strong>; if you want everyone to be able to read your log files, set the <em>umask</em> to <strong>022</strong>. This is done via the <strong>additional_attributes</strong> directive ~~~ #PBS -W umask=022 ~~~ {: .language-bash}</p>
+<p><br> ### Common error exit codes</p>
+<p>An <strong>Exit Status</strong> of 0 generally indicates a successfully completed job. Exit statuses up to <strong>128</strong> are the statuses returned by the program itself that was running and failed. Here are a few other common codes to watch out for when your job doesn’t run as expected and you want to know why:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td>The job was killed before it could be run</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">137</td>
+<td>The job was killed because it <em>ran out</em> of <strong>RAM</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">271</td>
+<td>The job was killed because it <em>ran out</em> of <strong>walltime</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br> ### Still need help? If your solution is not in these notes or on the support pages <a href="https://sydneyuni.atlassian.net/wiki/spaces/RC/overview">https://sydneyuni.atlassian.net/wiki/spaces/RC/overview</a></p>
+<p>Then log a ticket!</p>
+<p>Connect to Sydney University’s Service Managment Portal: <a href="https://sydneyuni.service-now.com/sm">https://sydneyuni.service-now.com/sm</a></p>
+<p>Click on <strong>“Submit a Request”</strong></p>
+<p>Navigate to the <strong>“High Performance Computing Request”</strong></p>
+<p><strong>Home &gt; Technology &gt; Research services &gt; HPC - High Performance Computing request</strong></p>
+<p>These requests go straight to the Artemis Service Management team. You can request help installing software, compiling code, and anything else. Also, if you think something weird is happening with Artemis log a ticket (under “High Performance Computing issue”) - these fault reports will help us diagnose what is happening and improve the Artemis service!</p>
+<p><br> ### Artemis is NOT backed up!</p>
+<p>Artemis is <strong>not</strong> intended to be used as a data store. Artemis is not backed up, and has limited space. Any data you have finished working with should be transferred to your <strong><em>RCOS</em></strong> space.</p>
+<p>How to do this is covered in the next course, <a href="https://informatics.sydney.edu.au/training/coursedocs/Introduction_to_RDS.pdf">‘<em>Data transfer and RDS for HPC</em>’</a></p>
+<!-- Awaiting the day when data transfer course is on github ({{ site.sih_pages }}/training.artemis.rds)! -->
+<figure class="figure">
+<img src="{{ page.root }}/fig/05_backup.png" style="margin:10px;height:300px" class="figure-img">
+<figcaption class="figure-caption">
+Back up your data.
+</figcaption>
+</figure>
+<p><br></p>
+<blockquote class="blockquote">
+<h2 id="course-survey" class="anchored">Course survey!</h2>
+<p><strong><em>Please</em></strong> fill out our <strong><a href="https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR&amp;training=12&amp;training_date=2021-12-21">course survey</a></strong> before you leave!</p>
+<p>Help us help you! :smiley: {: .testimonial}</p>
+</blockquote>
+<p>{% include links.md %}</p>
+
+
+</section>
+</section>
+
+<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Sydney Informatics Hub Course name"
+  title: "RNA-Seq using Nextflow"
   navbar:
     background: primary
     left:
@@ -13,9 +13,23 @@ website:
         text: "Setup"
       - text: "Session 1"
         menu:
-        - text: "Fundamentals"
-          href: notebooks/01a-fundamentals.html
-
+        - text: "Recap day 1"
+          href: notebooks/1-recap_Day1.html
+        - text: "Learning objectives"
+          href: notebooks/1.2_Learning_objectives.html
+        - text: "Nextflow to RStudio"
+          href: notebooks/2_nextflow_to_RStudio.html
+        - text: "Loading & exploring a count matrix"
+          href: notebooks/3-LoadCountMatrix_and_explore.html
+      - text: "Session 2"
+        menu:
+        - text: "DE analysis"
+          href: notebooks/4-DE_analysis.html
+        - text: "Enrichment analysis"
+          href: notebooks/6_Whatis_Enrichment_analysis.html
+        - text: "DE genes to enrichments"
+          href: notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html
+          
   body-footer: "All materials copyright Sydney Informatics Hub, University of Sydney"
           
 format:

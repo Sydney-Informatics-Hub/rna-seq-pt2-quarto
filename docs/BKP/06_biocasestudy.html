@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.345">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RNA-Seq using Nextflow - Bonus: Bioinformatics Case Study</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../lesson.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">RNA-Seq using Nextflow</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html">Setup</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
+ <span class="dropdown-text">Recap day 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Nextflow to RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
+ <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
+ <span class="dropdown-text">DE analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
+ <span class="dropdown-text">DE genes to enrichments</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#case-study---bioinformatics-pipeline" id="toc-case-study---bioinformatics-pipeline" class="nav-link active" data-scroll-target="#case-study---bioinformatics-pipeline">CASE STUDY - BIOINFORMATICS PIPELINE</a>
+  <ul class="collapse">
+  <li><a href="#index-a-genome" id="toc-index-a-genome" class="nav-link" data-scroll-target="#index-a-genome">Index a genome</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bonus: Bioinformatics Case Study</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="case-study---bioinformatics-pipeline" class="level1">
+<h1>CASE STUDY - BIOINFORMATICS PIPELINE</h1>
+<section id="index-a-genome" class="level2">
+<h2 class="anchored" data-anchor-id="index-a-genome">Index a genome</h2>
+<p>Open <strong>index.pbs</strong> and make any edits necessary. What will you need to change?</p>
+<pre><code>nano index.pbs</code></pre>
+<p>{: .language-bash}</p>
+<figure class="figure">
+<a name="nanoindex"></a> <img src="{{ page.root }}/fig/04_nanoindex.png" style="margin:10px;height:500px" class="figure-img">
+<figcaption class="figure-caption">
+The <b>index.pbs</b> PBS script.
+</figcaption>
+</figure>
+<p><br></p>
+<blockquote class="blockquote">
+<h2 id="change-1" class="anchored">Change #1</h2>
+<p>Specify your <strong>project</strong>.</p>
+<p>Use the <code>-P</code> PBS directive to specify the <em><strong>Training</strong></em> project, using its <em>short name</em>. ~~~ #PBS -P Training ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-2" class="anchored">Change #2</h2>
+<p>Give your job a <strong>name</strong>.</p>
+<p>Use the <code>-N</code> PBS directive to give your job an easily identifiable name. You might run <strong>lots</strong> of jobs at the same time, so you want to be able to keep track of them! ~~~ #PBS -N Index_hayim ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-3" class="anchored">Change #3</h2>
+<p>Tailor your <strong>resource</strong> requests.</p>
+<p>Use the <code>-l</code> PBS directive to request appropriate compute <strong>resources</strong> and <strong>walltime</strong> for your job.</p>
+<p>This script performs an ‘indexing’ operation against reference DNA sequence, but doesn’t require more than a couple of minutes for the data we’re using – so request <strong>2 minutes</strong>.</p>
+<p>This small reference sequence (a tiny portion of 1 mammalian chromosome) also won’t require much RAM, so reduce it to the minimum, <strong>1 GB</strong>. ~~~ #PBS -l select=1:ncpus=1:mem=1GB #PBS -l walltime=00:02:00 ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-4" class="anchored">Change #4</h2>
+<p>Specify a <strong>job queue</strong>.</p>
+<p>Use the <code>-q</code> PBS directive to send the job to the <strong>defaultQ</strong> queue. You can also try <strong>small-express</strong> if you like; whose jobs start sooner? ~~~ #PBS -q defaultQ ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-5" class="anchored">Change #5</h2>
+<p>Set the working directory for this job. Either just <code>cd</code> to it, or set up a Bash variable to use within the script.</p>
+<p>Edit the line beginning <code>io=</code> ~~~ io=/project/Training/hayim ~~~ {: .language-bash} Substitute your working directory name where I have put ‘hayim’! {: .solution}</p>
+</blockquote>
+<p>When you’re done, save the script (on nano <kbd>Ctrl</kbd>+<kbd>o</kbd>), and exit (on nano <kbd>Ctrl</kbd>+<kbd>x</kbd>).</p>
+<p>Submit the job as before, with <code>qsub</code>:</p>
+<pre><code>qsub index.pbs</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ qsub index.pbs
+2557043.pbsserver</code></pre>
+<p>{: .output}</p>
+<p>This time I’m going to check on the job using <code>qstat -wTu jdar4135</code> to show my jobs, in wide format, with a start time estimate – it’s a little wide for this broswer window!</p>
+<pre><code>[jdar4135@login3 hayim]$ qstat -wTu jdar4135
+
+pbsserver:
+                                                                                  Est
+                                                                                                   Req'd  Req'd   Start
+Job ID                         Username        Queue           Jobname         SessID   NDS  TSK   Memory Time  S Time
+------------------------------ --------------- --------------- --------------- -------- ---- ----- ------ ----- - -----
+2557043.pbsserver              jdar4135        small-express   Index_hayim        49847    1     1    4gb 00:10 R --</code></pre>
+<p>{: .output}</p>
+<p><br> When your job finishes (how will you know?) have a look at any log files produced. What is one way to check if there were any errors?</p>
+<blockquote class="blockquote">
+<h2 id="answer" class="anchored">Answer</h2>
+<p>Search for Exit Status messages with <code>grep</code>:</p>
+<pre><code>grep -se "Exit Status" *</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ grep -se "Exit Status" *
+Index_hayim.o2557008_usage:Exit Status: 0
+Index_hayim.o2557043_usage:Exit Status: 0</code></pre>
+<p>{: .output} Both of my jobs have <strong>Exit Status</strong> 0 – perfect. {: .solution}</p>
+</blockquote>
+<p>Have a look at your error file anyway. What do you notice?</p>
+<blockquote class="blockquote">
+<h2 id="answer-1" class="anchored">Answer</h2>
+<p>Not every message to <strong>stderr</strong> is an actual error! Blame the program authors for this… {: .solution}</p>
+</blockquote>
+<p>Finally, have a look at the resource usage for this job</p>
+<pre><code>[jdar4135@login3 hayim]$ cat Index_hayim.o2557043_usage
+-- Job Summary -------------------------------------------------------
+Job Id: 2557043.pbsserver for user jdar4135 in queue small-express
+Job Name: Index_hayim
+Project: RDS-CORE-Training-RW
+Exit Status: 0
+Job run as chunks (hpc056:ncpus=1:mem=4194304kb)
+Walltime requested:   00:02:00 :      Walltime used:   00:00:41
+                               :   walltime percent:       34.2%
+-- Nodes Summary -----------------------------------------------------
+-- node hpc056 summary
+    Cpus requested:          1 :          Cpus Used:    unknown
+          Cpu Time:    unknown :        Cpu percent:    unknown
+     Mem requested:      1.0GB :           Mem used:    unknown
+                               :        Mem percent:    unknown
+
+-- WARNINGS ----------------------------------------------------------
+
+** Low Walltime utilisation.  While this may be normal, it may help to check the
+** following:
+**   Did the job parameters specify more walltime than necessary? Requesting
+**   lower walltime could help your job to start sooner.
+**   Did your analysis complete as expected or did it crash before completing?
+**   Did the application run more quickly than it should have? Is this analysis
+**   the one you intended to run?
+**
+-- End of Job Summary ------------------------------------------------</code></pre>
+<p>{: .output}</p>
+<p>This job still did not run long enough for the system to properly estimate CPU or RAM usage.</p>
+<p><br> ## Align a genome</p>
+<p>Last one. Open <strong>align.pbs</strong> and make any edits necessary. What will you need to change?</p>
+<pre><code>nano align.pbs</code></pre>
+<p>{: .language-bash}</p>
+<figure class="figure">
+<a name="nanoalign"></a> <img src="{{ page.root }}/fig/04_nanoalign.png" style="margin:10px;height:650px" class="figure-img">
+<figcaption class="figure-caption">
+The <b>align.pbs</b> PBS script.
+</figcaption>
+</figure>
+<p><br></p>
+<blockquote class="blockquote">
+<h2 id="change-1-1" class="anchored">Change #1</h2>
+<p>Specify your <strong>project</strong>.</p>
+<p>Use the <code>-P</code> PBS directive to specify the <em><strong>Training</strong></em> project, using its <em>short name</em>. ~~~ #PBS -P Training ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-2-1" class="anchored">Change #2</h2>
+<p>Give your job a <strong>name</strong></p>
+<p>Use the <code>-N</code> PBS directive to give your job an easily identifiable name. You might run <strong>lots</strong> of jobs at the same time, so you want to be able to keep track of them! ~~~ #PBS -N Align_hayim ~~~ {: .language-bash} Substitute a job name of your choice! {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-3-1" class="anchored">Change #3</h2>
+<p>Tailor your <strong>resource</strong> requests.</p>
+<p>Use the <code>-l</code> PBS directive to request appropriate compute <strong>resources</strong> and <strong>wall-time</strong> for your job.</p>
+<p>This script performs an ‘alignment’ of DNA reads against a reference genome. <strong>10 minutes</strong> should be plenty, and we won’t use more than <strong>1 GB</strong> RAM.</p>
+<p>Notice here that <strong>we are requesting 2 CPUs</strong>. Are we sure our programs can use them? ~~~ #PBS -l select=1:ncpus=2:mem=8GB #PBS -l walltime=00:10:00 ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-4-1" class="anchored">Change #4</h2>
+<p>Specify a <strong>job queue</strong>.</p>
+<p>Use the <code>-q</code> PBS directive to send the job to the <strong>defaultQ</strong> queue. You can also try <strong>small-express</strong> if you like; whose jobs start sooner? ~~~ #PBS -q defaultQ ~~~ {: .language-bash} {: .solution}</p>
+</blockquote>
+<blockquote class="blockquote">
+<h2 id="change-5-1" class="anchored">Change #5</h2>
+<p>Set the working directory for this job. Either just <code>cd</code> to it, or set up a Bash variable to use within the script.</p>
+<p>Edit the line beginning <code>io=</code> ~~~ io=/project/Training/hayim ~~~ {: .language-bash} Substitute your working directory name where I have put ‘hayim’! {: .solution}</p>
+</blockquote>
+<p>When you’re done, save the script (on nano <kbd>Ctrl</kbd>+<kbd>o</kbd>), and exit (on nano <kbd>Ctrl</kbd>+<kbd>x</kbd>).</p>
+<p>Submit the job as before, with <code>qsub</code>:</p>
+<pre><code>qsub align.pbs</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ qsub align.pbs
+2557080.pbsserver</code></pre>
+<p>{: .output}</p>
+<!-- Have a look at the _full output_ from ```qstat```
+
+~~~
+qstat -f 2557080
+~~~
+{: .language-bash}
+
+There's a lot. Let's ```grep``` just a few lines:
+
+~~~
+qstat -f 2557080 | grep -e ""
+~~~
+{: .language-bash}
+
+~~~
+
+~~~
+{: .output}
+
+The line -->
+<p><br> We mentioned above that we requested 2 CPUs. How did we make use of them? Have a look at the <em>program call</em> for <code>bwa mem</code><sup id="a2"><a href="#f2">2</a></sup></p>
+<pre><code>bwa mem -M -t 2 -R '@RG\tID:134\tPL:illumina\tPU:CONNEACXX\tSM:MS_134' \
+    ${io}/canfam3_chr5.fasta ${io}/134_R1.fastq.gz  \
+    ${io}/134_R2.fastq.gz | samtools view -bSho ${io}/134.bam -</code></pre>
+<p>{: .language-bash}</p>
+<p>What do those option flags do? Are any relevant here? Check the help or manual page for <code>bwa</code>.</p>
+<blockquote class="blockquote">
+<h2 id="answer-2" class="anchored">Answer</h2>
+<p>The <code>bwa mem</code> help instructions lists the <code>-t</code> flag as setting the number of <em>threads</em>. Multi-threading is a requirement for any program wanting to use more than one CPU core.</p>
+<p>On Artemis, the default is to run one thread per core, so selecting <code>-t 2</code> threads will lead Artemis to use <strong>2 CPU cores</strong>, if at least this many are requested. {: .solution}</p>
+</blockquote>
+<p>Has your <strong>align.pbs</strong> job completed yet? Check for errors:</p>
+<pre><code>grep -se "Exit Status" *</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login3 hayim]$ grep -se "Exit Status" *
+Align_hayim.o2557080_usage:Exit Status: 0
+Index_hayim.o2557008_usage:Exit Status: 0
+Index_hayim.o2557043_usage:Exit Status: 0</code></pre>
+<p>{: .output}</p>
+<p>Great. However, note again that the <strong>error log</strong> is full of messages – none though are actual errors. You could try searching for the word ‘error’ in the error log using <code>grep</code> as well, and see that it is empty – however, we have no guarantee that the program authors would use the word ‘error’ in their error messages. Add the <code>-i</code> flag to make your search case <em>insensitive</em>:</p>
+<pre><code>[jdar4135@login2 hayim]$ grep -ie error Align_hayim.e2557080</code></pre>
+<p>{: .output}</p>
+<p>As before, check the resource usage log:</p>
+<pre><code>cat Align_hayim.o2557080_usage</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[jdar4135@login2 hayim]$ cat Align_hayim.o2557080_usage
+-- Job Summary -------------------------------------------------------
+Job Id: 2557080.pbsserver for user jdar4135 in queue small
+Job Name: Align_hayim
+Project: RDS-CORE-Training-RW
+Exit Status: 0
+Job run as chunks (hpc018:ncpus=2:mem=3145728kb)
+Walltime requested:   00:10:00 :      Walltime used:   00:04:34
+                               :   walltime percent:      45.7%
+-- Nodes Summary -----------------------------------------------------
+-- node hpc018 summary
+    Cpus requested:          2 :          Cpus Used:       1.54
+          Cpu Time:   00:07:01 :        Cpu percent:      76.8%
+     Mem requested:      3.0GB :           Mem used:      1.6GB
+                               :        Mem percent:      54.6%
+
+-- WARNINGS ----------------------------------------------------------
+
+** Low Walltime utilisation.  While this may be normal, it may help to check the
+** following:
+**   Did the job parameters specify more walltime than necessary? Requesting
+**   lower walltime could help your job to start sooner.
+**   Did your analysis complete as expected or did it crash before completing?
+**   Did the application run more quickly than it should have? Is this analysis
+**   the one you intended to run?
+**
+** Low Memory utilisation on hpc018. While this may be normal, it may help to check
+** the following:
+**   Did the job parameters specify too much memory? Requesting less RAM could
+**   help your job to start sooner.
+**   Did you use MPI and was the work distributed correctly? Correcting this
+**   could allow your job to run using less RAM in each chunk.
+**   Did your analysis complete as expected or did it crash before completing?
+**   Did the application use less RAM than it should have? Is this analysis the
+**   one you intended to run?
+**
+-- End of Job Summary ------------------------------------------------</code></pre>
+<p>{: .output}</p>
+<p>This is better resource utilisation: we used <strong>45% of our walltime</strong>, <strong>77% CPU</strong>, and <strong>55% of our RAM</strong>. We could trim our requests further, but walltime can vary for similar data depending on the algorithm, and providing too little memory (unlike too few CPUs) can cause a job to <em>fail</em>. So err on the side of caution.</p>
+<p><br> #### Helping sick Doggos :dog2: :worried:</p>
+<p>The sequence alignment you just created reveals the causal mutation for canine <em>spondylocostal dysostosis</em> (genomic position cfa5:32,945,846).</p>
+<p>Neat, hey?</p>
+<figure class="figure">
+<a name="cali"></a> <img src="{{ page.root }}/fig/04_cali.png" style="margin:10px;height:650px" class="figure-img">
+<figcaption class="figure-caption">
+Willet et al 2015, PLoS ONE 10(2): e0117055a
+</figcaption>
+</figure>
+<p><br></p>
+<p><br></p>
+
+
+</section>
+</section>
+
+<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

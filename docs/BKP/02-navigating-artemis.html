@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.345">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RNA-Seq using Nextflow - Navigating Artemis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../lesson.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">RNA-Seq using Nextflow</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html">Setup</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
+ <span class="dropdown-text">Recap day 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Nextflow to RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
+ <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
+ <span class="dropdown-text">DE analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
+ <span class="dropdown-text">DE genes to enrichments</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-artemis-directory-structure" id="toc-the-artemis-directory-structure" class="nav-link active" data-scroll-target="#the-artemis-directory-structure">The Artemis directory structure</a>
+  <ul class="collapse">
+  <li><a href="#i.-home" id="toc-i.-home" class="nav-link" data-scroll-target="#i.-home">i. /home</a></li>
+  <li><a href="#iii.-project" id="toc-iii.-project" class="nav-link" data-scroll-target="#iii.-project">iii. /project</a></li>
+  <li><a href="#iii.-scratch" id="toc-iii.-scratch" class="nav-link" data-scroll-target="#iii.-scratch">iii. /scratch</a></li>
+  <li><a href="#existing-software" id="toc-existing-software" class="nav-link" data-scroll-target="#existing-software">Existing software</a></li>
+  <li><a href="#installing-new-software" id="toc-installing-new-software" class="nav-link" data-scroll-target="#installing-new-software">Installing new software</a></li>
+  <li><a href="#text-editors" id="toc-text-editors" class="nav-link" data-scroll-target="#text-editors">Text editors</a></li>
+  <li><a href="#i.-nano-recommended" id="toc-i.-nano-recommended" class="nav-link" data-scroll-target="#i.-nano-recommended">i. nano (recommended)</a></li>
+  <li><a href="#ii.-gedit" id="toc-ii.-gedit" class="nav-link" data-scroll-target="#ii.-gedit">ii. gedit</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Navigating Artemis</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>This episode gets users familiar with the Artemis servers, available software and directory structure. It also introduces users to text editors on Artemis for scripting.</p>
+<blockquote class="blockquote">
+<h3 id="have-a-command-you-dont-understand" class="anchored">Have a command you don’t understand?</h3>
+<p>Check out this hand tool <a href="https://explainshell.com/">https://explainshell.com/</a> to help breakdown the unix jargon.</p>
+<p>{: .callout}</p>
+</blockquote>
+<section id="the-artemis-directory-structure" class="level1">
+<h1>The Artemis directory structure</h1>
+<p><br> ## When you first arrive</p>
+<p>At the end of last lesson we logged on to Artemis, and were presented with a command prompt in a terminal window. The last line in that window would look something like this:</p>
+<figure class="figure">
+<img src="{{ page.root }}/fig/02_landing.png" style="margin:10px;height:150px" class="figure-img">
+<figcaption class="figure-caption">
+Command prompt on Artemis, using X-Win32
+</figcaption>
+</figure>
+<p><br></p>
+<p>The <strong>command prompt</strong>, which is where in the terminal you type your commands, ends with a <strong>$</strong> dollar sign. Before that is some text, in the form of <code>[username @ host current_directory ]</code>. In the screencap above, the username is <strong>ict_hpctrain1</strong>, the host server that we have logged into is <strong>‘login3’</strong> (the 3rd Artemis login node), and our current cirectory is <strong>~</strong>, which is a shortcode for the user’s ‘home’ directory.</p>
+<p>Even though no files are visible or listed in the terminal window, the command prompt is always ‘located’ at a specific place in the filesystem – we can print that location to the window with the <code>pwd</code> (<em>print working directory</em>) command. Type it and press ‘enter’:</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ pwd</code></pre>
+<p>{: .language-bash}</p>
+<p>The output should look something like this (if your username is <strong>ict_hpctrain1</strong>):</p>
+<pre><code>/home/ict_hpctrain1</code></pre>
+<p>{: .output}</p>
+<p>This is your <strong>home</strong> directory. Every user on Artemis (and any Linux system) has a home directory located at <code>/home/&lt;username&gt;</code>. Your username may be your Unikey, or it may be the training accounts we’re using today. Every time you log in to Artemis, this is where you’ll end up: home. :blush:</p>
+<p><br> &gt; ## Directions for the student &gt; &gt; In these courses, <strong><font color="#6e5494">purple</font></strong> coloured block-quotes as above indicate commands that you need to <em>enter</em> into your command prompt. &gt; &gt; <strong>Black</strong> coloured block-quotes indicate <em>output</em> you should expect as a result.) {: .callout}</p>
+<br>
+<h2 data-toc-text="Artemis' 3 main directories" class="anchored" data-anchor-id="the-artemis-directory-structure">
+The three branches of the Artemis tree
+</h2>
+<figure class="figure">
+<img src="{{ page.root }}/fig/02_arttree.png" style="margin:10px" class="figure-img">
+<figcaption class="figure-caption">
+Artemis filesystem structure
+</figcaption>
+</figure>
+<p><br></p>
+<p>The Artemis filesystem has three main branches: <strong>/home</strong>, <strong>/project</strong>, and <strong>/scratch</strong>. We have just met <strong>/home</strong>. The <strong>root</strong> folder of the filesystem is signified by a single forward-slash <strong>/</strong>; and so every other location, which is a subfolder of the root, must also begin with this slash. This it why ‘home’ is located at <code>/home</code>. (If this is all new to you, then you probably haven’t taken the <a href="https://intersect.org.au/training/course/unix/">Intro to Unix</a> prerequisite course. You should do that ASAP).</p>
+<section id="i.-home" class="level3">
+<h3 class="anchored" data-anchor-id="i.-home">i. /home</h3>
+<p><strong>/home</strong> is where your data is. But not your <em>project</em> data, just your own personal data. If you have any project-related data that needs to remain <em>private</em> to you alone then also keep that in <strong>/home</strong>, as only you can see or read files in your home directory. Home directories are allocated <strong>10 GB</strong> of storage only.</p>
+</section>
+<section id="iii.-project" class="level3">
+<h3 class="anchored" data-anchor-id="iii.-project">iii. /project</h3>
+<p>The <strong>/project</strong> branch is where researchers on a project should keep all the data and programs or scripts that are <em>currently</em> being used. We say ‘currently’ because project directories are allocated only <strong>1 TB</strong> of storage space – that may sound like a lot, but this space is shared between all users of your project, and it runs out faster than you think. Data that you’re not currently working on should be deleted or moved back to its permanent storage location (which should be the Research Data Store<sup id="a1"><a href="#f1">1</a></sup>).</p>
+<p>This also means that everyone working on your project can see all files in the project directory by default.<sup id="a2"><a href="#f2">2</a></sup></p>
+<p>Project directories are all subfolders of <strong>/project</strong>, and will have names like</p>
+<pre><code>/project/RDS-CORE-Training-RW</code></pre>
+<p>{: .output}</p>
+<p>which take the form <code>/RDS-&lt;Faculty&gt;-&lt;Short_name&gt;-RW</code>. In the case above, ‘Training’ is the project name and ‘CORE’ stands for Core Research Facilities.</p>
+<p>If you forget what your projects are called, you can always check to see which <strong>user groups</strong> (which include projects) you are a member of, using the <code>groups</code> command:</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ groups</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>[ict_hpctrain1@login1 ~]$ groups
+linuxusers HPC-ACL RDS-ICT-HPCTRAINING-RW RDN-USERS RDN-CORE-Training RDS-CORE-Training-RW RDN-CORE-SIHsandbox RDS-CORE-SIHsandbox-RW</code></pre>
+<p>{: .output}</p>
+<p>Note that this user <code>ict_hpctrain1</code> is a member of the <code>RDS-ICT-HPCTRAINING-RW</code> and <code>RDS-CORE-Training-RW</code> and <code>RDS-CORE-SIHsandbox-RW</code> projects.</p>
+<p>The middle part of the <strong>project name</strong> is also called the <em><strong>short name</strong></em>, and was chosen by whomever applied for the <strong>RDMP</strong> (Research Data Management Plan) that defines the project. The full folder name <code>/RDS-&lt;Faculty&gt;-&lt;Short_name&gt;-RW</code> is technically the actual project name as known to Artemis, however the <em>short names</em> can be used throughout Artemis instead.</p>
+<p>So, for example, change into the project directory of the ‘Training’ project with the <em>change directory</em> command <code>cd</code>:</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ cd /project/Training
+[ict_hpctrain1@login1 Training]$ pwd</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>/project/Training</code></pre>
+<p>{: .output}</p>
+</section>
+<section id="iii.-scratch" class="level3">
+<h3 class="anchored" data-anchor-id="iii.-scratch">iii. /scratch</h3>
+<p>Every project also has a <strong>/scratch</strong> directory, at <code>/scratch/&lt;Short_name&gt;</code>. <strong>/scratch</strong> is where you should actually <em>perform</em> your computations. What does this mean? If your workflow: * Has big data inputs * Generates big data outputs * Generates lots of intermediate data files which are not needed afterward</p>
+<p>then you should put and save this data in your <strong>/scratch</strong> space. The reasons are that you are not limited to <strong>1 TB</strong> of space in <strong>/scratch</strong> as you are in <strong>/project</strong>, and there is also no reason to clutter up your shared project directories with temporary files. Once your computation is complete, simply copy the important or re-used inputs and outputs back to your <strong>/project</strong> folder, and delete your data in <strong>/scratch</strong> – that’s why it’s called scratch!</p>
+<br> &gt; ## Your data should not be kept on Artemis! &gt; &gt; Wait, what? Your data, <em>long-term</em>, should <em>not</em> be stored on Artemis, neither in <strong>/project</strong> nor <strong>/scratch</strong>. Artemis is <em>not</em> backed-up, and has <em>limited space</em>. &gt;
+<hr>
+<blockquote class="blockquote">
+<p style="text-align:center;font-weight:bold;text-decoration:underline">
+Inactive data in /project is wiped after 6 months, and in /scratch after 3 months!
+</p>
+<hr>
+<p>Data that you are <em>currently</em> working with should be transferred into your <strong>/project</strong> folder (or <strong>/scratch</strong> if it is very large!), and then transferred back to it’s permanent location when you’re done with that part of your investigation. For more, see the <a href="%7B%7B%20site.sih_pages%20%7D%7D/training.artemis.rds">Data transfer and RDS for HPC</a> course.</p>
+<p style="text-align:center">
+<img src="{{ page.root }}/fig/02_data_flow.png" style="margin:10px;height:100px">
+</p>
+<p>{: .callout} <br></p>
+</blockquote>
+<section id="checking-your-disk-usage" class="level4">
+<h4 class="anchored" data-anchor-id="checking-your-disk-usage">Checking your disk usage</h4>
+<p>Artemis provides a handy tool to quickly see how much disk space is currently being used by all of the projects you are a member of, and your personal <strong>/home</strong> directory. That tool is <code>pquota</code>:</p>
+<pre><code>ict_hpctrain1@login3 ~]$ pquota</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>Disk quotas for user jdar4135 (uid 572557):
+     Filesystem    used   quota   limit   grace   files   quota   limit   grace
+          /home  4.973G     10G     11G       -    1505       0       0       -
+Disk quotas for group RDS-CORE-SIHclassic-RW (gid 16700):
+     Filesystem    used   quota   limit   grace   files   quota   limit   grace
+       /project    240k      1T  1.074T       -      47       0       0       -
+Disk quotas for group RDS-CORE-CLC-RW (gid 22099):
+     Filesystem    used   quota   limit   grace   files   quota   limit   grace
+       /project      4k      1T  1.074T       -       1       0       0       -
+Disk quotas for group RDS-CORE-SIHsandbox-RW (gid 16198):
+     Filesystem    used   quota   limit   grace   files   quota   limit   grace
+       /project  233.9G      1T  1.074T       -   81018       0       0       -
+Disk quotas for group RDS-CORE-Training-RW (gid 14206):
+     Filesystem    used   quota   limit   grace   files   quota   limit   grace
+       /project  31.89G      1T  1.074T       -    1746       0       0       -
+Disk quotas for group RDS-CORE-ICT-RW (gid 15839):
+     Filesystem    used   quota   limit   grace   files   quota   limit   grace
+       /project  514.3M      1T  1.074T       -      17       0       0       -</code></pre>
+<p>{: .output}</p>
+<p>The output from <code>pquota</code> helpfully lists the disk quotas allowed for each of the directories you can write to, as well as the number of files you have in that filesystem. There is no limit on the number of files allowed. The usages in <strong>/project</strong> comprise the files of all members of that project, not just your own. <strong>/scratch</strong> usage is not reported.</p>
+<p>To see the disk usage of a project’s <strong>/scratch</strong> directory (or any directory), you can use the Unix ‘used disk space’ command <code>du</code>:</p>
+<pre><code>du -sh /scratch/Training/</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>244M    /scratch/Training/</code></pre>
+<p>{: .output}</p>
+<p>Or, if you’d like to know how much space <em>members of a project</em> have used in a directory, you can query the filesystem using its built-in utility <code>lfs</code>:</p>
+<pre><code>lfs quota -hg RDS-CORE-Training-RW /scratch</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>Disk quotas for group RDS-CORE-Training-RW (gid 14206):
+     Filesystem    used   quota   limit   grace   files   quota   limit   grace
+       /scratch  243.5M      0k      0k       -       2       0       0       -</code></pre>
+<p>{: .output}</p>
+<p>The amount of free <strong>/scratch</strong> space can be reported via the ‘free disk space’ command <code>df</code>:</p>
+<pre><code>df -h /scratch</code></pre>
+<p>{: .language-bash}</p>
+<pre><code>Filesystem            Size  Used Avail Use% Mounted on
+192.168.69.211@o2ib0:192.168.69.212@o2ib0:/Scratch
+                      379T  350T  9.3T  98% /scratch</code></pre>
+<p>{: .output}</p>
+<p>Note that in the above commands the flag <code>-h</code> requests ‘human-readable’ file sizes (in B, M, G, T, etc), and the flag <code>-s</code> summarised the <code>du</code> output into one total count, rather than a number for every sub-directory.</p>
+<p><br> ## Software on Artemis</p>
+</section>
+</section>
+<section id="existing-software" class="level3">
+<h3 class="anchored" data-anchor-id="existing-software">Existing software</h3>
+<p>A <a href="https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/285474817/Artemis+Software+List">list</a> of programs currently installed on Artemis can be found in the <a href="https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/185827329/Artemis+User+Guide">Artemis User Guide</a>. Software is not ‘<em>enabled</em>’ on Artemis by default, and must be loaded before use. This is to avoid conflicts between different software and different versions of software, which may each be dependent on specific versions of other software which will also need to be loaded.</p>
+<p>This is all handled by the <strong>modules</strong> package. You can list <strong>available</strong> programs on Artemis using the <code>module avail</code> command</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ module avail</code></pre>
+<p>{: .source}</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ module avail
+--------------------------- /usr/local/Modules/versions ---------------------------
+3.2.10
+
+---------------------- /usr/local/Modules/3.2.10/modulefiles ----------------------
+dot         module-git  module-info modules     null        use.own
+-------------------------- /usr/local/Modules/modulefiles -------------------------
+abaqus/2016(default)    glew/2.1.0(default)     openmpi-gcc/3.0.0
+abaqus/6.14-1           glib/2.34.0(default)    openmpi-gcc/3.0.0-64
+...
+git/2.14.1(default)     openmpi-gcc/1.8.4-6.x   zlib/1.2.8(default)
+git/2.16.2              openmpi-gcc/1.8.4-backup
+gl2ps/1.4.0(default)    openmpi-gcc/2.1.2</code></pre>
+<p>{: .output}</p>
+<p>This command may take a minute to run, as there is a <em>lot</em> of software installed! If you know roughly what the program you want is called, you can refine the search with a keyword as extra argument, eg:</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ module avail mat</code></pre>
+<p>{: .source}</p>
+<pre><code>-------------------------- /usr/local/Modules/modulefiles --------------------------
+matam/1.0(default)          matlab/R2013a             matlab/R2015b     matlab/R2017a     matlab/R2018a
+mathematica/11.1.1(default) matlab/R2014b(default)    matlab/R2016b     matlab/R2017b</code></pre>
+<p>{: .output}</p>
+<p>Note that multiple versions of programs may be installed, and one will be designated <em>default</em> – that is the version that will be loaded if you don’t specify a version.</p>
+<p>Eg, <strong>load</strong> a program with the <code>module load</code> command and its name:</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ module load matlab</code></pre>
+<p>{: .source}</p>
+<p>then <strong>list</strong> currently loaded programs with <code>module list</code>:</p>
+<pre><code>[ict_hpctrain1@login3 ~]$ module list</code></pre>
+<p>{: .source}</p>
+<pre><code>Currently Loaded Modulefiles:
+  1) matlab/R2014b</code></pre>
+<p>{: .output}</p>
+<p>The version <code>matlab/R2014b</code> was loaded, as it is the current default. <strong>Unload</strong> a loaded module with <code>module unload</code> and its name. For more info, check out the <code>module</code> manual page, by executing <code>man module</code>.</p>
+<p><br> &gt; ## Don’t get burned by a version mismatch! &gt; &gt; Software usage, syntax and behaviour sometimes change between versions, and if you don’t specify a version you may soon find that your code no longer runs or, much worse, it <em>does</em> run, but with different results! &gt; &gt; For the sake of your research, and <strong>scientific reproducibility</strong>, you should always <em>specify the version</em> of the module you are loading in your scripts, and record it in your notes.<br>
+{: .callout} <br></p>
+</section>
+<section id="installing-new-software" class="level3">
+<h3 class="anchored" data-anchor-id="installing-new-software">Installing new software</h3>
+<p>All software on Artemis is stored in <code>/usr/local</code>. Users do not have persmission to write to this folder, and hence cannot install new software. If you require a particular piece of software on Artemis, you can submit a <a href="https://sydneyuni.service-now.com/sm?id=sc_cat_item&amp;sys_id=1ab0bb626d2935008dd31a4dcf150a21&amp;sysparm_category=62460abd4fe297c054a346501310c7d9">High Performance Computing Request</a> through the <a href="https://sydneyuni.service-now.com/sm">ICT Service Portal</a>.</p>
+<p>Alternatively, you may be able to install Linux software directly into your <em>userspace</em>, ie in your <strong>/home</strong> directory. Not all software can be installed in this way, and there may also be licensing issues – so don’t try this unless you know what you’re doing, and please contact us if you don’t!</p>
+<p><br> ## Writing script files</p>
+</section>
+<section id="text-editors" class="level3">
+<h3 class="anchored" data-anchor-id="text-editors">Text editors</h3>
+<p>Artemis has a number of <strong>text editors</strong> available for use, and of course you could install your own. Text editors are simple-to-sophisticated programs that let you, quite simply, write text! At the most basic level, they do not have any <em>formatting</em>, like <strong>bold</strong> etc, only ‘plain’ text. Many allow the composition of <em>‘rich text’</em>, which does add formatting.<sup id="a3"><a href="#f3">3</a></sup> However, our purpose will be to write <em>scripts</em> that other programs will read in and execute. These programs won’t be looking at <em>formatting</em>, but will be parsing what we write according to the <em>syntax</em> and keywords of the <em>programming language</em> in use.</p>
+<p>To aid with this, some text editors feature <em>syntax highlighting</em>, which involves formatting text differently depending on what function that text performs in a given programming language, for example the <em>MATLAB</em> code below:</p>
+<pre><code>function hello_world()
+% A function to say hello!
+  disp('Hello, World!')
+end</code></pre>
+<p>{: .language-matlab}</p>
+</section>
+<section id="i.-nano-recommended" class="level3">
+<h3 class="anchored" data-anchor-id="i.-nano-recommended">i. nano (recommended)</h3>
+<p>‘<strong>Nano</strong>’ is a basic, text-only editor with very few other features, and runs inside a <em>terminal window</em>. This makes it fast and simple to use, but it may take some getting used to for those unfamiliar with command-line programs. There is no ‘point-and-click’ interface to nano, only special key combinations to send commands to the program. Eg, to save a file in nano, you would hit the hotkey for ‘WriteOut’: <kbd>Ctrl</kbd>+<kbd>o</kbd>.</p>
+<p>To open nano, simply execute <code>nano</code> at the command prompt:</p>
+<pre><code>[jdar4135@login2 ~]$ nano</code></pre>
+<p>{: .language-bash}</p>
+<figure class="figure">
+<img src="{{ page.root }}/fig/02_nano.png" style="margin:10px;height:300px" class="figure-img">
+<figcaption class="figure-caption">
+The simple, text-only <b>nano</b> text editor. Note the hotkey command list at bottom
+</figcaption>
+</figure>
+<p><br></p>
+</section>
+<section id="ii.-gedit" class="level3">
+<h3 class="anchored" data-anchor-id="ii.-gedit">ii. gedit</h3>
+<p>For those who’d prefer to use a GUI (graphical user interface) with mouse support, ‘<strong>gedit</strong>’ is good option, and very user friendly. It also performs syntax highlighting, which can be activated from the <em>View</em> menu: <em>View &gt; Highlight Mode</em>, and then select the language you would like to parse.</p>
+<p>To use gedit on Artemis, you will need to have <strong>X-Forwarding</strong> enabled (see <a href="%7B%7B%20page.root%20%7D%7D/setup">Setup</a> guide), which means you’ll need to be either on Linux, Mac, or using ‘X-Win32’ on Windows.<sup id="a4"><a href="#f4">4</a></sup></p>
+<p>Open gedit by executing <code>gedit &amp;</code>; the <strong>&amp;</strong> character (called an ‘ampersand’) tells the <strong>shell</strong> to open the process running gedit in the <em>background</em>, allowing you to continue using your terminal while gedit remains open.</p>
+<pre><code>[jdar4135@login2 ~]$ gedit &amp;</code></pre>
+<p>{: .language-bash}</p>
+<figure class="figure">
+<img src="{{ page.root }}/fig/02_gedit.png" style="margin:10px;height:380px" class="figure-img">
+<figcaption class="figure-caption">
+A <b>gedit</b> window, with syntax highlighting, served by XQuartz on a Mac
+</figcaption>
+</figure>
+<p><br></p>
+<p><br> <em>Common operations in nano and gedit</em></p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>in <em>nano</em></th>
+<th>in <em>gedit</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>open new file</td>
+<td><code>nano</code></td>
+<td><code>gedit &amp;</code></td>
+</tr>
+<tr class="even">
+<td>open new file ‘NewFile’</td>
+<td><code>nano NewFile</code></td>
+<td><code>gedit NewFile &amp;</code></td>
+</tr>
+<tr class="odd">
+<td>open existing file</td>
+<td><code>nano ExistingFile</code></td>
+<td><code>gedit ExistingFile &amp;</code></td>
+</tr>
+<tr class="even">
+<td>save</td>
+<td><kbd>Ctrl</kbd>+<kbd>o</kbd></td>
+<td><kbd>Ctrl</kbd>+<kbd>s</kbd></td>
+</tr>
+<tr class="odd">
+<td>exit</td>
+<td><kbd>Ctrl</kbd>+<kbd>x</kbd></td>
+<td><kbd>Ctrl</kbd>+<kbd>q</kbd></td>
+</tr>
+</tbody>
+</table>
+<p><br> ### iii. others</p>
+<p>There are dozens of text editors. Some others that you may be familiar with include ‘<strong>Emacs</strong>’ and ‘<strong>vi/vim</strong>’. These are available on Artemis, and Emacs can be used in GUI mode as well.</p>
+<p><br> <em>Common text editors</em></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Editor</th>
+<th>Ease of use</th>
+<th>Power/flexibility</th>
+<th>GUI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>nano</strong></td>
+<td><strong>Moderate to High</strong></td>
+<td><strong>Low</strong></td>
+<td><strong>No</strong></td>
+</tr>
+<tr class="even">
+<td><strong>gedit</strong></td>
+<td><strong>High</strong></td>
+<td><strong>Low</strong></td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr class="odd">
+<td>Emacs</td>
+<td>High (GUI), Moderate</td>
+<td>High</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>vi/vim</td>
+<td>Low</td>
+<td>High</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><br> &gt; ## Windows character encoding errors &gt; &gt; Windows and Linux/OSX use different <strong>character encoding</strong>. This means that some characters (or invisibles!) that appear the same are actually <em>encoded</em> differently – leading to obscure errors! &gt; &gt; This will arise when writing code <em>on Windows</em> machines to be used <em>on Linux</em> ones (like Artemis). &gt; &gt; Common encoding issues include: &gt;* <em>dashes</em> of different lengths, eg - vs – vs —. This is often a problem when you <em><strong>copy and paste</strong></em> from PDFs onto the command line. &gt;* <em>line endings</em>. Some editors like ‘<strong>Notepad++</strong>’ on Windows let you set which kind of line endings to encode with. Select ‘Unix (LF)’ if you have the option. {: .callout}</p>
+<p><br></p>
+<hr>
+<p><strong>Notes</strong><br>
+<sup id="f1">1<a href="#a1">↩︎</a></sup> The Research Data Store (RDS) is covered in the 2nd lesson of this series, <a href="%7B%7B%20site.sih_pages%20%7D%7D/training.artemis.rds">Introduction to the Research Data Store and Data Transfer</a>.</p>
+<p><sup id="f2">2<a href="#a2">↩︎</a></sup> There are ways to change the user permissions of files and folders in Linux, but we won’t cover that here. Don’t try it unless you know what you’re doing!</p>
+<p><sup id="f3">3<a href="#a3">↩︎</a></sup> Programs such as Microsoft Word are not really text-editors, but more ‘<em>word processors</em>’, in that they do a lot more than simply compose text. There is not a hard line between the two categories.</p>
+<p><sup id="f4">4<a href="#a4">↩︎</a></sup> If you prefer to use PuTTY terminal, you can use GUI text editors by having both PuTTY and X-Win32 installed. Having X-Win32 open acts as the X server for PuTTY.</p>
+<hr>
+<p><br></p>
+<p>{% include links.md %}</p>
+
+
+</section>
+</section>
+
+<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

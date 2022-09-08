@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sydney Informatics Hub Course name - Course title</title>
+<title>RNA-Seq using Nextflow - Course title</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ ul.task-list{list-style: none;}
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Sydney Informatics Hub Course name</span>
+    <span class="navbar-title">RNA-Seq using Nextflow</span>
   </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -81,8 +81,37 @@ ul.task-list{list-style: none;}
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
         <li>
-    <a class="dropdown-item" href="./notebooks/01a-fundamentals.html">
- <span class="dropdown-text">Fundamentals</span></a>
+    <a class="dropdown-item" href="./notebooks/1-recap_Day1.html">
+ <span class="dropdown-text">Recap day 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/1.2_Learning_objectives.html">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/2_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Nextflow to RStudio</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/3-LoadCountMatrix_and_explore.html">
+ <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+        <li>
+    <a class="dropdown-item" href="./notebooks/4-DE_analysis.html">
+ <span class="dropdown-text">DE analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/6_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
+ <span class="dropdown-text">DE genes to enrichments</span></a>
   </li>  
     </ul>
   </li>
@@ -101,12 +130,12 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#trainers" id="toc-trainers" class="nav-link active" data-scroll-target="#trainers">Trainers</a></li>
-  <li><a href="#course-pre-requisites-and-setup-requirements" id="toc-course-pre-requisites-and-setup-requirements" class="nav-link" data-scroll-target="#course-pre-requisites-and-setup-requirements">Course pre-requisites and setup requirements</a></li>
-  <li><a href="#venue-online-via-zoom" id="toc-venue-online-via-zoom" class="nav-link" data-scroll-target="#venue-online-via-zoom">Venue, online via Zoom</a></li>
-  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct">Code of Conduct</a></li>
-  <li><a href="#general-session-timings" id="toc-general-session-timings" class="nav-link" data-scroll-target="#general-session-timings">General session timings</a></li>
-  <li><a href="#setup-instructions" id="toc-setup-instructions" class="nav-link" data-scroll-target="#setup-instructions">Setup Instructions</a></li>
+  <li><a href="#synopsis" id="toc-synopsis" class="nav-link active" data-scroll-target="#synopsis">Synopsis:</a></li>
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target audience:</a></li>
+  <li><a href="#interesting-resources" id="toc-interesting-resources" class="nav-link" data-scroll-target="#interesting-resources">Interesting resources:</a></li>
+  <li><a href="#follow-on-courses" id="toc-follow-on-courses" class="nav-link" data-scroll-target="#follow-on-courses">Follow-on courses:</a></li>
+  <li><a href="#noteown-laptop-required" id="toc-noteown-laptop-required" class="nav-link" data-scroll-target="#noteown-laptop-required">Note:OWN LAPTOP REQUIRED**</a></li>
+  <li><a href="#course-survey" id="toc-course-survey" class="nav-link" data-scroll-target="#course-survey">Course survey!</a></li>
   </ul>
 </nav>
     </div>
@@ -131,50 +160,32 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>This course is aimed at researchers, students, and industry professionals who want to learn about …</p>
-<section id="trainers" class="level2">
-<h2 class="anchored" data-anchor-id="trainers">Trainers</h2>
+<section id="synopsis" class="level3">
+<h3 class="anchored" data-anchor-id="synopsis">Synopsis:</h3>
+<p>Introduces downstream analysis steps of RNA sequencing analysis using R/Rstudio - including how to analyse <strong>raw count data to obtain differentially expressed genes and pathways</strong>. This will be performed on <strong><a href="https://support.pawsey.org.au/documentation/display/US/Cloud+Documentation">Pawsey Nimbus Cloud</a></strong>.</p>
+</section>
+<section id="target-audience" class="level3">
+<h3 class="anchored" data-anchor-id="target-audience">Target audience:</h3>
+<p>Researchers, students and life scientists who are new to RNA sequencing for differential expression and pathway analysis. The course is beginner friendly and intended for those interested in using R/Rstudio for their analysis.</p>
+</section>
+<section id="interesting-resources" class="level3">
+<h3 class="anchored" data-anchor-id="interesting-resources">Interesting resources:</h3>
 <ul>
-<li>Nathaniel (Nate) Butterworth (PhD Computational Geophysics), nathaniel.butterworth@sydney.edu.au</li>
-<li>Darya Vanichkina (PhD Bioinformatics, SFHEA)</li>
-<li>Kristian Maras (MSc Quant Fin)</li>
+<li>Introduction to <strong><a href="https://datacarpentry.org/shell-genomics/">Unix/Linux command line</a></strong></li>
+<li>Introduction to <strong><a href="https://datacarpentry.org/genomics-r-intro/">R/RStudio</a></strong></li>
 </ul>
 </section>
-<section id="course-pre-requisites-and-setup-requirements" class="level2">
-<h2 class="anchored" data-anchor-id="course-pre-requisites-and-setup-requirements">Course pre-requisites and setup requirements</h2>
-<p>No previous programming experience is required, but <strong>Session 1 is a pre-requisite for the other sessions</strong>. Training will be delivered online, so you will need access to a modern computer with a stable internet connection and around 5GB of storage space for data downloaded prior to the course. Participants are encouraged to setup a Python environment on their local computer (as per the <a href="./setup.html">Setup Instructions</a> provided), but participation using other platforms/environments can be supported where necessary.</p>
+<section id="follow-on-courses" class="level3">
+<h3 class="anchored" data-anchor-id="follow-on-courses">Follow-on courses:</h3>
+<p>This course is <strong>part two</strong> of the two-part <strong><a href="https://sydney-informatics-hub.github.io/training.RNAseq.series/">RNA sequencing training series</a></strong>.</p>
+<p>We recommend attending both courses if you would like an end-to-end overview of how to perform the analysis. If you are only interested in the technologies used, you may be able to get away with attending only the parts of interest :smiley:.</p>
 </section>
-<section id="venue-online-via-zoom" class="level2">
-<h2 class="anchored" data-anchor-id="venue-online-via-zoom">Venue, online via Zoom</h2>
-<p>Participants will be provided with a Zoom link. Trainers will be broadcasting from Sydney.</p>
-<section id="zoom-etiquette-and-how-we-interact" class="level4">
-<h4 class="anchored" data-anchor-id="zoom-etiquette-and-how-we-interact">Zoom etiquette and how we interact</h4>
-<p>Sessions will be recorded for attendees only, and it is set up to only record the host shared screen and host audio. We will try and get these uploaded to this site as soon as possible. Please interrupt whenever you want! Ideally, have your camera on and interact as much as possible. There will be someone monitoring the chat-window with any questions you would like to post there. Four hours is a long Zoom session so we have plenty of scheduled breaks combined with a mix of content to be delivered as demos, plus sections as independent exercises, but most of the course will be pretty-hands on with everyone writing their own code. We will use Zoom break-out rooms as needed with the Trainers and participants.</p>
+<section id="noteown-laptop-required" class="level3">
+<h3 class="anchored" data-anchor-id="noteown-laptop-required">Note:OWN LAPTOP REQUIRED**</h3>
 </section>
-</section>
-<section id="code-of-conduct" class="level2">
-<h2 class="anchored" data-anchor-id="code-of-conduct">Code of Conduct</h2>
-<p>We expect all attendees of our training to follow our code of conduct, including bullying, harassment and discrimination prevention policies.</p>
-<p>In order to foster a positive and professional learning environment we encourage the following kinds of behaviours at all our events and on our platforms:</p>
-<ul>
-<li>Use welcoming and inclusive language</li>
-<li>Be respectful of different viewpoints and experiences</li>
-<li>Gracefully accept constructive criticism</li>
-<li>Focus on what is best for the community</li>
-<li>Show courtesy and respect towards other community members</li>
-</ul>
-<p>Our full CoC, with incident reporting guidelines, is available [here]https://sydney-informatics-hub.github.io/codeofconduct/).</p>
-</section>
-<section id="general-session-timings" class="level2">
-<h2 class="anchored" data-anchor-id="general-session-timings">General session timings</h2>
-<ul>
-<li>…</li>
-</ul>
-</section>
-<section id="setup-instructions" class="level2">
-<h2 class="anchored" data-anchor-id="setup-instructions">Setup Instructions</h2>
-<p>Please complete the <a href="./setup.html">Setup Instructions</a> <strong>before the course</strong>.</p>
-<p>If you have any trouble, please get in contact with us ASAP.</p>
+<section id="course-survey" class="level2">
+<h2 class="anchored" data-anchor-id="course-survey">Course survey!</h2>
+<p><strong><em>Please</em></strong> fill out our <strong><a href="https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR">course survey</a></strong> before you leave! Help us help you! :smiley:</p>
 
 
 </section>
