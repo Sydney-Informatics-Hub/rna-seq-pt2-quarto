@@ -238,4 +238,4 @@ How to do this is covered in the next course, [‘_Data transfer and RDS for HPC
 > Help us help you! :smiley:
 {: .testimonial}
 
-{% include links.md %}
+

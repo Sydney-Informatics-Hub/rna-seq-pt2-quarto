@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow - Differential expression analysis using DeSeq2</title>
+<title>RNA-Seq using Nextflow – de_analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,42 +193,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pre-filtering-of-lowly-expressed-genes" id="toc-pre-filtering-of-lowly-expressed-genes" class="nav-link active" data-scroll-target="#pre-filtering-of-lowly-expressed-genes">Pre-filtering of lowly expressed genes</a></li>
+  <li><a href="#differential-expression-analysis-using-deseq2" id="toc-differential-expression-analysis-using-deseq2" class="nav-link active" data-scroll-target="#differential-expression-analysis-using-deseq2">Differential expression analysis using DeSeq2</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#pre-filtering-of-lowly-expressed-genes" id="toc-pre-filtering-of-lowly-expressed-genes" class="nav-link" data-scroll-target="#pre-filtering-of-lowly-expressed-genes">Pre-filtering of lowly expressed genes</a></li>
   <li><a href="#differential-expression-analysis" id="toc-differential-expression-analysis" class="nav-link" data-scroll-target="#differential-expression-analysis">Differential expression analysis</a></li>
   <li><a href="#plot-dispersion-estimates" id="toc-plot-dispersion-estimates" class="nav-link" data-scroll-target="#plot-dispersion-estimates">Plot dispersion estimates</a></li>
   <li><a href="#tidy-and-annotate-results" id="toc-tidy-and-annotate-results" class="nav-link" data-scroll-target="#tidy-and-annotate-results">Tidy and annotate results</a></li>
   <li><a href="#volcano-plot" id="toc-volcano-plot" class="nav-link" data-scroll-target="#volcano-plot">Volcano plot</a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Differential expression analysis using DeSeq2</h1>
-</div>
 
 
-
-
-
-<div class="quarto-title-meta">
-
-    
-    
-  </div>
-  
-
-</header>
-
+<section id="differential-expression-analysis-using-deseq2" class="level1">
+<h1>Differential expression analysis using DeSeq2</h1>
+<section id="questions" class="level3 questions">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<ul>
+<li>How to use the DESeq2 module to perform differential expression (DE) analysis?</li>
+<li>How to visualise the results from DeSeq2 analysis?</li>
+</ul>
+</section>
+<section id="objectives" class="level3 objectives">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Generate a list of differentially expressed genes.</li>
+<li>Use visualisation techniques to analyse the results.</li>
+</ul>
+</section>
 <section id="differential-expression-using-the-deseqdataset-object" class="level4">
 <h4 class="anchored" data-anchor-id="differential-expression-using-the-deseqdataset-object">Differential expression using the DESeqDataSet object</h4>
 <ul>
 <li>A DESeqDataSet object must have an associated design formula.
 <ul>
 <li>The design formula expresses the variables which will be used in modeling.</li>
-<li>The formula should be a tilde (~) followed by the variables with plus signs between them.</li>
+<li>The formula should be a tilde (<code>~</code>) followed by the variables with plus signs between them.</li>
 <li>The design can be changed later, however then all differential analysis steps should be repeated, as the design formula is used to estimate the dispersions and to estimate the log2 fold changes of the model.</li>
 </ul></li>
 <li>There are multiple ways of constructing a DESeqDataSet, depending on what pipeline was used upstream of DESeq2 to generated counts or estimated counts
@@ -240,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> counttable,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> meta,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span> condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the above formula we have a : - The count matrix (countData) called counttable - A table of sample information called meta. - The design which defines the sample types as per the condition ; here <code>WT</code> and <code>KO</code></p>
+<p>In the above formula we have a : - The count matrix (countData) called <code>counttable</code>. - A table of sample information called <code>meta</code>. - The design which defines the sample types as per the condition ; here <code>WT</code> and <code>KO</code></p>
 </section>
 <section id="pre-filtering-of-lowly-expressed-genes" class="level3">
 <h3 class="anchored" data-anchor-id="pre-filtering-of-lowly-expressed-genes">Pre-filtering of lowly expressed genes</h3>
@@ -258,9 +264,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># How many gene rows after filtering?</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Note</strong>: - Only 67% of the genes remain after performing this filtering step. - This demonstrates the degree to which our performance will be improved by discarding the non-informative entries.</p>
-<pre><code>[1] 19859
-[1] 13412</code></pre>
+<section id="note" class="level5">
+<h5 class="anchored" data-anchor-id="note">Note:</h5>
+<ul>
+<li>Only 67% of the genes remain after performing this filtering step.</li>
+<li>This demonstrates the degree to which our performance will be improved by discarding the non-informative entries.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">19859</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">13412</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="explicitly-set-the-factors-levels" class="level4">
 <h4 class="anchored" data-anchor-id="explicitly-set-the-factors-levels">Explicitly set the factors levels</h4>
 <ul>
@@ -280,27 +292,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="differential-expression-analysis">Differential expression analysis</h3>
 <section id="the-deseq-function" class="level4">
 <h4 class="anchored" data-anchor-id="the-deseq-function">The DESeq function</h4>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># padj 0.05</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>res_padj0<span class="fl">.05</span><span class="ot">&lt;-</span><span class="fu">results</span>(dds,<span class="at">alpha=</span><span class="fl">0.05</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.05</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>resSig005_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.05</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig005_subset, <span class="st">"res_DeSeq2_FDR0.05_comparison_Wild_vs_KO_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># padj 0.1</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>res_padj0<span class="fl">.1</span><span class="ot">&lt;-</span><span class="fu">results</span>(dds,<span class="at">alpha=</span><span class="fl">0.1</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.1</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>resSig01_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.1</span>, padj <span class="sc">&lt;</span> <span class="fl">0.1</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig01_subset, <span class="st">"res_DeSeq2_FDR0.1_comparison_Wild_vs_KO_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Writing normalized counts</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>normalised_counts<span class="ot">&lt;-</span><span class="fu">counts</span>(dds,<span class="at">normalized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, <span class="st">"normalised_all_samples_DeSeq2_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># padj 0.05</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>res_padj0<span class="fl">.05</span><span class="ot">&lt;-</span><span class="fu">results</span>(dds,<span class="at">alpha=</span><span class="fl">0.05</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.05</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>resSig005_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.05</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig005_subset, <span class="st">"res_DeSeq2_FDR0.05_comparison_Wild_vs_KO_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># padj 0.1</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>res_padj0<span class="fl">.1</span><span class="ot">&lt;-</span><span class="fu">results</span>(dds,<span class="at">alpha=</span><span class="fl">0.1</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.1</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>resSig01_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.1</span>, padj <span class="sc">&lt;</span> <span class="fl">0.1</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig01_subset, <span class="st">"res_DeSeq2_FDR0.1_comparison_Wild_vs_KO_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Writing normalized counts</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>normalised_counts<span class="ot">&lt;-</span><span class="fu">counts</span>(dds,<span class="at">normalized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, <span class="st">"normalised_all_samples_DeSeq2_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Should we plot some DE genes?</p>
 </section>
 </section>
@@ -317,8 +326,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/stephenturner/annotables</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># grch38 comes from library(annotables)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>res_tidy.DE <span class="ot">=</span> <span class="fu">tidy.DESeqResults</span>(resSig005_subset)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>res_tidy.DE <span class="ot">&lt;-</span> res_tidy.DE <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(p.adjusted) <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(grcm38, <span class="at">by =</span> <span class="fu">c</span>(<span class="at">gene =</span> <span class="st">"symbol"</span>)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(gene,baseMean, estimate, stderror, statistic, p.value, p.adjusted) </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#res_tidy.DE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>res_tidy.DE <span class="ot">&lt;-</span> res_tidy.DE <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(p.adjusted) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">inner_join</span>(grcm38, <span class="at">by =</span> <span class="fu">c</span>(<span class="at">gene =</span> <span class="st">"symbol"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">select</span>(gene,baseMean, estimate, stderror, statistic, p.value, p.adjusted) </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#res_tidy.DE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="volcano-plot" class="level3">
 <h3 class="anchored" data-anchor-id="volcano-plot">Volcano plot</h3>
@@ -335,9 +347,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">labSize =</span> <span class="fl">5.0</span>,</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pCutoff =</span> <span class="fl">10e-16</span>,</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">FCcutoff =</span> <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p align="center">
-<img src="{{ page.root }}/fig/volcano_plot.png" style="margin:10px;height:350px">
-</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../fig/volcano_plot.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="key-points" class="level3 keypoints">
+<h3 class="anchored" data-anchor-id="key-points">Key points</h3>
+<ul>
+<li>We have used DeSeq2 to identify DE genes</li>
+</ul>
+</section>
 
 
 </section>

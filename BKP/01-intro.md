@@ -1,29 +1,29 @@
 ---
 title: "Welcome to Nimbus VM"
-teaching: 20
-exercises: 0
-questions:
-- "What is a Nimbus VM?"
-- "What is an 'Artemis'..?"
-objectives:
-- "Learn how to connect to Artemis."
-keypoints:
-- "Connecting to Artemis requires a terminal emulator, and an account with access."
-- "Users connect to Artemis' _**login nodes**_ only."
-- "On Windows, use X-Win32, PuTTY, or another shell and terminal application of your choice."
-- "GUI login access is also available."
 ---
+<div class="questions">  
+### Questions
+
+- What is a Nimbus VM?
+- What is an 'Artemis'..?
+</div>  
+
+<div class="objectives">  
+### Objectives
+
+- Learn how to connect to Artemis.
+</div> 
+
+
 This episode introduces the [Sydney Informatics Hub](https://informatics.sydney.edu.au/), Artemis HPC and how to get connected.
+
 
 
 # The Sydney Informatics Hub
 
 The Sydney Informatics Hub (SIH) is a _[Core Research Facility](https://sydney.edu.au/research/facilities.html)_ of the University of Sydney. Core Research Facilities centralise essential research equipment and services that would otherwise be too expensive or impractical for individual Faculties to purchase and maintain. The classic example might be the room-size electron-microscopes, built into specialised rooms in the Sydney Microscopy & Microanalysis unit.
 
-<figure>
-  <img src="{{ page.root }}/fig/01_crf.png" style="margin:10px;height:400px"/>
-  <figcaption> USyd Core Research Facilities <a href="https://sydney.edu.au/research/facilities.html">https://sydney.edu.au/research/facilities.html</a></figcaption>
-</figure><br>
+![<a href="https://sydney.edu.au/research/facilities.html">USyd Core Research Facilities</a>](../fig/01_crf.png)
 
 **Artemis HPC** itself is a multi-million dollar set of equipment, a 'supercomputer', and is the main piece of equipment supported by SIH. However, we also provide a wide range of research services to aid investigators, such as:
 
@@ -70,19 +70,16 @@ Connections to Artemis are **remote connections** -- you'll never sit at one of 
 
 You can thus connect to Artemis from _anywhere_, requiring only a **terminal emulator** with an **SSH client**. (If you're not on the USyd network (ie off-campus), you'll also need to connect to the University's **[VPN](https://sydneyuni.service-now.com/sm?sys_kb_id=e10e1396db01b3485beaf9b7f4961981&id=kb_article_view&sysparm_rank=8&sysparm_tsqueryId=3233ed77db6d48140eb1cd0514961918)**, or use Artemis' intermediate **_[Jump server](https://sydneyuni.atlassian.net/wiki/spaces/RC/pages/185729027/Getting+Started+with+Artemis+HPC#GettingStartedwithArtemisHPC-Off-campusaccess)_**.
 
-If you followed the [Setup]({{ page.root }}/setup) instructions, then you should already have the required software installed. If not, _please go do this now_!
+If you followed the [Setup](../setup.html) instructions, then you should already have the required software installed. If not, _please go do this now_!
 
 
-<h2 data-toc-text="via SSH command line"> Connecting via SSH in a terminal (recommended)</h2>
+## Connecting via SSH in a terminal (recommended)
 
 Depending on your computer's operating system, there may be several ways to connect to Artemis. The simplest way is to open your **terminal emulator** application, and 'ssh' into the Artemis login-servers. This is our recommended method, as to use Artemis effectively you should get comfortable working on the **command line**.
 
 Linux and Mac both have native terminal apps, so you only need to open them. You may also have installed one on your Windows machine.<sup id="a1">[1](#f1)</sup> Go ahead and do that now. The last line displayed in your terminal window should have some information about your computer's name, and you user name, followed by a **$** symbol. This is the **command prompt** -- you type your commands after the '$'.
 
-<figure>
-  <img src="{{ page.root }}/fig/01_bash.png" style="margin:10px;height:400px"/>
-  <figcaption> An iTerm2 terminal window on Mac</figcaption>
-</figure><br>
+![An iTerm2 terminal window on Mac](../fig/01_bash.png)
 
 To connect to Artemis securely, we'll use the **SSH** (Secure Socket Shell) protocol; on most systems, any installed SSH client will be invoked by the command 'ssh'. Before you connect, make sure you know your **username** and **password**. When you use Artemis for your research, these will be your **Unikey** and **Unikey password**; however, for this training course we'll be using _training accounts_, which are:
 
@@ -91,77 +88,68 @@ To connect to Artemis securely, we'll use the **SSH** (Secure Socket Shell) prot
 
 At your command prompt, execute the following (type it and press 'return/enter'):
 
-~~~
+```sh
 ssh -X ict_hpctrain<N>@hpc.sydney.edu.au
-~~~
-{: .language-bash}
+```
 
 or, if using XQuartz on a Mac
 
-~~~
+```sh
 ssh -Y ict_hpctrain<N>@hpc.sydney.edu.au
-~~~
-{: .language-bash}
+```
 
-The ```-X``` or ```-Y``` flags tell **ssh** to enable X-forwarding, which lets GUI programs on Artemis serve you graphical windows back on your local machine.
+The `-X` or `-Y` flags tell **ssh** to enable X-forwarding, which lets GUI programs on Artemis serve you graphical windows back on your local machine.
 
 If connecting for the first time, you may get the following output, requesting authorisation to connect to a new **host** server:
 
-~~~
+``sh
 The authenticity of host 'hpc.sydney.edu.au (10.250.96.203)' can't be established.
 RSA key fingerprint is SHA256:qq9FPWBcyvvOWOMdFs8uZES0tF3SVzJsNx1cdn56GSE.
 Are you sure you want to continue connecting (yes/no)?
-~~~
-{: .output}
+```
 
 Enter 'yes'. You will then be asked for your password; type it and press 'enter'. You should then be logged in!
 
-<figure>
-  <img src="{{ page.root }}/fig/01_granted.png" style="margin:10px;height:420px"/>
-  <figcaption> Access granted! </figcaption>
-</figure><br>
+![Access granted!](../fig/01_granted.png)
 
 
-<h2 data-toc-text="via SSH GUI apps"> Connecting via an SSH GUI (common for Windows users) </h2>
+## Connecting via an SSH GUI (common for Windows users) 
 
-If you're on Windows, and followed the [Setup]({{ page.root }}/setup) guide, then you will likely be connecting through an X-window or shell client program, like 'X-Win32' or 'PuTTY'. Following the instructions in the [Setup]({{ page.root }}/setup) guide:
-* Open your installed program
-* Select the "Artemis" session you configured earlier
-* Click 'Launch' (X-Win32) or 'Open' (PuTTY)
+If you're on Windows, and followed the [Setup](../setup.html) guide, then you will likely be connecting through an X-window or shell client program, like 'X-Win32' or 'PuTTY'. Following the instructions in the [Setup](../setup.html) guide:
+
+- Open your installed program
+- Select the "Artemis" session you configured earlier
+- Click 'Launch' (X-Win32) or 'Open' (PuTTY)
 
 If this is the first time connecting to Artemis, you will be asked to authorise it as a trusted **host** server; click 'Accept' (X-Win32) or 'Yes' (PuTTY).
 
-<figure>
-  <img src="{{ page.root }}/fig/01_xwinhosts.png" style="margin:10px;height:240px"/>
-  <img src="{{ page.root }}/fig/01_puttyhosts.png" style="margin:10px;height:250px"/>
-  <figcaption> Unknown host challenges: X-Win32 (top), PuTTY (bottom) </figcaption>
-</figure><br>
+![Unknown host challenges: X-Win32](../fig/01_xwinhosts.png)
+
+![Unknown host challenges: PuTTY](../fig/01_puttyhosts.png)
 
 * If using 'X-Win32', you'll then be asked for your **password** and once entered, you should be logged on to Artemis! A terminal window and command prompt on Artemis will appear.
 
 * If using 'PuTTY', a terminal window will appear and prompt you for your **username**, and then your **password**. Once entered, you should be logged on to Artemis! A command prompt on Artemis will appear in that window.
 
-<figure>
-  <img src="{{ page.root }}/fig/01_xwin.png" style="margin:10px;height:220px"/>
-  <img src="{{ page.root }}/fig/01_putty.png" style="margin:10px;height:350px"/>
-  <figcaption> Access granted! X-Win32 (top) cuts the welcome messages, PuTTY (bottom) </figcaption>
-</figure><br>
+![Access granted! X-Win32](../fig/01_xwin.png)  
+
+![Access granted! PuTTY](../fig/01_putty.png)
+
+## Connecting via the Graphical Login Nodes (advanced users)
+
+For some users, it is occasionally necessary to have more reliable graphical access to the Artemis **login nodes**, in order to check intermediate results when using software with graphical outputs. Setup instructions are provided on the [Setup](../setup.html) page.
 
 
-<h2 data-toc-text="via graphical login nodes"> Connecting via the Graphical Login Nodes (advanced users)</h2>
-
-For some users, it is occasionally necessary to have more reliable graphical access to the Artemis **login nodes**, in order to check intermediate results when using software with graphical outputs. Setup instructions are provided on the [Setup]({{ page.root }}/setup) page.
-
-
-<br>   
-
-___
-**Notes**   
+#### Notes
+ 
 <sup id="f1">1[↩](#a1)</sup> Such as 'Cygwin', 'MinGW', or even the _very handy_ ['Git for Windows'](https://gitforwindows.org/).
 
-___
-<br>
 
+<div class="keypoints">
+### Key points
 
-
-{% include links.md %}
+- Connecting to Artemis requires a terminal emulator, and an account with access.
+- Users connect to Artemis' _**login nodes**_ only.
+- On Windows, use X-Win32, PuTTY, or another shell and terminal application of your choice.
+- GUI login access is also available.
+</div>  

@@ -1,22 +1,18 @@
----
-title: "Setup RStudio on Nimbus VM"
-teaching: 10
-exercises: 0
-questions:
-- "How to get the full gene count-matrix for downstream analysis?"
-- "How to open RStudio on the Pawsey training VM?"
-- "How to use count matrix to identify differentially expressed genes?"
+# Setup RStudio on Nimbus VM
 
+<div class="objectives">  
+### Objectives
+- Introduction to RStudio
+- How to open RStudio on the Pawsey training VM?
+</div>  
 
+<div class="questions">  
+### Questions
 
-objectives:
-- "Introduction to RStudio"
-- "How to open RStudio on the Pawsey training VM?"
-
-keypoints:
--
-
----
+- How to get the full gene count-matrix for downstream analysis?
+- How to open RStudio on the Pawsey training VM?
+- How to use count matrix to identify differentially expressed genes?
+</div>  
 
 ### R and RStudio
 - R is a programming language for statistical computing and graphics.
@@ -33,12 +29,14 @@ keypoints:
 This is a two step process
 
 #### Step1: Run the rserver command (On the Nimbus VM)
-```
+
+```sh
 # Create a temporary rstudio-server  folder on your instance:
 mkdir -p /tmp/rstudio-server
 
 PASSWORD='abc' singularity exec -B /tmp/rstudio-server:/var/lib/rstudio-server -B /tmp/rstudio-server:/var/run/rstudio-server -B ~/base_directory/working_directory:/home /cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu
 ```
+
 You should not see any output at this point, except a "running" command, i.e. the port is forwarded and running.
 
 #### Step2: Open RStudio from a browser (On your local machine)
@@ -47,6 +45,15 @@ You should not see any output at this point, except a "running" command, i.e. th
 - Enter the username, which is your image operating system, which is `ubuntu`.
 - Enter the password, which in this example is `abc`.
 - Run your R commands as you normally would. All output is saved to the directory you have chosen to bind-mount in the RStudio server command.
-- To end the session, simply exit from the browser. To also end the session on your Nimbus instance, run the following: lsof -ti:8787 | xargs kill -9
+- To end the session, simply exit from the browser. To also end the session on your Nimbus instance, run the following: 
 
+```sh
+lsof -ti:8787 | xargs kill -9
+```
 
+<div class="keypoints">
+### Key points
+
+- This is a key point
+- Another one
+</div>

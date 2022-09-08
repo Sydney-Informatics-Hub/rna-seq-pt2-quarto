@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow - DE genes to functional enrichment in R</title>
+<title>RNA-Seq using Nextflow – r_degenes_to_functional_enrichments_clusprof</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,33 +193,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#clusterprofiler-for-gene-ontology-go-over-representation-analysis" id="toc-clusterprofiler-for-gene-ontology-go-over-representation-analysis" class="nav-link active" data-scroll-target="#clusterprofiler-for-gene-ontology-go-over-representation-analysis">ClusterProfiler for Gene Ontology (GO) over-representation analysis</a></li>
+  <li><a href="#de-genes-to-functional-enrichment-in-r" id="toc-de-genes-to-functional-enrichment-in-r" class="nav-link active" data-scroll-target="#de-genes-to-functional-enrichment-in-r">DE genes to functional enrichment in R</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#clusterprofiler-for-gene-ontology-go-over-representation-analysis" id="toc-clusterprofiler-for-gene-ontology-go-over-representation-analysis" class="nav-link" data-scroll-target="#clusterprofiler-for-gene-ontology-go-over-representation-analysis">ClusterProfiler for Gene Ontology (GO) over-representation analysis</a></li>
   <li><a href="#genes-down-regulated-in-wt" id="toc-genes-down-regulated-in-wt" class="nav-link" data-scroll-target="#genes-down-regulated-in-wt">Genes Down-regulated in WT</a></li>
   <li><a href="#go-over-representation-analysis" id="toc-go-over-representation-analysis" class="nav-link" data-scroll-target="#go-over-representation-analysis">GO over-representation analysis</a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">DE genes to functional enrichment in R</h1>
-</div>
 
 
-
-
-
-<div class="quarto-title-meta">
-
-    
-    
-  </div>
-  
-
-</header>
-
+<section id="de-genes-to-functional-enrichment-in-r" class="level1">
+<h1>DE genes to functional enrichment in R</h1>
+<section id="questions" class="level3 questions">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<ul>
+<li>How to perform enrichment analysis in R (RStudio)?</li>
+<li>How to visualise functionally enriched Gene ontologies (GO) / pathways as networks?</li>
+</ul>
+</section>
+<section id="objectives" class="level3 objectives">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Perform Functional enrichment analysis of the DE genes in <code>R</code></li>
+</ul>
+</section>
 <section id="clusterprofiler-for-gene-ontology-go-over-representation-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="clusterprofiler-for-gene-ontology-go-over-representation-analysis">ClusterProfiler for Gene Ontology (GO) over-representation analysis</h3>
 <ul>
@@ -229,24 +234,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Prepare input.</p></li>
 <li><p>Filter for significant up and down regulated genes by P adjust and log fold change.</p></li>
 </ul>
-<pre><code># P adj &lt; 0.05 
-sig &lt;- res_tidy.DE[res_tidy.DE$p.adjusted &lt; 0.05, ]
-
-# Upregulated: LFC &gt; 1, remove NAs
-sig.up &lt;- sig[sig$estimate &gt; 1, ]
-sig.up &lt;- na.omit(sig.up)
-sig.up.LFC &lt;- sig.up$estimate
-names(sig.up.LFC) &lt;- sig.up$gene
-# Sort by LFC, decreasing
-sig.up.LFC &lt;- sort(sig.up.LFC, decreasing = TRUE)
-
-# Downregulated: LFC &lt; 1, remove NAs
-sig.dn &lt;- sig[sig$estimate &lt; 1, ]
-sig.dn &lt;- na.omit(sig.dn)
-sig.dn.LFC &lt;- sig.dn$estimate
-names(sig.dn.LFC) &lt;- sig.dn$gene
-# Sort by LFC, decreasing
-sig.dn.LFC &lt;- sort(sig.dn.LFC, decreasing = TRUE)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P adj &lt; 0.05 </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sig <span class="ot">&lt;-</span> res_tidy.DE[res_tidy.DE<span class="sc">$</span>p.adjusted <span class="sc">&lt;</span> <span class="fl">0.05</span>, ]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Upregulated: LFC &gt; 1, remove NAs</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sig.up <span class="ot">&lt;-</span> sig[sig<span class="sc">$</span>estimate <span class="sc">&gt;</span> <span class="dv">1</span>, ]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sig.up <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sig.up)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sig.up.LFC <span class="ot">&lt;-</span> sig.up<span class="sc">$</span>estimate</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sig.up.LFC) <span class="ot">&lt;-</span> sig.up<span class="sc">$</span>gene</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sig.up.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.up.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Downregulated: LFC &lt; 1, remove NAs</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sig.dn <span class="ot">&lt;-</span> sig[sig<span class="sc">$</span>estimate <span class="sc">&lt;</span> <span class="dv">1</span>, ]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sig.dn <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sig.dn)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> sig.dn<span class="sc">$</span>estimate</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sig.dn.LFC) <span class="ot">&lt;-</span> sig.dn<span class="sc">$</span>gene</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.dn.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="genes-down-regulated-in-wt" class="level3">
 <h3 class="anchored" data-anchor-id="genes-down-regulated-in-wt">Genes Down-regulated in WT</h3>
@@ -254,7 +259,7 @@ sig.dn.LFC &lt;- sort(sig.dn.LFC, decreasing = TRUE)</code></pre>
 <section id="go-over-representation-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="go-over-representation-analysis">GO over-representation analysis</h3>
 <ul>
-<li>The clusterProfiler package implements enrichGO() for gene ontology over-representation test.</li>
+<li>The clusterProfiler package implements <code>enrichGO()</code> for gene ontology over-representation test.</li>
 <li>Explanation</li>
 <li>Observation 1</li>
 <li>Observation 2</li>
@@ -271,9 +276,17 @@ sig.dn.LFC &lt;- sort(sig.dn.LFC, decreasing = TRUE)</code></pre>
 <h4 class="anchored" data-anchor-id="html-results">Html Results</h4>
 <p><strong>(For reference only)</strong> till I update the enrichment results pages</p>
 <p>Please click <a href="https://sydney-informatics-hub.github.io/training-nfcore-rnaseq.parttwo/rnaseq_DE_Full_matrix_DryRun">here</a> to see the Differential expression analsysis in RStudio.</p>
-
-
 </section>
+</section>
+<section id="key-points" class="level3 keypoints">
+<h3 class="anchored" data-anchor-id="key-points">Key points</h3>
+<ul>
+<li>This is a key point</li>
+<li>Another one</li>
+</ul>
+</section>
+
+
 </section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->

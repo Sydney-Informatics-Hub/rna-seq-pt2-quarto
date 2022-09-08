@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow - Functional enrichment analysis</title>
+<title>RNA-Seq using Nextflow – whatis_enrichment_analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,36 +130,43 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#functional-enrichment-analysis" id="toc-functional-enrichment-analysis" class="nav-link active" data-scroll-target="#functional-enrichment-analysis">Functional enrichment analysis</a></li>
+  <li><a href="#functional-enrichment-analysis" id="toc-functional-enrichment-analysis" class="nav-link active" data-scroll-target="#functional-enrichment-analysis">Functional enrichment analysis</a>
+  <ul class="collapse">
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#functional-enrichment-analysis-1" id="toc-functional-enrichment-analysis-1" class="nav-link" data-scroll-target="#functional-enrichment-analysis-1">Functional enrichment analysis</a></li>
   <li><a href="#over-representation-analysis" id="toc-over-representation-analysis" class="nav-link" data-scroll-target="#over-representation-analysis">Over-representation analysis</a></li>
   <li><a href="#gene-ontology-project" id="toc-gene-ontology-project" class="nav-link" data-scroll-target="#gene-ontology-project">Gene Ontology project</a></li>
-  <li><a href="#go-ontologies" id="toc-go-ontologies" class="nav-link" data-scroll-target="#go-ontologies">GO Ontologies</a></li>
+  <li><a href="#go-ontologies" id="toc-go-ontologies" class="nav-link" data-scroll-target="#go-ontologies">GO Ontologies</a>
+  <ul class="collapse">
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Functional enrichment analysis</h1>
-</div>
 
 
-
-
-
-<div class="quarto-title-meta">
-
-    
-    
-  </div>
-  
-
-</header>
-
-<section id="functional-enrichment-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="functional-enrichment-analysis">Functional enrichment analysis</h2>
+<section id="functional-enrichment-analysis" class="level1">
+<h1>Functional enrichment analysis</h1>
+<section id="questions" class="level3 questions">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<ul>
+<li>What is functional enrichment analysis?</li>
+<li>What are Gene Ontologies?</li>
+</ul>
+</section>
+<section id="objectives" class="level3 objectives">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Understand what is Functional enrichment analysis.</li>
+</ul>
+</section>
+<section id="functional-enrichment-analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="functional-enrichment-analysis-1">Functional enrichment analysis</h2>
 <ul>
 <li>The output of RNA-seq differential expression analysis is a list of significant differentially expressed genes (DEGs). To gain greater biological insight on the differentially expressed genes there are various analyses that can be done:</li>
 <li>determine whether there is enrichment of known biological functions, interactions, or pathways identify genes’ involvement in novel pathways or networks by grouping genes together based on similar trends.</li>
@@ -173,13 +180,12 @@ ul.task-list{list-style: none;}
 <li>These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
 <li>Essentially, known genes are binned into categories that have been consistently named (controlled vocabulary) based on how the gene has been annotated functionally. These categories are independent of any organism, however each organism has distinct categorizations available.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<img src="{{ page.root }}/fig/overrepresentation_analysis.png" style="margin:10px;height:350px" class="figure-img">
-<figcaption class="figure-caption">
-Over-representation of a category
-</figcaption>
+<p><img src="../fig/overrepresentation_analysis.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Over-representation of a category</figcaption><p></p>
 </figure>
-<p><br></p>
+</div>
 <ul>
 <li>To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background set (gene categorizations for the appropriate organism).</li>
 </ul>
@@ -195,12 +201,35 @@ Over-representation of a category
 <h2 class="anchored" data-anchor-id="go-ontologies">GO Ontologies</h2>
 <ul>
 <li>To describe the roles of genes and gene products, GO terms are organized into three independent controlled vocabularies (ontologies) in a species-independent manner:</li>
-<li><strong>Biological process</strong>: refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.</li>
-<li><strong>Molecular function</strong>: represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.</li>
-<li><strong>Cellular component</strong>: refers to the location in the cell of the gene product. Cellular components could include “nucleus”, “lysosome”, and “plasma membrane”.</li>
 </ul>
+<section id="biological-process" class="level4">
+<h4 class="anchored" data-anchor-id="biological-process">Biological process</h4>
+<ul>
+<li>refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.</li>
+</ul>
+</section>
+<section id="molecular-function" class="level4">
+<h4 class="anchored" data-anchor-id="molecular-function">Molecular function</h4>
+<ul>
+<li>Represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.</li>
+</ul>
+</section>
+<section id="cellular-component" class="level4">
+<h4 class="anchored" data-anchor-id="cellular-component">Cellular component</h4>
+<ul>
+<li>Refers to the location in the cell of the gene product. Cellular components could include “nucleus”, “lysosome”, and “plasma membrane”.</li>
+</ul>
+</section>
+<section id="key-points" class="level3 keypoints">
+<h3 class="anchored" data-anchor-id="key-points">Key points</h3>
+<ul>
+<li>This is a key point</li>
+<li>Another one</li>
+</ul>
+</section>
 
 
+</section>
 </section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->

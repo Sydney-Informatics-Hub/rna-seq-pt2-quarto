@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -130,9 +193,21 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#case-study---bioinformatics-pipeline" id="toc-case-study---bioinformatics-pipeline" class="nav-link active" data-scroll-target="#case-study---bioinformatics-pipeline">CASE STUDY - BIOINFORMATICS PIPELINE</a>
+  <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#case-study---bioinformatics-pipeline" id="toc-case-study---bioinformatics-pipeline" class="nav-link" data-scroll-target="#case-study---bioinformatics-pipeline">CASE STUDY - BIOINFORMATICS PIPELINE</a>
   <ul class="collapse">
   <li><a href="#index-a-genome" id="toc-index-a-genome" class="nav-link" data-scroll-target="#index-a-genome">Index a genome</a></li>
+  <li><a href="#align-a-genome" id="toc-align-a-genome" class="nav-link" data-scroll-target="#align-a-genome">Align a genome</a>
+  <ul class="collapse">
+  <li><a href="#change-1" id="toc-change-1" class="nav-link" data-scroll-target="#change-1">Change #1</a></li>
+  <li><a href="#change-2" id="toc-change-2" class="nav-link" data-scroll-target="#change-2">Change #2</a></li>
+  <li><a href="#change-3" id="toc-change-3" class="nav-link" data-scroll-target="#change-3">Change #3</a></li>
+  <li><a href="#challenge-4" id="toc-challenge-4" class="nav-link" data-scroll-target="#challenge-4">Challenge 4</a></li>
+  <li><a href="#challenge-n5" id="toc-challenge-n5" class="nav-link" data-scroll-target="#challenge-n5">Challenge N5</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -158,256 +233,266 @@ ul.task-list{list-style: none;}
 
 </header>
 
+<section id="questions" class="level3 questions">
+<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<ul>
+<li>What other use cases are ther for HPC?</li>
+<li>Can you run any software?</li>
+</ul>
+</section>
+<section id="objectives" class="level3 objectives">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<ul>
+<li>Run a Bioinformatics case study example</li>
+</ul>
+</section>
 <section id="case-study---bioinformatics-pipeline" class="level1">
 <h1>CASE STUDY - BIOINFORMATICS PIPELINE</h1>
 <section id="index-a-genome" class="level2">
 <h2 class="anchored" data-anchor-id="index-a-genome">Index a genome</h2>
 <p>Open <strong>index.pbs</strong> and make any edits necessary. What will you need to change?</p>
 <pre><code>nano index.pbs</code></pre>
-<p>{: .language-bash}</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<a name="nanoindex"></a> <img src="{{ page.root }}/fig/04_nanoindex.png" style="margin:10px;height:500px" class="figure-img">
-<figcaption class="figure-caption">
-The <b>index.pbs</b> PBS script.
-</figcaption>
+<p><img src="../fig/04_nanoindex.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Nano index</figcaption><p></p>
 </figure>
-<p><br></p>
-<blockquote class="blockquote">
-<h2 id="change-1" class="anchored">Change #1</h2>
-<p>Specify your <strong>project</strong>.</p>
-<p>Use the <code>-P</code> PBS directive to specify the <em><strong>Training</strong></em> project, using its <em>short name</em>. ~~~ #PBS -P Training ~~~ {: .language-bash} {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-2" class="anchored">Change #2</h2>
-<p>Give your job a <strong>name</strong>.</p>
-<p>Use the <code>-N</code> PBS directive to give your job an easily identifiable name. You might run <strong>lots</strong> of jobs at the same time, so you want to be able to keep track of them! ~~~ #PBS -N Index_hayim ~~~ {: .language-bash} {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-3" class="anchored">Change #3</h2>
-<p>Tailor your <strong>resource</strong> requests.</p>
-<p>Use the <code>-l</code> PBS directive to request appropriate compute <strong>resources</strong> and <strong>walltime</strong> for your job.</p>
-<p>This script performs an ‘indexing’ operation against reference DNA sequence, but doesn’t require more than a couple of minutes for the data we’re using – so request <strong>2 minutes</strong>.</p>
-<p>This small reference sequence (a tiny portion of 1 mammalian chromosome) also won’t require much RAM, so reduce it to the minimum, <strong>1 GB</strong>. ~~~ #PBS -l select=1:ncpus=1:mem=1GB #PBS -l walltime=00:02:00 ~~~ {: .language-bash} {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-4" class="anchored">Change #4</h2>
-<p>Specify a <strong>job queue</strong>.</p>
-<p>Use the <code>-q</code> PBS directive to send the job to the <strong>defaultQ</strong> queue. You can also try <strong>small-express</strong> if you like; whose jobs start sooner? ~~~ #PBS -q defaultQ ~~~ {: .language-bash} {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-5" class="anchored">Change #5</h2>
-<p>Set the working directory for this job. Either just <code>cd</code> to it, or set up a Bash variable to use within the script.</p>
-<p>Edit the line beginning <code>io=</code> ~~~ io=/project/Training/hayim ~~~ {: .language-bash} Substitute your working directory name where I have put ‘hayim’! {: .solution}</p>
-</blockquote>
+</div>
 <p>When you’re done, save the script (on nano <kbd>Ctrl</kbd>+<kbd>o</kbd>), and exit (on nano <kbd>Ctrl</kbd>+<kbd>x</kbd>).</p>
 <p>Submit the job as before, with <code>qsub</code>:</p>
-<pre><code>qsub index.pbs</code></pre>
-<p>{: .language-bash}</p>
-<pre><code>[jdar4135@login3 hayim]$ qsub index.pbs
-2557043.pbsserver</code></pre>
-<p>{: .output}</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> index.pbs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login3</span> hayim]$ qsub index.pbs</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">2557043.pbsserver</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This time I’m going to check on the job using <code>qstat -wTu jdar4135</code> to show my jobs, in wide format, with a start time estimate – it’s a little wide for this broswer window!</p>
-<pre><code>[jdar4135@login3 hayim]$ qstat -wTu jdar4135
-
-pbsserver:
-                                                                                  Est
-                                                                                                   Req'd  Req'd   Start
-Job ID                         Username        Queue           Jobname         SessID   NDS  TSK   Memory Time  S Time
------------------------------- --------------- --------------- --------------- -------- ---- ----- ------ ----- - -----
-2557043.pbsserver              jdar4135        small-express   Index_hayim        49847    1     1    4gb 00:10 R --</code></pre>
-<p>{: .output}</p>
-<p><br> When your job finishes (how will you know?) have a look at any log files produced. What is one way to check if there were any errors?</p>
-<blockquote class="blockquote">
-<h2 id="answer" class="anchored">Answer</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login3</span> hayim]$ qstat <span class="at">-wTu</span> jdar4135</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pbsserver:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                                                                  <span class="ex">Est</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                                                                                   <span class="ex">Req</span><span class="st">'d  Req'</span><span class="ex">d</span>   Start</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Job</span> ID                         Username        Queue           Jobname         SessID   NDS  TSK   Memory Time  S Time</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">------------------------------</span> <span class="at">---------------</span> <span class="at">---------------</span> <span class="at">---------------</span> <span class="at">--------</span> <span class="at">----</span> <span class="at">-----</span> <span class="at">------</span> <span class="at">-----</span> <span class="at">-</span> <span class="at">-----</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">2557043.pbsserver</span>              jdar4135        small-express   Index_hayim        49847    1     1    4gb 00:10 R <span class="at">--</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When your job finishes (how will you know?) have a look at any log files produced. What is one way to check if there were any errors?</p>
+<section id="answer" class="level4">
+<h4 class="anchored">Answer</h4>
 <p>Search for Exit Status messages with <code>grep</code>:</p>
-<pre><code>grep -se "Exit Status" *</code></pre>
-<p>{: .language-bash}</p>
-<pre><code>[jdar4135@login3 hayim]$ grep -se "Exit Status" *
-Index_hayim.o2557008_usage:Exit Status: 0
-Index_hayim.o2557043_usage:Exit Status: 0</code></pre>
-<p>{: .output} Both of my jobs have <strong>Exit Status</strong> 0 – perfect. {: .solution}</p>
-</blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-se</span> <span class="st">"Exit Status"</span> <span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login3</span> hayim]$ grep <span class="at">-se</span> <span class="st">"Exit Status"</span> <span class="pp">*</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Index_hayim.o2557008_usage:Exit</span> Status: 0</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Index_hayim.o2557043_usage:Exit</span> Status: 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Both of my jobs have <strong>Exit Status</strong> 0 – perfect.</p>
 <p>Have a look at your error file anyway. What do you notice?</p>
 <blockquote class="blockquote">
-<h2 id="answer-1" class="anchored">Answer</h2>
-<p>Not every message to <strong>stderr</strong> is an actual error! Blame the program authors for this… {: .solution}</p>
+<h2 id="answer-1" class="anchored" data-anchor-id="answer">Answer</h2>
+<p>Not every message to <strong>stderr</strong> is an actual error! Blame the program authors for this…</p>
 </blockquote>
 <p>Finally, have a look at the resource usage for this job</p>
-<pre><code>[jdar4135@login3 hayim]$ cat Index_hayim.o2557043_usage
--- Job Summary -------------------------------------------------------
-Job Id: 2557043.pbsserver for user jdar4135 in queue small-express
-Job Name: Index_hayim
-Project: RDS-CORE-Training-RW
-Exit Status: 0
-Job run as chunks (hpc056:ncpus=1:mem=4194304kb)
-Walltime requested:   00:02:00 :      Walltime used:   00:00:41
-                               :   walltime percent:       34.2%
--- Nodes Summary -----------------------------------------------------
--- node hpc056 summary
-    Cpus requested:          1 :          Cpus Used:    unknown
-          Cpu Time:    unknown :        Cpu percent:    unknown
-     Mem requested:      1.0GB :           Mem used:    unknown
-                               :        Mem percent:    unknown
-
--- WARNINGS ----------------------------------------------------------
-
-** Low Walltime utilisation.  While this may be normal, it may help to check the
-** following:
-**   Did the job parameters specify more walltime than necessary? Requesting
-**   lower walltime could help your job to start sooner.
-**   Did your analysis complete as expected or did it crash before completing?
-**   Did the application run more quickly than it should have? Is this analysis
-**   the one you intended to run?
-**
--- End of Job Summary ------------------------------------------------</code></pre>
-<p>{: .output}</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login3</span> hayim]$ cat Index_hayim.o2557043_usage</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Job Summary <span class="at">-------------------------------------------------------</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Job</span> Id: 2557043.pbsserver for user jdar4135 in queue small-express</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Job</span> Name: Index_hayim</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Project:</span> RDS-CORE-Training-RW</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Exit</span> Status: 0</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Job</span> run as chunks <span class="er">(</span><span class="ex">hpc056:ncpus=1:mem=4194304kb</span><span class="kw">)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Walltime</span> requested:   00:02:00 :      Walltime used:   00:00:41</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                               <span class="bu">:</span>   walltime percent:       34.2%</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Nodes Summary <span class="at">-----------------------------------------------------</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> node hpc056 summary</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Cpus</span> requested:          1 :          Cpus Used:    unknown</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>          <span class="ex">Cpu</span> Time:    unknown :        Cpu percent:    unknown</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Mem</span> requested:      1.0GB :           Mem used:    unknown</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                               <span class="bu">:</span>        Mem percent:    unknown</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> WARNINGS <span class="at">----------------------------------------------------------</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span> Low Walltime utilisation.  While this may be normal, it may help to check the</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span> following:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did the job parameters specify more walltime than necessary<span class="pp">?</span> Requesting</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   lower walltime could help your job to start sooner.</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did your analysis complete as expected or did it crash before completing<span class="pp">?</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did the application run more quickly than it should have<span class="pp">?</span> Is this analysis</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   the one you intended to run<span class="pp">?</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> End of Job Summary <span class="at">------------------------------------------------</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This job still did not run long enough for the system to properly estimate CPU or RAM usage.</p>
-<p><br> ## Align a genome</p>
+</section>
+</section>
+<section id="align-a-genome" class="level2">
+<h2 class="anchored" data-anchor-id="align-a-genome">Align a genome</h2>
 <p>Last one. Open <strong>align.pbs</strong> and make any edits necessary. What will you need to change?</p>
-<pre><code>nano align.pbs</code></pre>
-<p>{: .language-bash}</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> align.pbs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<a name="nanoalign"></a> <img src="{{ page.root }}/fig/04_nanoalign.png" style="margin:10px;height:650px" class="figure-img">
-<figcaption class="figure-caption">
-The <b>align.pbs</b> PBS script.
-</figcaption>
+<p><img src="../fig/04_nanoalign.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">The <b>align.pbs</b> PBS script</figcaption><p></p>
 </figure>
-<p><br></p>
-<blockquote class="blockquote">
-<h2 id="change-1-1" class="anchored">Change #1</h2>
-<p>Specify your <strong>project</strong>.</p>
-<p>Use the <code>-P</code> PBS directive to specify the <em><strong>Training</strong></em> project, using its <em>short name</em>. ~~~ #PBS -P Training ~~~ {: .language-bash} {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-2-1" class="anchored">Change #2</h2>
-<p>Give your job a <strong>name</strong></p>
-<p>Use the <code>-N</code> PBS directive to give your job an easily identifiable name. You might run <strong>lots</strong> of jobs at the same time, so you want to be able to keep track of them! ~~~ #PBS -N Align_hayim ~~~ {: .language-bash} Substitute a job name of your choice! {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-3-1" class="anchored">Change #3</h2>
-<p>Tailor your <strong>resource</strong> requests.</p>
-<p>Use the <code>-l</code> PBS directive to request appropriate compute <strong>resources</strong> and <strong>wall-time</strong> for your job.</p>
-<p>This script performs an ‘alignment’ of DNA reads against a reference genome. <strong>10 minutes</strong> should be plenty, and we won’t use more than <strong>1 GB</strong> RAM.</p>
-<p>Notice here that <strong>we are requesting 2 CPUs</strong>. Are we sure our programs can use them? ~~~ #PBS -l select=1:ncpus=2:mem=8GB #PBS -l walltime=00:10:00 ~~~ {: .language-bash} {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-4-1" class="anchored">Change #4</h2>
-<p>Specify a <strong>job queue</strong>.</p>
-<p>Use the <code>-q</code> PBS directive to send the job to the <strong>defaultQ</strong> queue. You can also try <strong>small-express</strong> if you like; whose jobs start sooner? ~~~ #PBS -q defaultQ ~~~ {: .language-bash} {: .solution}</p>
-</blockquote>
-<blockquote class="blockquote">
-<h2 id="change-5-1" class="anchored">Change #5</h2>
+</div>
+<section id="change-1" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="change-1">Change #1</h3>
+<ul>
+<li>Specify your <strong>project</strong>.</li>
+<li>Use the <code>-P</code> PBS directive to specify the <em><strong>Training</strong></em> project, using its <em>short name</em>.</li>
+</ul>
+<pre><code>
+&lt;details&gt;
+&lt;summary&gt;Solution&lt;/summary&gt;
+
+```sh
+#PBS -P Training</code></pre>
+
+</section>
+<section id="change-2" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="change-2">Change #2</h3>
+<ul>
+<li>Give your job a <strong>name</strong></li>
+<li>Use the <code>-N</code> PBS directive to give your job an easily identifiable name. You might run <strong>lots</strong> of jobs at the same time, so you want to be able to keep track of them!</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PBS -N Align_hayim</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Substitute a job name of your choice!</p>
+</details>
+</section>
+<section id="change-3" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="change-3">Change #3</h3>
+<ul>
+<li><p>Tailor your <strong>resource</strong> requests.</p></li>
+<li><p>Use the <code>-l</code> PBS directive to request appropriate compute <strong>resources</strong> and <strong>wall-time</strong> for your job.</p></li>
+<li><p>This script performs an ‘alignment’ of DNA reads against a reference genome. <strong>10 minutes</strong> should be plenty, and we won’t use more than <strong>1 GB</strong> RAM.</p></li>
+<li><p>Notice here that <strong>we are requesting 2 CPUs</strong>. Are we sure our programs can use them?</p></li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PBS -l select=1:ncpus=2:mem=8GB</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#PBS -l walltime=00:10:00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</section>
+<section id="challenge-4" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="challenge-4">Challenge 4</h3>
+<ul>
+<li>Specify a <strong>job queue</strong>.</li>
+<li>Use the <code>-q</code> PBS directive to send the job to the <strong>defaultQ</strong> queue. You can also try <strong>small-express</strong> if you like; whose jobs start sooner?</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PBS -q defaultQ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</section>
+<section id="challenge-n5" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-n5">Challenge N5</h3>
 <p>Set the working directory for this job. Either just <code>cd</code> to it, or set up a Bash variable to use within the script.</p>
-<p>Edit the line beginning <code>io=</code> ~~~ io=/project/Training/hayim ~~~ {: .language-bash} Substitute your working directory name where I have put ‘hayim’! {: .solution}</p>
-</blockquote>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Edit the line beginning ```io=```</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">io</span><span class="op">=</span>/project/Training/hayim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+Solution
+</summary>
+<p>This is my solution</p>
+</details>
+</section></section></section><p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main></div>
 <p>When you’re done, save the script (on nano <kbd>Ctrl</kbd>+<kbd>o</kbd>), and exit (on nano <kbd>Ctrl</kbd>+<kbd>x</kbd>).</p>
 <p>Submit the job as before, with <code>qsub</code>:</p>
-<pre><code>qsub align.pbs</code></pre>
-<p>{: .language-bash}</p>
-<pre><code>[jdar4135@login3 hayim]$ qsub align.pbs
-2557080.pbsserver</code></pre>
-<p>{: .output}</p>
-<!-- Have a look at the _full output_ from ```qstat```
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> align.pbs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login3</span> hayim]$ qsub align.pbs</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">2557080.pbsserver</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qstat</span> <span class="at">-f</span> 2557080</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There’s a lot. Let’s <code>grep</code> just a few lines:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qstat</span> <span class="at">-f</span> 2557080 <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-e</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We mentioned above that we requested 2 CPUs. How did we make use of them? Have a look at the <em>program call</em> for <code>bwa mem</code><sup id="a2"><a href="#f2">2</a></sup></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-M</span> <span class="at">-t</span> 2 <span class="at">-R</span> <span class="st">'@RG\tID:134\tPL:illumina\tPU:CONNEACXX\tSM:MS_134'</span> <span class="dt">\</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">${io}</span>/canfam3_chr5.fasta <span class="va">${io}</span>/134_R1.fastq.gz  <span class="dt">\</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">${io}</span>/134_R2.fastq.gz <span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-bSho</span> <span class="va">${io}</span>/134.bam <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-~~~
-qstat -f 2557080
-~~~
-{: .language-bash}
-
-There's a lot. Let's ```grep``` just a few lines:
-
-~~~
-qstat -f 2557080 | grep -e ""
-~~~
-{: .language-bash}
-
-~~~
-
-~~~
-{: .output}
-
-The line -->
-<p><br> We mentioned above that we requested 2 CPUs. How did we make use of them? Have a look at the <em>program call</em> for <code>bwa mem</code><sup id="a2"><a href="#f2">2</a></sup></p>
-<pre><code>bwa mem -M -t 2 -R '@RG\tID:134\tPL:illumina\tPU:CONNEACXX\tSM:MS_134' \
-    ${io}/canfam3_chr5.fasta ${io}/134_R1.fastq.gz  \
-    ${io}/134_R2.fastq.gz | samtools view -bSho ${io}/134.bam -</code></pre>
-<p>{: .language-bash}</p>
-<p>What do those option flags do? Are any relevant here? Check the help or manual page for <code>bwa</code>.</p>
-<blockquote class="blockquote">
-<h2 id="answer-2" class="anchored">Answer</h2>
+<section id="challenge" class="level3 challenge">
+<h3 data-anchor-id="challenge">Challenge</h3>
+<ul>
+<li>What do those option flags do? Are any relevant here? Check the help or manual page for <code>bwa</code>.</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
 <p>The <code>bwa mem</code> help instructions lists the <code>-t</code> flag as setting the number of <em>threads</em>. Multi-threading is a requirement for any program wanting to use more than one CPU core.</p>
-<p>On Artemis, the default is to run one thread per core, so selecting <code>-t 2</code> threads will lead Artemis to use <strong>2 CPU cores</strong>, if at least this many are requested. {: .solution}</p>
-</blockquote>
+<p>On Artemis, the default is to run one thread per core, so selecting <code>-t 2</code> threads will lead Artemis to use <strong>2 CPU cores</strong>, if at least this many are requested.</p>
+</details>
+</section>
 <p>Has your <strong>align.pbs</strong> job completed yet? Check for errors:</p>
-<pre><code>grep -se "Exit Status" *</code></pre>
-<p>{: .language-bash}</p>
-<pre><code>[jdar4135@login3 hayim]$ grep -se "Exit Status" *
-Align_hayim.o2557080_usage:Exit Status: 0
-Index_hayim.o2557008_usage:Exit Status: 0
-Index_hayim.o2557043_usage:Exit Status: 0</code></pre>
-<p>{: .output}</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-se</span> <span class="st">"Exit Status"</span> <span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login3</span> hayim]$ grep <span class="at">-se</span> <span class="st">"Exit Status"</span> <span class="pp">*</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Align_hayim.o2557080_usage:Exit</span> Status: 0</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Index_hayim.o2557008_usage:Exit</span> Status: 0</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Index_hayim.o2557043_usage:Exit</span> Status: 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Great. However, note again that the <strong>error log</strong> is full of messages – none though are actual errors. You could try searching for the word ‘error’ in the error log using <code>grep</code> as well, and see that it is empty – however, we have no guarantee that the program authors would use the word ‘error’ in their error messages. Add the <code>-i</code> flag to make your search case <em>insensitive</em>:</p>
-<pre><code>[jdar4135@login2 hayim]$ grep -ie error Align_hayim.e2557080</code></pre>
-<p>{: .output}</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login2</span> hayim]$ grep <span class="at">-ie</span> error Align_hayim.e2557080</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>As before, check the resource usage log:</p>
-<pre><code>cat Align_hayim.o2557080_usage</code></pre>
-<p>{: .language-bash}</p>
-<pre><code>[jdar4135@login2 hayim]$ cat Align_hayim.o2557080_usage
--- Job Summary -------------------------------------------------------
-Job Id: 2557080.pbsserver for user jdar4135 in queue small
-Job Name: Align_hayim
-Project: RDS-CORE-Training-RW
-Exit Status: 0
-Job run as chunks (hpc018:ncpus=2:mem=3145728kb)
-Walltime requested:   00:10:00 :      Walltime used:   00:04:34
-                               :   walltime percent:      45.7%
--- Nodes Summary -----------------------------------------------------
--- node hpc018 summary
-    Cpus requested:          2 :          Cpus Used:       1.54
-          Cpu Time:   00:07:01 :        Cpu percent:      76.8%
-     Mem requested:      3.0GB :           Mem used:      1.6GB
-                               :        Mem percent:      54.6%
-
--- WARNINGS ----------------------------------------------------------
-
-** Low Walltime utilisation.  While this may be normal, it may help to check the
-** following:
-**   Did the job parameters specify more walltime than necessary? Requesting
-**   lower walltime could help your job to start sooner.
-**   Did your analysis complete as expected or did it crash before completing?
-**   Did the application run more quickly than it should have? Is this analysis
-**   the one you intended to run?
-**
-** Low Memory utilisation on hpc018. While this may be normal, it may help to check
-** the following:
-**   Did the job parameters specify too much memory? Requesting less RAM could
-**   help your job to start sooner.
-**   Did you use MPI and was the work distributed correctly? Correcting this
-**   could allow your job to run using less RAM in each chunk.
-**   Did your analysis complete as expected or did it crash before completing?
-**   Did the application use less RAM than it should have? Is this analysis the
-**   one you intended to run?
-**
--- End of Job Summary ------------------------------------------------</code></pre>
-<p>{: .output}</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> Align_hayim.o2557080_usage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[jdar4135@login2</span> hayim]$ cat Align_hayim.o2557080_usage</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Job Summary <span class="at">-------------------------------------------------------</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Job</span> Id: 2557080.pbsserver for user jdar4135 in queue small</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Job</span> Name: Align_hayim</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Project:</span> RDS-CORE-Training-RW</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Exit</span> Status: 0</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Job</span> run as chunks <span class="er">(</span><span class="ex">hpc018:ncpus=2:mem=3145728kb</span><span class="kw">)</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Walltime</span> requested:   00:10:00 :      Walltime used:   00:04:34</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                               <span class="bu">:</span>   walltime percent:      45.7%</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Nodes Summary <span class="at">-----------------------------------------------------</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> node hpc018 summary</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Cpus</span> requested:          2 :          Cpus Used:       1.54</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>          <span class="ex">Cpu</span> Time:   00:07:01 :        Cpu percent:      76.8%</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>     <span class="ex">Mem</span> requested:      3.0GB :           Mem used:      1.6GB</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>                               <span class="bu">:</span>        Mem percent:      54.6%</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> WARNINGS <span class="at">----------------------------------------------------------</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span> Low Walltime utilisation.  While this may be normal, it may help to check the</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span> following:</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did the job parameters specify more walltime than necessary<span class="pp">?</span> Requesting</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   lower walltime could help your job to start sooner.</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did your analysis complete as expected or did it crash before completing<span class="pp">?</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did the application run more quickly than it should have<span class="pp">?</span> Is this analysis</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   the one you intended to run<span class="pp">?</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span> Low Memory utilisation on hpc018. While this may be normal, it may help to check</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span> the following:</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did the job parameters specify too much memory<span class="pp">?</span> Requesting less RAM could</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   help your job to start sooner.</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did you use MPI and was the work distributed correctly<span class="pp">?</span> Correcting this</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   could allow your job to run using less RAM in each chunk.</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did your analysis complete as expected or did it crash before completing<span class="pp">?</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   Did the application use less RAM than it should have<span class="pp">?</span> Is this analysis the</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span>   one you intended to run<span class="pp">?</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="ex">**</span></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> End of Job Summary <span class="at">------------------------------------------------</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This is better resource utilisation: we used <strong>45% of our walltime</strong>, <strong>77% CPU</strong>, and <strong>55% of our RAM</strong>. We could trim our requests further, but walltime can vary for similar data depending on the algorithm, and providing too little memory (unlike too few CPUs) can cause a job to <em>fail</em>. So err on the side of caution.</p>
-<p><br> #### Helping sick Doggos :dog2: :worried:</p>
+<section id="helping-sick-doggos" class="level4">
+<h4 data-anchor-id="helping-sick-doggos">Helping sick Doggos 🐕😟</h4>
 <p>The sequence alignment you just created reveals the causal mutation for canine <em>spondylocostal dysostosis</em> (genomic position cfa5:32,945,846).</p>
 <p>Neat, hey?</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<a name="cali"></a> <img src="{{ page.root }}/fig/04_cali.png" style="margin:10px;height:650px" class="figure-img">
-<figcaption class="figure-caption">
-Willet et al 2015, PLoS ONE 10(2): e0117055a
-</figcaption>
+<p><img src="../fig/04_cali.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Willet et al 2015, PLoS ONE 10(2): e0117055a</figcaption><p></p>
 </figure>
-<p><br></p>
-<p><br></p>
-
-
+</div>
 </section>
+<section id="key-points" class="level3 keypoints">
+<h3 data-anchor-id="key-points">Key points</h3>
+<ul>
+<li>You can run all kinds of workflows on Artemis</li>
+</ul>
 </section>
 
-<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
+
+
+
+
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
@@ -487,7 +572,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 
