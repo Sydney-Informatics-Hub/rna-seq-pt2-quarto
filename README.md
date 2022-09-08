@@ -1,18 +1,75 @@
 # RNASeq workshop
 
-Hello
 
-This readme file does nothing for the website/course, but you can add some internal notes here (but remember it is a public facing page, don't add an API key or something!)
+This site is rendered at [https://sydney-informatics-hub.github.io/rna-seq-pt2-quarto/](https://sydney-informatics-hub.github.io//rna-seq-pt2-quarto/)
 
-This site is rendered at [https://sydney-informatics-hub.github.io/bio-temp/](https://sydney-informatics-hub.github.io/bio-temp/)
+Change content in the notebooks folder and then run
 
-Changes to the Episodes are done in \_episodes
+`quarto render` 
 
-Changes to the front-matter and setup and all the other stuff is done in.... "\_config.yml", "index.md" and probably a few other locations. You might want to delete a few of the dropdowns in the header bar if approriate (Extras, License, Suggest Edits, etc).
+via the command line or via the  VSCode plugin.
 
+Changes to the front-matter and setup and all the other stuff is done in `_quarto.yml`.
 
+***
 
+The template supports the following boxes that are nicely formatted:
 
+Questions:
+```
+<div class="questions">
+### Questions
+
+- Question 1?
+- Question 2?
+</div>
+```
+
+Objectives
+```
+<div class="objectives">  
+### Objectives
+
+- Objective 1 
+- Objective 2
+</div>
+```
+
+Key points:
+```
+<div class="keypoints">
+### Key points
+
+- This is a key point
+- Another one
+</div>  
+```
+
+Challenges:
+
+```
+<div class="challenge">
+
+### Challenge N 
+
+- Question here
+
+```{r ch2, echo =F, purl = T}
+# Challenge N
+# Look at this visualisation. 
+#
+#
+# Start solution here ----
+```
+
+<details>
+<summary>Solution</summary>
+
+This is my solution
+
+</details>
+</div>
+```
 
 
 # Code Of Conduct
