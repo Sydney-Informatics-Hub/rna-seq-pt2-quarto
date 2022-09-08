@@ -54,13 +54,13 @@ Challenges:
 
 - Question here
 
-```{r ch2, echo =F, purl = T}
+\```{r ch2, echo =F, purl = T}
 # Challenge N
 # Look at this visualisation. 
 #
 #
 # Start solution here ----
-```
+\```
 
 <details>
 <summary>Solution</summary>
