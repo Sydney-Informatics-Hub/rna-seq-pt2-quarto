@@ -170,14 +170,14 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Course title",
+    "title": "RNA-seq using Nextflow",
     "section": "",
     "text": "Introduces downstream analysis steps of RNA sequencing analysis using R/Rstudio - including how to analyse raw count data to obtain differentially expressed genes and pathways. This will be performed on Pawsey Nimbus Cloud.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "index.html#course-survey",
     "href": "index.html#course-survey",
-    "title": "Course title",
+    "title": "RNA-seq using Nextflow",
     "section": "Course survey!",
     "text": "Course survey!\nPlease fill out our course survey before you leave! Help us help you! :smiley:"
   },
