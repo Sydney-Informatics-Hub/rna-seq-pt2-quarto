@@ -6,14 +6,14 @@ fig-cap-location: top
 # Functional enrichment analysis
 
 <div class="questions">  
-### Questions
+### **Questions**
 
 - What is functional enrichment analysis?
 - What are Gene Ontologies?
 </div>  
 
 <div class="objectives">  
-### Objectives
+### **Objectives**
 
 - Understand what is Functional enrichment analysis.
 </div> 
@@ -52,7 +52,7 @@ fig-cap-location: top
 - Refers to the location in the cell of the gene product. Cellular components could include "nucleus", "lysosome", and "plasma membrane".
 
 <div class="keypoints">
-### Key points
+### **Key points**
 
 - This is a key point
 - Another one

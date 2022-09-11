@@ -7,12 +7,12 @@ font size: 2.5
 ## Create the DESeqDataSet object in DeSeq2
 
 <div class="questions">  
-### Questions
+### **Questions**
 - How to create the DESeqDataSet object?
 </div>
 
 <div class="objectives">  
-### Objectives
+### **Objectives**
 - Create a DESeqDataSet object with gene-count and experimental design information
 
 </div>
@@ -91,7 +91,7 @@ dds$condition ~ relevel(dds$condition, ref="Wild")
 
 
 <div class="keypoints">
-### Key points
+### **Key points**
 
 - We have used DeSeq2 to identify DE genes
 </div>  

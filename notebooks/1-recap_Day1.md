@@ -7,13 +7,13 @@ fig-cap-location: top
 
 <div class="questions">
 
-### Questions
+### **Questions**
 - How to use nfcore-rnaseq pipeline for differential expression analysis?
 </div>  
 
 <div class="objectives">
 
-### Objectives
+### **Objectives**
 - Recap Day 1: nfcore-rnaseq pipeline
 </div>  
 
@@ -38,7 +38,7 @@ fig-cap-location: top
 
 <div class="keypoints">
 
-### Key points
+### **Key points**
 
 - We generated a gene-count matrix using the nfcore-rnaseq pipeline, using a single command.
 - The gene-count matrix will be used today for identifying differentially expressed genes.

@@ -6,14 +6,14 @@ fig-cap-location: top
 # DE genes to functional enrichment in R
 
 <div class="questions">  
-### Questions
+### **Questions**
 
 - How to perform enrichment analysis in R (RStudio)?
 - How to visualise functionally enriched Gene ontologies (GO) / pathways as networks?
 </div>  
 
 <div class="objectives">  
-### Objectives
+### **Objectives**
 
 - Perform Functional enrichment analysis of the DE genes in `R`
 </div> 
@@ -198,7 +198,7 @@ My Solution here
 
 
 <div class="keypoints">
-### Key points
+### **Key points**
 
 - This is a key point
 - Another one

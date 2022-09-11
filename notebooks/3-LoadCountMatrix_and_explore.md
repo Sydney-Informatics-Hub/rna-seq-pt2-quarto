@@ -7,14 +7,14 @@ fig-cap-location: top
 
 <div class="objectives">  
 
-### Objectives
+### **Objectives**
 
 - Load the count matrix in R and perform initial exploratory analysis
 </div>  
 
 <div class="questions">
 
-### Questions
+### **Questions**
 
 - How to import a count-matrix in R?
 - How to perform exploratory analysis of the count-matrix?
@@ -339,7 +339,7 @@ fviz_contrib(pca, choice = "var", axes = 1, top = 100)
 ![picture alt](/fig/PCA1_gene_contributions.png)
 
 <div class="keypoints">
-### Key points
+### **Key points**
 
 - This is a key point
 - Another one

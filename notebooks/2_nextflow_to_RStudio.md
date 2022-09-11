@@ -6,13 +6,13 @@ fig-cap-location: top
 # Setup RStudio on Nimbus VM
 
 <div class="objectives">  
-### Objectives
+### **Objectives**
 - Introduction to RStudio
 - How to open RStudio on the Pawsey training VM?
 </div>  
 
 <div class="questions">  
-### Questions
+### **Questions**
 
 - How to get the full gene count-matrix for downstream analysis?
 - How to open RStudio on the Pawsey training VM?
@@ -58,7 +58,7 @@ lsof -ti:8787 | xargs kill -9
 ```
 
 <div class="keypoints">
-### Key points
+### **Key points**
 
 - This is a key point
 - Another one

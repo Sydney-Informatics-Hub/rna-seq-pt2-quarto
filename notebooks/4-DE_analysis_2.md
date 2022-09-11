@@ -125,7 +125,7 @@ p_site_Krt2
 
 
 <div class="keypoints">
-### Key points
+### **Key points**
 
 - We have used DeSeq2 to identify DE genes
 </div>  
