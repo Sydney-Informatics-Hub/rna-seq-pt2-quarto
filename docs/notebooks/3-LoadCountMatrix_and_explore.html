@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.345">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -80,22 +85,23 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -126,9 +132,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">RNA-Seq using Nextflow</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -141,11 +149,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="../setup.html">Setup</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nfcore-rnaseq-to-rstudio" role="button" data-bs-toggle="dropdown" aria-expanded="false">nfcore-rnaseq to RStudio</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-nfcore-rnaseq-to-rstudio">    
         <li>
     <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
- <span class="dropdown-text">Recap day 1</span></a>
+ <span class="dropdown-text">RECAP Day 1</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
@@ -153,28 +161,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Nextflow to RStudio</span></a>
+ <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+ <span class="dropdown-text">The count matrix in R</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-differential-expression-(de-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Differential expression (DE) analysis</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-differential-expression-(de-analysis">    
         <li>
     <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
- <span class="dropdown-text">DE analysis</span></a>
+ <span class="dropdown-text">How to perform DE analysis using DeSeq2?</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-enrichment-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enrichment analysis</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-enrichment-analysis">    
         <li>
     <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
- <span class="dropdown-text">Enrichment analysis</span></a>
+ <span class="dropdown-text">What is enrichment analysis?</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
- <span class="dropdown-text">DE genes to enrichments</span></a>
+ <span class="dropdown-text">DE genes to functional enrichments</span></a>
   </li>  
     </ul>
   </li>
@@ -189,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -238,13 +251,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The gene-count matrix was generated in the below folder using the nfcore-rnaseq pipeline:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/base_directory/working_directory/results/star_salmon/salmon.merged.gene_counts.tsv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>~/base_directory/working_directory/results/star_salmon/salmon.merged.gene_counts.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>The input to this pipeline were sub-setted fastq files from 6 samples which were mapped to the <code>chr18</code> reference of mouse. This was done so that the excecution of the <code>nfcore-rnaseq</code> pipeline can be demonstrated on our small-sized training VMs <code>(2 cpus and 8 GB RAM)</code> in quick time <code>(~ 20 mins)</code>.</p></li>
 <li><p>However, for today’s session, we will be using a pre-computed gene-count matrix which was generated by aligning the full set of reads to the complete mouse genome.</p></li>
 <li><p>This file was downloaded previously along with the other files from cloudstor and is named as <code>Full_count_matrix.txt</code>. It is available in the path as</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/base_path/working_directory/Full_count_matrix.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>~/base_path/working_directory/Full_count_matrix.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="working-in-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="working-in-rstudio">Working in RStudio</h3>
@@ -257,8 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<p></p><figcaption class="figure-caption">RStudio interface</figcaption><p></p>
 <p><img src="../fig/R_markdown.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -266,8 +279,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="open-a-r-markdown-file">Open a R-markdown file</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<p></p><figcaption class="figure-caption">Open Rmarkdown file</figcaption><p></p>
 <p><img src="../fig/Rmarkdown_open_file.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
 </figure>
 </div>
 <ul>
@@ -316,9 +329,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Next we read in the count matrix generated as inout the R-script.</li>
 <li>A gene-count matrix was generated in the folder</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/base_directory/working_directory/results/star_salmon/salmon.merged.gene_counts.tsv</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>~/base_directory/working_directory/results/star_salmon/salmon.merged.gene_counts.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>using the nfcore-rnaseq pipeline. The input to this pipeline were sub-setted fastq files from 6 samples which were mapped to the chr18 reference of mouse. This was done so that the excecution of the nfcore-rnaseq pipeline can be demonstrated on our small-sized training VMs <code>(2 cpus and 8 GB RAM)</code> in quick time <code>(~ 20 mins)</code>. - However, for today’s session, we will be using a pre-computed gene-count matrix which was generated by aligning the full set of reads to the complete mouse genome. - This file was downloaded previously along with the other files from cloudstor and is named as <code>Full_count_matrix.txt</code>. It is available in the path as <code>~/base_path/working_directory/Full_count_matrix.txt</code>. - Run the command</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ~/base_directory/working_directory/FULL_count_matrix.txt ~/base_directory/working_directory/rstudio/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cp ~/base_directory/working_directory/FULL_count_matrix.txt ~/base_directory/working_directory/rstudio/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Full count matrix (File has been provided for download)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>counttable_original<span class="ot">&lt;-</span><span class="fu">read.delim</span>(<span class="st">"FULL_count_matrix.txt"</span>, <span class="at">header=</span>T, <span class="at">row.names=</span><span class="dv">1</span>) </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -336,8 +349,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#View(counttable)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<p></p><figcaption class="figure-caption">count matrix</figcaption><p></p>
 <p><img src="../fig/count_matrix.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">count matrix</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -352,8 +365,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">log2</span>((counttable)<span class="sc">+</span><span class="dv">1</span>),<span class="at">las=</span><span class="dv">3</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../fig/!%5Bpicture%20alt%5D(../fig/box_plot_orig.png)" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Box plot : before applying transformation</figcaption><p></p>
+<p><img src="../fig/box_plot_orig.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
@@ -415,8 +428,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(vst.data,<span class="at">las=</span><span class="dv">3</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<p></p><figcaption class="figure-caption">Box plot : after applying vst transformation</figcaption><p></p>
 <p><img src="../fig/box_plot_transformed.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -450,6 +463,12 @@ Solution
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows=</span>sampleDists,</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols=</span>sampleDists,</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span>colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Heatmap to view distances between samples</figcaption><p></p>
+<p><img src="../fig/Heatmap_sample_distances.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </section>
 <section id="challenge-2" class="level3 challenge">
 <h3 class="anchored" data-anchor-id="challenge-2">Challenge #2</h3>
@@ -458,7 +477,10 @@ Solution
 <summary>
 Solution
 </summary>
-<p>This is my solution</p>
+<ul>
+<li>The WT samples cluster together.</li>
+<li>There is a possibility that one of the knockout samples is a bit distant to it’s replicates. Need to investigate further.</li>
+</ul>
 </details>
 </section>
 <section id="principal-component-analysis-pca" class="level3">
@@ -473,8 +495,8 @@ Solution
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../fig/PCA.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
+<p></p><figcaption class="figure-caption">picture alt</figcaption><p></p>
+<p><img src="../fig/PCA_noLegend.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
@@ -488,18 +510,23 @@ Solution
 <summary>
 Solution
 </summary>
-<p>This is my solution</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">picture alt</figcaption><p></p>
+<p><img src="../fig/PCA.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </details>
 </section>
 <section id="why-choose-best-the-dimension" class="level3">
 <h3 class="anchored" data-anchor-id="why-choose-best-the-dimension">Why choose best the dimension?</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<p></p><figcaption class="figure-caption">picture alt</figcaption><p></p>
 <p><img src="../fig/Prince_William_dimensionality.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
 </figure>
 </div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)<span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="a-scree-plot-can-assist" class="level3">
 <h3 class="anchored" data-anchor-id="a-scree-plot-can-assist">A Scree plot can assist</h3>
@@ -519,8 +546,8 @@ Solution
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<p></p><figcaption class="figure-caption">picture alt</figcaption><p></p>
 <p><img src="../fig/scree_plot.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
 </figure>
 </div>
 <p>We can see that PC1 followed by PC2 have captured most of the variance.</p>
@@ -533,8 +560,8 @@ Solution
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(pca, <span class="at">choice =</span> <span class="st">"var"</span>, <span class="at">axes =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
+<p></p><figcaption class="figure-caption">picture alt</figcaption><p></p>
 <p><img src="../fig/PCA1_gene_contributions.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">picture alt</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -553,6 +580,24 @@ Solution
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -602,7 +647,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

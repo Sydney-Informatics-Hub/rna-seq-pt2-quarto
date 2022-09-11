@@ -1,3 +1,8 @@
+---
+fig-cap-location: top
+---
+
+
 # Functional enrichment analysis
 
 <div class="questions">  

@@ -11,23 +11,27 @@ website:
         text: Home
       - href: setup.html
         text: "Setup"
-      - text: "Session 1"
+      - text: "nfcore-rnaseq to RStudio"
         menu:
-        - text: "Recap day 1"
+        - text: "RECAP Day 1"
           href: notebooks/1-recap_Day1.html
         - text: "Learning objectives"
           href: notebooks/1.2_Learning_objectives.html
-        - text: "Nextflow to RStudio"
+        - text: "Start RStudio on Nimbus instance"
           href: notebooks/2_nextflow_to_RStudio.html
-        - text: "Loading & exploring a count matrix"
+        - text: "The count matrix in R"
           href: notebooks/3-LoadCountMatrix_and_explore.html
-      - text: "Session 2"
+      - text: "Differential expression (DE) analysis"
         menu:
-        - text: "DE analysis"
+        - text: "Create the DESeqDataSet object in DeSeq2"
           href: notebooks/4-DE_analysis.html
-        - text: "Enrichment analysis"
+        - text: "Identify differentially expressed genes"
+          href: notebooks/4-DE_analysis_2.html
+      - text: "Enrichment analysis"
+        menu:
+        - text: "What is enrichment analysis?"
           href: notebooks/6_Whatis_Enrichment_analysis.html
-        - text: "DE genes to enrichments"
+        - text: "DE genes to functional enrichments"
           href: notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html
           
   body-footer: "All materials copyright Sydney Informatics Hub, University of Sydney"

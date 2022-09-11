@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.345">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -80,22 +85,23 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -126,9 +132,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">RNA-Seq using Nextflow</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -141,11 +149,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="../setup.html">Setup</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nfcore-rnaseq-to-rstudio" role="button" data-bs-toggle="dropdown" aria-expanded="false">nfcore-rnaseq to RStudio</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-nfcore-rnaseq-to-rstudio">    
         <li>
     <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
- <span class="dropdown-text">Recap day 1</span></a>
+ <span class="dropdown-text">RECAP Day 1</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
@@ -153,28 +161,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Nextflow to RStudio</span></a>
+ <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+ <span class="dropdown-text">The count matrix in R</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-differential-expression-(de-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Differential expression (DE) analysis</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-differential-expression-(de-analysis">    
         <li>
     <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
- <span class="dropdown-text">DE analysis</span></a>
+ <span class="dropdown-text">How to perform DE analysis using DeSeq2?</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-enrichment-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enrichment analysis</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-enrichment-analysis">    
         <li>
     <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
- <span class="dropdown-text">Enrichment analysis</span></a>
+ <span class="dropdown-text">What is enrichment analysis?</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
- <span class="dropdown-text">DE genes to enrichments</span></a>
+ <span class="dropdown-text">DE genes to functional enrichments</span></a>
   </li>  
     </ul>
   </li>
@@ -189,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -197,9 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#clusterprofiler-for-gene-ontology-go-over-representation-analysis" id="toc-clusterprofiler-for-gene-ontology-go-over-representation-analysis" class="nav-link" data-scroll-target="#clusterprofiler-for-gene-ontology-go-over-representation-analysis">ClusterProfiler for Gene Ontology (GO) over-representation analysis</a></li>
+  <li><a href="#gene-ontology-go-over-representation-analysis" id="toc-gene-ontology-go-over-representation-analysis" class="nav-link" data-scroll-target="#gene-ontology-go-over-representation-analysis">Gene Ontology (GO) over-representation analysis</a></li>
   <li><a href="#genes-down-regulated-in-wt" id="toc-genes-down-regulated-in-wt" class="nav-link" data-scroll-target="#genes-down-regulated-in-wt">Genes Down-regulated in WT</a></li>
-  <li><a href="#go-over-representation-analysis" id="toc-go-over-representation-analysis" class="nav-link" data-scroll-target="#go-over-representation-analysis">GO over-representation analysis</a></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge #1</a></li>
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2">Challenge #2</a></li>
+  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3">Challenge #3</a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
   </ul></li>
   </ul>
@@ -225,14 +240,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Perform Functional enrichment analysis of the DE genes in <code>R</code></li>
 </ul>
 </section>
-<section id="clusterprofiler-for-gene-ontology-go-over-representation-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="clusterprofiler-for-gene-ontology-go-over-representation-analysis">ClusterProfiler for Gene Ontology (GO) over-representation analysis</h3>
+<section id="gene-ontology-go-over-representation-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="gene-ontology-go-over-representation-analysis">Gene Ontology (GO) over-representation analysis</h3>
 <ul>
-<li><p>We will be using the R-package clusterProfiler to perform over-representation analysis on GO terms.</p></li>
-<li><p>The tool takes as input a list of significant genes (DEGs in this case) and a background gene list to perform statistical enrichment analysis using hypergeometric testing.</p></li>
-<li><p>The basic arguments allow the user to select the appropriate organism and GO ontology (BP, CC, MF) to test.</p></li>
-<li><p>Prepare input.</p></li>
-<li><p>Filter for significant up and down regulated genes by P adjust and log fold change.</p></li>
+<li>We will be using the R-package clusterProfiler to perform over-representation analysis on GO terms.</li>
+<li>The tool takes as input a list of significant genes (DEGs in this case) and a background gene list to perform statistical enrichment analysis using hypergeometric testing.</li>
+<li>The basic arguments allow the user to select the appropriate organism and GO ontology (BP, CC, MF) to test.</li>
+</ul>
+<section id="prepare-input-and-filter-for-up-and-down-regulated-genes" class="level4">
+<h4 class="anchored" data-anchor-id="prepare-input-and-filter-for-up-and-down-regulated-genes">Prepare input and filter for up and down regulated genes</h4>
+<ul>
+<li>Filter by padjust and log fold change.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P adj &lt; 0.05 </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sig <span class="ot">&lt;-</span> res_tidy.DE[res_tidy.DE<span class="sc">$</span>p.adjusted <span class="sc">&lt;</span> <span class="fl">0.05</span>, ]</span>
@@ -253,17 +271,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.dn.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+</section>
 <section id="genes-down-regulated-in-wt" class="level3">
 <h3 class="anchored" data-anchor-id="genes-down-regulated-in-wt">Genes Down-regulated in WT</h3>
-</section>
-<section id="go-over-representation-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="go-over-representation-analysis">GO over-representation analysis</h3>
-<ul>
-<li>The clusterProfiler package implements <code>enrichGO()</code> for gene ontology over-representation test.</li>
-<li>Explanation</li>
-<li>Observation 1</li>
-<li>Observation 2</li>
-</ul>
+<section id="the-function-enrichgo" class="level4">
+<h4 class="anchored" data-anchor-id="the-function-enrichgo">The function enrichGO()</h4>
+<p>The clusterProfiler package implements enrichGO() for gene ontology over-representation test.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ego.up <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.up.LFC),</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">OrgDb =</span> org.Mm.eg.db, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">keyType =</span> <span class="st">'SYMBOL'</span>,</span>
@@ -272,11 +285,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>, </span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">qvalueCutoff =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="html-results" class="level4">
-<h4 class="anchored" data-anchor-id="html-results">Html Results</h4>
-<p><strong>(For reference only)</strong> till I update the enrichment results pages</p>
-<p>Please click <a href="https://sydney-informatics-hub.github.io/training-nfcore-rnaseq.parttwo/rnaseq_DE_Full_matrix_DryRun">here</a> to see the Differential expression analsysis in RStudio.</p>
 </section>
+<section id="bar-plot" class="level4">
+<h4 class="anchored" data-anchor-id="bar-plot">Bar plot</h4>
+<ul>
+<li>Bar plot is the most widely used method to visualize enriched terms.</li>
+<li>It depicts the enrichment scores (e.g.&nbsp;p-values) and gene count or ratio as bar height and color.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.up, <span class="at">showCategory=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Bar Plot: Genes DOWN in WT</figcaption><p></p>
+<p><img src="../fig/BarPlot_DownInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="dot-plot" class="level4">
+<h4 class="anchored" data-anchor-id="dot-plot">Dot plot</h4>
+<ul>
+<li>A Dot plot is similar to a scatter plot and bar plot with the capability to encode another score as dot size.</li>
+<li>In R the dot plot displays the index (each category) in the vertical axis and the corresponding value in the horizontal axis, so you can see the value of each observation following a horizontal line from the label.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.up, <span class="at">showCategory=</span><span class="dv">20</span>,<span class="at">font.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Dot Plot: Genes DOWN in WT</figcaption><p></p>
+<p><img src="../fig/DotPlot_DownInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="cnetplot" class="level4">
+<h4 class="anchored" data-anchor-id="cnetplot">cnetplot</h4>
+<ul>
+<li>Both the barplot and dotplot only displayed most significant enriched terms, while users may want to know which genes are involved in these significant terms.</li>
+<li>The cnetplot depicts the linkages of genes and biological concepts (e.g.&nbsp;GO terms or KEGG pathways) as a network.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.up, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="at">categorySize=</span><span class="st">"pvalue"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> <span class="at">foldChange=</span>sig.up.LFC,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> <span class="at">cex_label_gene =</span> <span class="dv">1</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> <span class="at">showCategory =</span> <span class="dv">5</span>,<span class="at">cex_label_category=</span><span class="fl">1.2</span>,<span class="at">shadowtext=</span><span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">cnetPlot: Genes DOWN in WT</figcaption><p></p>
+<p><img src="../fig/cnetPlot_DownInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="heatmap-like-functional-classification" class="level4">
+<h4 class="anchored" data-anchor-id="heatmap-like-functional-classification">Heatmap-like functional classification</h4>
+<ul>
+<li>The heatplot is similar to cnetplot, while displaying the relationships as a heatmap.</li>
+<li>The gene-concept network may become too complicated if user want to show a large number significant terms.</li>
+<li>The heatplot can simplify the result and more easy to identify expression patterns.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.up)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Heatplot: Genes DOWN in WT</figcaption><p></p>
+<p><img src="../fig/heatMap_DownInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="challenge-1" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="challenge-1">Challenge #1</h3>
+<ul>
+<li>Do you find any of the top enriched GO categories relavant to the experiment?</li>
+<li>If so what is your deduction? Do you feel RNA-seq experiment has helped ?</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<p>My Solution here</p>
+</details>
+</section>
+<section id="challenge-2" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="challenge-2">Challenge #2</h3>
+<ul>
+<li>Can you perform similar analysis for genes which are UP-regulated in WT?</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<section id="genes-up-regulated-in-wt" class="level5">
+<h5 class="anchored" data-anchor-id="genes-up-regulated-in-wt">Genes Up-regulated in WT</h5>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ego.dn <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.dn.LFC),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">OrgDb =</span> org.Mm.eg.db, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">keyType =</span> <span class="st">'SYMBOL'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">readable =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">ont =</span> <span class="st">"ALL"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">qvalueCutoff =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bar-plot-1" class="level4">
+<h4 class="anchored" data-anchor-id="bar-plot-1">Bar plot</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.dn, <span class="at">showCategory=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Bar Plot: Genes UP in WT</figcaption><p></p>
+<p><img src="../fig/BarPlot_UpInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="dot-plot-1" class="level4">
+<h4 class="anchored" data-anchor-id="dot-plot-1">Dot-plot</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.dn, <span class="at">showCategory=</span><span class="dv">20</span>,<span class="at">font.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Dot Plot: Genes UP in WT</figcaption><p></p>
+<p><img src="../fig/DotPlot_UpInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="cnetplot-1" class="level4">
+<h4 class="anchored" data-anchor-id="cnetplot-1">cnetplot</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.dn, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="at">categorySize=</span><span class="st">"pvalue"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="at">foldChange=</span>sig.dn.LFC,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a> <span class="at">cex_label_gene =</span> <span class="fl">0.7</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a> <span class="at">showCategory =</span> <span class="dv">5</span>,<span class="at">cex_label_category=</span><span class="fl">1.5</span>,<span class="at">shadowtext=</span><span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">cnetPlot: Genes UP in WT</figcaption><p></p>
+<p><img src="../fig/cnetPlot_UpInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="heatmap-like-functional-classification-1" class="level4">
+<h4 class="anchored" data-anchor-id="heatmap-like-functional-classification-1">Heatmap-like functional classification</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.dn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Heatplot: Genes UP in WT</figcaption><p></p>
+<p><img src="../fig/heatMap_UpInWT.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section></details>
+</section>
+</section>
+<section id="challenge-3" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="challenge-3">Challenge #3</h3>
+<ul>
+<li>What about the GO categories for the genes found UP-regulated in WT? Any interesting find?</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<p>My Solution here</p>
+</details>
 </section>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points">Key points</h3>
@@ -287,11 +448,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 
 
-</section>
+
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -341,7 +520,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

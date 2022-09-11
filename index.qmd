@@ -4,6 +4,9 @@ output:
   html_document:
     toc: false
     toc_float: false
+
+fig-cap-location: top
+
 ---
 
 
@@ -16,13 +19,19 @@ Introduces downstream analysis steps of RNA sequencing analysis using R/Rstudio 
 Researchers, students and life scientists who are new to RNA sequencing for differential expression and pathway analysis. The course is beginner friendly and intended for those interested in using R/Rstudio for their analysis. 
 
 ### Interesting resources:
-
 - Introduction to **[Unix/Linux command line](https://datacarpentry.org/shell-genomics/)** 
 - Introduction to **[R/RStudio](https://datacarpentry.org/genomics-r-intro/)**
 
-### Follow-on courses:
-
 This course is __part two__ of the two-part __[RNA sequencing training series](https://sydney-informatics-hub.github.io/training.RNAseq.series/)__. 
+
+### How to navigate the web-pages
+- Please use the Menu bar on the top.
+
+![**Menu bar for navigation**](/fig/MenuBar_Day2.png)
+
+- We will start with the `Setup` page and then naviate to the right. 
+- Each main menu header has sub-header which will be visible when you click on the main-menu, as shown above.
+
 
 We recommend attending both courses if you would like an end-to-end overview of how to perform the analysis. If you are only interested in the technologies used, you may be able to get away with attending only the parts of interest :smiley:.
 

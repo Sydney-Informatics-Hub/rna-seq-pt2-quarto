@@ -2,9 +2,9 @@
   {
     "objectID": "setup.html",
     "href": "setup.html",
-    "title": "Setup",
+    "title": "RNA-Seq using Nextflow",
     "section": "",
-    "text": "How do I securely log into a Nimbus VM instance?\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "setup.html#the-pawsey-supercomputing-research-centre",
@@ -32,7 +32,7 @@
     "href": "setup.html#connecting-to-a-nimbus-instance",
     "title": "Setup",
     "section": "Connecting to a Nimbus instance",
-    "text": "Connecting to a Nimbus instance\nLoggin into a Nimbus instance requires three things: 1. The IP Address (virtual address) of your instance. It is a series of numbers i.e. ###.###.###.###. Every participant is provided with an separate IP Address which points to an independant VM instance. 2. Your login name: this depends on the name of the Linux OS image you selected and in our case it is training. 3. Your password. Every participant is provided with a password\n\n\n\nSSH connection to Nimbus VM instance\n\n\n\nLogging-in using a terminal\nThe primary means by which we can connect to this VM is via a Secure Shell (SSH) over a Command Line Interface (CLI). Type the following into your terminal, using your login name and the instance’s IP address:\nssh training@###.###.###.###\nYou will receive a message saying:\nThe authenticity of host '146.118.67.137 (146.118.67.137)' can't be established.\nRemember your host address will be different than the one above. There will then be a message saying:\nAre you sure you want to continue connecting (yes/no)?\nIf you are sure (and/or confirm the fingerprint), answer ‘yes’ to continue. It will then give a warning:\nWarning: Permanently added '146.118.67.137' (ECDSA) to the list of known hosts.\nEnter password:\nMeaning that next time you log in using this key and IP address you won’t receive this message. Having done that, your terminal should then display something like that shown in the figure below:\n\n\n\nfigure\n\n\nCongratulations, you have now successfully logged on to your instance!\n\n\nKey points\n\nNimbus VM instances from Pawsey provide on-demand access for scalability.\nWe use a ssh client to connect to a Linux instance."
+    "text": "Connecting to a Nimbus instance\nLoggin into a Nimbus instance requires three things: 1. The IP Address (virtual address) of your instance. It is a series of numbers i.e. ###.###.###.###. Every participant is provided with an separate IP Address which points to an independant VM instance. 2. Your login name: this depends on the name of the Linux OS image you selected and in our case it is training. 3. Your password. Every participant is provided with a password\n\n\n\nSSH connection to Nimbus VM instance\n\n\n\nLogging-in using a terminal\nThe primary means by which we can connect to this VM is via a Secure Shell (SSH) over a Command Line Interface (CLI). Type the following into your terminal, using your login name and the instance’s IP address:\nssh training@###.###.###.###\nYou will receive a message saying:\nThe authenticity of host '146.118.67.137 (146.118.67.137)' can't be established.\nRemember your host address will be different than the one above. There will then be a message saying:\nAre you sure you want to continue connecting (yes/no)?\nIf you are sure (and/or confirm the fingerprint), answer ‘yes’ to continue. It will then give a warning:\nWarning: Permanently added '146.118.67.137' (ECDSA) to the list of known hosts.\nEnter password:\nMeaning that next time you log in using this key and IP address you won’t receive this message. Having done that, your terminal should then display something like that shown in the figure below:\n\n\n\nNimbus login screen\n\n\nCongratulations, you have now successfully logged on to your instance!\n\n\nKey points\n\nNimbus VM instances from Pawsey provide on-demand access for scalability.\nWe use a ssh client to connect to a Linux instance."
   },
   {
     "objectID": "BKP/01-intro.html",
@@ -200,7 +200,7 @@
     "href": "notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html",
     "title": "RNA-Seq using Nextflow",
     "section": "",
-    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Challenge #3\n\nWhat about the GO categories for the genes found UP-regulated in WT? Any interesting find?\n\n\n\nSolution\n\nMy Solution here\n\n\n\nKey points\n\nThis is a key point\nAnother one\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "notebooks/2_nextflow_to_RStudio.html",
@@ -226,6 +226,20 @@
   {
     "objectID": "notebooks/3-LoadCountMatrix_and_explore.html",
     "href": "notebooks/3-LoadCountMatrix_and_explore.html",
+    "title": "RNA-Seq using Nextflow",
+    "section": "",
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "setup.html#course-survey",
+    "href": "setup.html#course-survey",
+    "title": "RNA-seq using Nextflow",
+    "section": "Course survey!",
+    "text": "Course survey!\nPlease fill out our course survey before you leave!"
+  },
+  {
+    "objectID": "notebooks/4-DE_analysis_2.html",
+    "href": "notebooks/4-DE_analysis_2.html",
     "title": "RNA-Seq using Nextflow",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
