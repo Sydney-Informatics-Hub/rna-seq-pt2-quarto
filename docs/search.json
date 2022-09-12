@@ -170,21 +170,21 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "RNA-seq using Nextflow",
+    "title": "RNA-Seq using Nextflow: Day 2",
     "section": "",
     "text": "Introduces downstream analysis steps of RNA sequencing analysis using R/Rstudio - including how to analyse raw count data to obtain differentially expressed genes and pathways. This will be performed on Pawsey Nimbus Cloud.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "index.html#course-survey",
     "href": "index.html#course-survey",
-    "title": "RNA-seq using Nextflow",
+    "title": "RNA-Seq using Nextflow: Day 2",
     "section": "Course survey!",
     "text": "Course survey!\nPlease fill out our course survey before you leave! Help us help you! :smiley:"
   },
   {
     "objectID": "notebooks/6_Whatis_Enrichment_analysis.html",
     "href": "notebooks/6_Whatis_Enrichment_analysis.html",
-    "title": "RNA-Seq using Nextflow",
+    "title": "RNA-Seq using Nextflow: Day 2",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
@@ -198,7 +198,7 @@
   {
     "objectID": "notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html",
     "href": "notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html",
-    "title": "RNA-Seq using Nextflow",
+    "title": "RNA-Seq using Nextflow: Day 2",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
@@ -212,7 +212,7 @@
   {
     "objectID": "notebooks/1-recap_Day1.html",
     "href": "notebooks/1-recap_Day1.html",
-    "title": "RNA-Seq using Nextflow",
+    "title": "RNA-seq using Nextflow: Day 2",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
@@ -226,7 +226,7 @@
   {
     "objectID": "notebooks/3-LoadCountMatrix_and_explore.html",
     "href": "notebooks/3-LoadCountMatrix_and_explore.html",
-    "title": "RNA-Seq using Nextflow",
+    "title": "RNA-seq using Nextflow: Day 2",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
@@ -240,7 +240,7 @@
   {
     "objectID": "notebooks/4-DE_analysis_2.html",
     "href": "notebooks/4-DE_analysis_2.html",
-    "title": "RNA-Seq using Nextflow",
+    "title": "RNA-Seq using Nextflow: Day 2",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
@@ -254,7 +254,7 @@
   {
     "objectID": "notebooks/3.1_exploratory_analysis.html",
     "href": "notebooks/3.1_exploratory_analysis.html",
-    "title": "RNA-Seq using Nextflow",
+    "title": "RNA-seq using Nextflow: Day 2",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   }

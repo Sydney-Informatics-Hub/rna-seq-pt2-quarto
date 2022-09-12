@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "RNA-Seq using Nextflow"
+  title: "RNA-Seq using Nextflow: Day 2"
   navbar:
     background: primary
     left:
