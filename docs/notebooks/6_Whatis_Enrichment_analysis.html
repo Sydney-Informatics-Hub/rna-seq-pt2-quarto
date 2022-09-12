@@ -101,8 +101,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">The count matrix in R</span></a>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
+ <span class="dropdown-text">Load the count matrix in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
     </ul>
   </li>
@@ -147,16 +151,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#functional-enrichment-analysis" id="toc-functional-enrichment-analysis" class="nav-link active" data-scroll-target="#functional-enrichment-analysis">Functional enrichment analysis</a>
+  <li><a href="#functional-enrichment-analysis" id="toc-functional-enrichment-analysis" class="nav-link active" data-scroll-target="#functional-enrichment-analysis"><strong>Functional enrichment analysis</strong></a>
   <ul class="collapse">
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#functional-enrichment-analysis-1" id="toc-functional-enrichment-analysis-1" class="nav-link" data-scroll-target="#functional-enrichment-analysis-1">Functional enrichment analysis</a></li>
-  <li><a href="#over-representation-analysis" id="toc-over-representation-analysis" class="nav-link" data-scroll-target="#over-representation-analysis">Over-representation analysis</a></li>
-  <li><a href="#gene-ontology-project" id="toc-gene-ontology-project" class="nav-link" data-scroll-target="#gene-ontology-project">Gene Ontology project</a></li>
-  <li><a href="#go-ontologies" id="toc-go-ontologies" class="nav-link" data-scroll-target="#go-ontologies">GO Ontologies</a>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
+  <li><a href="#functional-enrichment-analysis-1" id="toc-functional-enrichment-analysis-1" class="nav-link" data-scroll-target="#functional-enrichment-analysis-1"><strong>Functional enrichment analysis</strong></a></li>
+  <li><a href="#over-representation-analysis" id="toc-over-representation-analysis" class="nav-link" data-scroll-target="#over-representation-analysis"><strong>Over-representation analysis</strong></a></li>
+  <li><a href="#gene-ontology-project" id="toc-gene-ontology-project" class="nav-link" data-scroll-target="#gene-ontology-project"><strong>Gene Ontology project</strong></a></li>
+  <li><a href="#go-ontologies" id="toc-go-ontologies" class="nav-link" data-scroll-target="#go-ontologies"><strong>GO Ontologies</strong></a>
   <ul class="collapse">
-  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a></li>
+  <li><a href="#biological-process" id="toc-biological-process" class="nav-link" data-scroll-target="#biological-process"><strong>Biological process</strong></a></li>
+  <li><a href="#molecular-function" id="toc-molecular-function" class="nav-link" data-scroll-target="#molecular-function"><strong>Molecular function</strong></a></li>
+  <li><a href="#cellular-component" id="toc-cellular-component" class="nav-link" data-scroll-target="#cellular-component"><strong>Cellular component</strong></a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -168,22 +175,22 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="functional-enrichment-analysis" class="level1">
-<h1>Functional enrichment analysis</h1>
+<h1><strong>Functional enrichment analysis</strong></h1>
 <section id="questions" class="level3 questions">
-<h3 class="anchored" data-anchor-id="questions">Questions</h3>
+<h3 class="anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
 <ul>
 <li>What is functional enrichment analysis?</li>
 <li>What are Gene Ontologies?</li>
 </ul>
 </section>
 <section id="objectives" class="level3 objectives">
-<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
+<h3 class="anchored" data-anchor-id="objectives"><strong>Objectives</strong></h3>
 <ul>
 <li>Understand what is Functional enrichment analysis.</li>
 </ul>
 </section>
 <section id="functional-enrichment-analysis-1" class="level2">
-<h2 class="anchored" data-anchor-id="functional-enrichment-analysis-1">Functional enrichment analysis</h2>
+<h2 class="anchored" data-anchor-id="functional-enrichment-analysis-1"><strong>Functional enrichment analysis</strong></h2>
 <ul>
 <li>The output of RNA-seq differential expression analysis is a list of significant differentially expressed genes (DEGs). To gain greater biological insight on the differentially expressed genes there are various analyses that can be done:</li>
 <li>determine whether there is enrichment of known biological functions, interactions, or pathways identify genes’ involvement in novel pathways or networks by grouping genes together based on similar trends.</li>
@@ -191,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 <section id="over-representation-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="over-representation-analysis">Over-representation analysis</h2>
+<h2 class="anchored" data-anchor-id="over-representation-analysis"><strong>Over-representation analysis</strong></h2>
 <ul>
 <li>There are a range of functional enrichment tools that perform some type of “over-representation” analysis by querying databases containing information about gene function and interactions.</li>
 <li>These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
@@ -208,37 +215,37 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 <section id="gene-ontology-project" class="level2">
-<h2 class="anchored" data-anchor-id="gene-ontology-project">Gene Ontology project</h2>
+<h2 class="anchored" data-anchor-id="gene-ontology-project"><strong>Gene Ontology project</strong></h2>
 <ul>
 <li>One of the most widely-used categorizations is the Gene Ontology (GO) established by the <a href="http://geneontology.org/page/go-consortium-contributors-list">Gene Ontology project</a>.</li>
 <li>Tools that investigate enrichment of biological functions or interactions often use the Gene Ontology (GO) categorizations, i.e.&nbsp;the GO terms to determine whether any have significantly modified representation in a given list of genes.</li>
 </ul>
 </section>
 <section id="go-ontologies" class="level2">
-<h2 class="anchored" data-anchor-id="go-ontologies">GO Ontologies</h2>
+<h2 class="anchored" data-anchor-id="go-ontologies"><strong>GO Ontologies</strong></h2>
 <ul>
 <li>To describe the roles of genes and gene products, GO terms are organized into three independent controlled vocabularies (ontologies) in a species-independent manner:</li>
 </ul>
-<section id="biological-process" class="level4">
-<h4 class="anchored" data-anchor-id="biological-process">Biological process</h4>
+<section id="biological-process" class="level3">
+<h3 class="anchored" data-anchor-id="biological-process"><strong>Biological process</strong></h3>
 <ul>
 <li>refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.</li>
 </ul>
 </section>
-<section id="molecular-function" class="level4">
-<h4 class="anchored" data-anchor-id="molecular-function">Molecular function</h4>
+<section id="molecular-function" class="level3">
+<h3 class="anchored" data-anchor-id="molecular-function"><strong>Molecular function</strong></h3>
 <ul>
 <li>Represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.</li>
 </ul>
 </section>
-<section id="cellular-component" class="level4">
-<h4 class="anchored" data-anchor-id="cellular-component">Cellular component</h4>
+<section id="cellular-component" class="level3">
+<h3 class="anchored" data-anchor-id="cellular-component"><strong>Cellular component</strong></h3>
 <ul>
 <li>Refers to the location in the cell of the gene product. Cellular components could include “nucleus”, “lysosome”, and “plasma membrane”.</li>
 </ul>
 </section>
 <section id="key-points" class="level3 keypoints">
-<h3 class="anchored" data-anchor-id="key-points">Key points</h3>
+<h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
 <li>This is a key point</li>
 <li>Another one</li>

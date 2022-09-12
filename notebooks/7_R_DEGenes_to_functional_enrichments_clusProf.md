@@ -3,7 +3,7 @@ fig-cap-location: top
 ---
 
 
-# DE genes to functional enrichment in R
+# **DE genes to functional enrichment in R**
 
 <div class="questions">  
 ### **Questions**
@@ -19,12 +19,12 @@ fig-cap-location: top
 </div> 
 
 
-### Gene Ontology (GO) over-representation analysis 
+## **Gene Ontology (GO) over-representation analysis**
 - We will be using the R-package clusterProfiler to perform over-representation analysis on GO terms. 
 - The tool takes as input a list of significant genes (DEGs in this case) and a background gene list to perform statistical enrichment analysis using hypergeometric testing.
 - The basic arguments allow the user to select the appropriate organism and GO ontology (BP, CC, MF) to test.
 
-#### Prepare input and filter for up and down regulated genes
+### **Prepare input and filter for up and down regulated genes**
 - Filter by padjust and log fold change. 
 
 
@@ -50,9 +50,9 @@ sig.dn.LFC <- sort(sig.dn.LFC, decreasing = TRUE)
 ```
 
 
-### Genes Down-regulated in WT
+### **Genes Down-regulated in WT**
 
-#### The function enrichGO()
+#### **The function enrichGO()**
 The clusterProfiler package implements enrichGO() for gene ontology over-representation test.
 
 ```r
@@ -66,27 +66,27 @@ ego.up <- enrichGO(gene = names(sig.up.LFC),
                       qvalueCutoff = 0.2)
 ```
 
-#### Bar plot
+#### **Bar plot**
 - Bar plot is the most widely used method to visualize enriched terms. 
 - It depicts the enrichment scores (e.g. p-values) and gene count or ratio as bar height and color.
 ```r
-barplot(ego.up, showCategory=20)
+barplot(ego.up, showCategory=20){width=70%}
 ```
 
 ![Bar Plot: Genes DOWN in WT](../fig/BarPlot_DownInWT.png) 
 
 
-#### Dot plot
+#### **Dot plot**
 - A Dot plot is similar to a scatter plot and bar plot with the capability to encode another score as dot size.
 - In R the dot plot displays the index (each category) in the vertical axis and the corresponding value in the horizontal axis, so you can see the value of each observation following a horizontal line from the label.
 ```r
-dotplot(ego.up, showCategory=20,font.size = 10)
+dotplot(ego.up, showCategory=20,font.size = 10){width=70%}
 ```
 
 
 ![Dot Plot: Genes DOWN in WT](../fig/DotPlot_DownInWT.png) 
 
-#### cnetplot
+#### **cnetplot**
 - Both the barplot and dotplot only displayed most significant enriched terms, while users may want to know which genes are involved in these significant terms. 
 - The cnetplot depicts the linkages of genes and biological concepts (e.g. GO terms or KEGG pathways) as a network.
 ```r
@@ -96,10 +96,10 @@ cnetplot(ego.up,
  cex_label_gene = 1,
  showCategory = 5,cex_label_category=1.2,shadowtext='category')
 ```
-![cnetPlot: Genes DOWN in WT](../fig/cnetPlot_DownInWT.png) 
+![cnetPlot: Genes DOWN in WT](../fig/cnetPlot_DownInWT.png){width=70%}
 
 
-#### Heatmap-like functional classification
+#### **Heatmap-like functional classification**
 - The heatplot is similar to cnetplot, while displaying the relationships as a heatmap. 
 - The gene-concept network may become too complicated if user want to show a large number significant terms. 
 - The heatplot can simplify the result and more easy to identify expression patterns.
@@ -107,12 +107,12 @@ cnetplot(ego.up,
 heatplot(ego.up)
 ```
 
-![Heatplot: Genes DOWN in WT](../fig/heatMap_DownInWT.png) 
+![Heatplot: Genes DOWN in WT](../fig/heatMap_DownInWT.png){width=70%}
 
 
 <div class="challenge">
 
-### Challenge #1
+### **Challenge #1**
 
 - Do you find any of the top enriched GO categories relavant to the experiment?
 - If so what is your deduction? Do you feel RNA-seq experiment has helped ?
@@ -130,14 +130,14 @@ My Solution here
 
 <div class="challenge">
 
-### Challenge #2
+### **Challenge #2**
 
 - Can you perform similar analysis for genes which are UP-regulated in WT?
 
 <details>
 <summary>Solution</summary>
 
-##### Genes Up-regulated in WT
+##### **Genes Up-regulated in WT**
 
 ```r
 ego.dn <- enrichGO(gene = names(sig.dn.LFC),
@@ -150,19 +150,19 @@ pvalueCutoff = 0.05,
 qvalueCutoff = 0.2)
 ```
 
-#### Bar plot
+#### **Bar plot**
 ```r
 barplot(ego.dn, showCategory=20)
 ```
-![Bar Plot: Genes UP in WT](../fig/BarPlot_UpInWT.png) 
+![Bar Plot: Genes UP in WT](../fig/BarPlot_UpInWT.png){width=70%} 
 
-#### Dot-plot
+#### **Dot-plot**
 ```r
 dotplot(ego.dn, showCategory=20,font.size = 10)
 ```
-![Dot Plot: Genes UP in WT](../fig/DotPlot_UpInWT.png) 
+![Dot Plot: Genes UP in WT](../fig/DotPlot_UpInWT.png){width=70%} 
 
-#### cnetplot
+#### **cnetplot**
 ```r
 cnetplot(ego.dn, 
  categorySize="pvalue", 
@@ -170,13 +170,13 @@ cnetplot(ego.dn,
  cex_label_gene = 0.7,
  showCategory = 5,cex_label_category=1.5,shadowtext='category')
 ```
-![cnetPlot: Genes UP in WT](../fig/cnetPlot_UpInWT.png) 
+![cnetPlot: Genes UP in WT](../fig/cnetPlot_UpInWT.png){width=70%} 
 
-#### Heatmap-like functional classification
+#### **Heatmap-like functional classification**
 ```r
 heatplot(ego.dn)
 ```
-![Heatplot: Genes UP in WT](../fig/heatMap_UpInWT.png) 
+![Heatplot: Genes UP in WT](../fig/heatMap_UpInWT.png){width=70%}
 </details>
 </div>  
 
@@ -184,7 +184,7 @@ heatplot(ego.dn)
 
 <div class="challenge">
 
-### Challenge #3
+### **Challenge #3**
 
 - What about the GO categories for the genes found UP-regulated in WT? Any interesting find?
 

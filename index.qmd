@@ -1,5 +1,5 @@
 ---
-title: "RNA-seq using Nextflow"
+title: "**RNA-seq using Nextflow**"
 output:
   html_document:
     toc: false

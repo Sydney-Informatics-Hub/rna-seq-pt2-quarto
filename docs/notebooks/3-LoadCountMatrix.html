@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow – loadcountmatrix_and_explore</title>
+<title>RNA-Seq using Nextflow – loadcountmatrix</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
  <span class="dropdown-text">Load the count matrix in R</span></a>
   </li>  
         <li>
@@ -227,22 +227,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#set-the-current-working-directory" id="toc-set-the-current-working-directory" class="nav-link" data-scroll-target="#set-the-current-working-directory"><strong>Set the current working directory</strong></a></li>
   <li><a href="#the-count-matrix" id="toc-the-count-matrix" class="nav-link" data-scroll-target="#the-count-matrix"><strong>The count matrix</strong></a></li>
   <li><a href="#import-the-count-matrix" id="toc-import-the-count-matrix" class="nav-link" data-scroll-target="#import-the-count-matrix"><strong>Import the count matrix</strong></a></li>
-  </ul></li>
-  <li><a href="#exploratory-analysis-and-visualization" id="toc-exploratory-analysis-and-visualization" class="nav-link" data-scroll-target="#exploratory-analysis-and-visualization"><strong>Exploratory analysis and visualization</strong></a>
-  <ul class="collapse">
-  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot"><strong>Box plot</strong></a></li>
-  <li><a href="#what-is-a-deseq2-object" id="toc-what-is-a-deseq2-object" class="nav-link" data-scroll-target="#what-is-a-deseq2-object"><strong>What is a DESeq2 object?</strong></a></li>
-  <li><a href="#data-transformations" id="toc-data-transformations" class="nav-link" data-scroll-target="#data-transformations"><strong>Data transformations</strong></a></li>
-  <li><a href="#variance-stabilisting-transformation-vst" id="toc-variance-stabilisting-transformation-vst" class="nav-link" data-scroll-target="#variance-stabilisting-transformation-vst"><strong>Variance stabilisting transformation (VST)</strong></a></li>
-  <li><a href="#re-drawing-the-box-plots" id="toc-re-drawing-the-box-plots" class="nav-link" data-scroll-target="#re-drawing-the-box-plots"><strong>Re-drawing the box plots</strong></a></li>
-  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><strong>Challenge #1</strong></a></li>
-  <li><a href="#heatmap-sample-to-sample-distances" id="toc-heatmap-sample-to-sample-distances" class="nav-link" data-scroll-target="#heatmap-sample-to-sample-distances"><strong>Heatmap (Sample-to-sample distances)</strong></a></li>
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><strong>Challenge #2</strong></a></li>
-  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><strong>Principal Component Analysis (PCA)</strong></a></li>
-  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><strong>Challenge #3</strong></a></li>
-  <li><a href="#why-choose-best-the-dimension" id="toc-why-choose-best-the-dimension" class="nav-link" data-scroll-target="#why-choose-best-the-dimension"><strong>Why choose best the dimension? </strong> <span class="emoji" data-emoji="grinning">😀</span></a></li>
-  <li><a href="#a-scree-plot-can-assist" id="toc-a-scree-plot-can-assist" class="nav-link" data-scroll-target="#a-scree-plot-can-assist"><strong>A Scree plot can assist</strong></a></li>
-  <li><a href="#small-contributions-of-many-genes-to-variation" id="toc-small-contributions-of-many-genes-to-variation" class="nav-link" data-scroll-target="#small-contributions-of-many-genes-to-variation"><strong>Small contributions of many genes to variation</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul></li>
@@ -384,203 +368,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </section>
-</section>
-<section id="exploratory-analysis-and-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="exploratory-analysis-and-visualization"><strong>Exploratory analysis and visualization</strong></h2>
-<section id="box-plot" class="level3">
-<h3 class="anchored" data-anchor-id="box-plot"><strong>Box plot</strong></h3>
-<ul>
-<li>A quick look at the distribution of the data across sample using box plots.</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">log2</span>((counttable)<span class="sc">+</span><span class="dv">1</span>),<span class="at">las=</span><span class="dv">3</span>, <span class="at">col=</span><span class="st">"red"</span>){width<span class="ot">=</span><span class="dv">50</span>%}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p></p><figcaption class="figure-caption">Box plot : before applying transformation</figcaption><p></p>
-<p><img src="../fig/box_plot_orig.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="what-is-a-deseq2-object" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-a-deseq2-object"><strong>What is a DESeq2 object?</strong></h3>
-<ul>
-<li>The basic entity used by the DESeq2 package is and object class called DESeqDataSet.</li>
-<li>The DESeqDataSet object is used to store both the read counts and the intermediate estimated quantities during statistical analysis</li>
-<li>We will call this object by name ‘dds’ which is a standard practice (<strong>Note</strong> We can name this object absolutely anything in real world 🙂).</li>
-<li>Please see the <a href="http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">guide</a> for detailed information about the DESeq2 library.</li>
-<li>We also define a condition variable to associate the individual columns (samples) in the matrix to their appropriate experimental condition (either ‘Wild-type’ or ‘Knockout’).</li>
-<li>We will then prepare the DESeq2 object with <code>design = ~1</code>;
-<ul>
-<li>A design of ~1 is used for no experimental design and is useful for exploring quality of the data (not for identifying differentially expressed -DE genes).</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a condition variable </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>condition<span class="ot">=</span><span class="fu">c</span>(<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names=</span><span class="fu">colnames</span>(counttable),condition)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#View(meta)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> counttable, </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">colData =</span> meta, </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">design =</span> <span class="sc">~</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="data-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="data-transformations"><strong>Data transformations</strong></h3>
-<ul>
-<li><p>For visualization or clustering it is useful to work with transformed versions of the count data.</p></li>
-<li><p>The two most common choices of transformation used for this purpose are -</p>
-<ul>
-<li>Variance stabilizing transformation (vst)</li>
-<li>Regularized log transformation (rlog)</li>
-</ul></li>
-<li><p>These algorithms transform the raw count data (which is heteroskedatic - variance grows with the mean) into homoskedatic data (variance is not dependant on the mean).</p></li>
-<li><p>Both methods produce data on the log2 scale, and normalize for other factors such as library size. Setting <code>blind=TRUE</code> (the default) should be used to compare samples in a manner wholly unbiased about the information about experimental groups, for example to perform sample QC.</p></li>
-<li><p><strong>Note</strong> : In order to test for differential expression, we operate on raw counts (and not normalized/transformed counts).</p></li>
-</ul>
-</section>
-<section id="variance-stabilisting-transformation-vst" class="level3">
-<h3 class="anchored" data-anchor-id="variance-stabilisting-transformation-vst"><strong>Variance stabilisting transformation (VST)</strong></h3>
-<ul>
-<li>VST by default uses a subset of 1000 rows to estimate the dispersion trend.</li>
-<li>This method is much faster than the other transformation mathod called - rlog.</li>
-<li>Hence, VST is recommended if you have hundreds of samples.</li>
-</ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>vst <span class="ot">&lt;-</span> <span class="fu">vst</span>(dds, <span class="at">blind =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>vst.data <span class="ot">&lt;-</span> <span class="fu">assay</span>(vst)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Regularized log (rlog) takes a long time with 50 or more samples</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># rld &lt;- rlog(dds, blind=FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="re-drawing-the-box-plots" class="level3">
-<h3 class="anchored" data-anchor-id="re-drawing-the-box-plots"><strong>Re-drawing the box plots</strong></h3>
-<ul>
-<li>We will now re-generate the box plots to see if the transformation has brought about any difference in distribution.</li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(vst.data,<span class="at">las=</span><span class="dv">3</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p></p><figcaption class="figure-caption">Box plot : after applying vst transformation</figcaption><p></p>
-<p><img src="../fig/box_plot_transformed.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="challenge-1" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-1"><strong>Challenge #1</strong></h3>
-<p>Looking at the above two box plots:</p>
-<ul>
-<li>Do you see a difference in the two box plots (before and after transformation)?</li>
-<li>Do you think the transformation has helped?</li>
-</ul>
-<details>
-<summary>
-Solution
-</summary>
-<p>This is my solution</p>
-</details>
-</section>
-<section id="heatmap-sample-to-sample-distances" class="level3">
-<h3 class="anchored" data-anchor-id="heatmap-sample-to-sample-distances"><strong>Heatmap (Sample-to-sample distances)</strong></h3>
-<ul>
-<li>A heatmap of a distance matrix gives us an overview over similarities and dissimilarities between samples.</li>
-<li>We have to provide a hierarchical clustering hc to the heatmap function based on the sample distances.</li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sampleDists <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">t</span>(<span class="fu">assay</span>(vst)))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sampleDistMatrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sampleDists)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(vst<span class="sc">$</span>condition, vst<span class="sc">$</span>type, <span class="at">sep=</span><span class="st">"-"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>( <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Blues"</span>)) )(<span class="dv">255</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(sampleDistMatrix,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows=</span>sampleDists,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols=</span>sampleDists,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span>colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p></p><figcaption class="figure-caption">Heatmap to view distances between samples</figcaption><p></p>
-<p><img src="../fig/Heatmap_sample_distances.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="challenge-2" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-2"><strong>Challenge #2</strong></h3>
-<p>Does the heatmap convey information about the samples and the two conditions?</p>
-<details>
-<summary>
-Solution
-</summary>
-<ul>
-<li>The WT samples cluster together.</li>
-<li>One of the KO samples is a bit distant to it’s replicates.</li>
-</ul>
-</details>
-</section>
-<section id="principal-component-analysis-pca" class="level3">
-<h3 class="anchored" data-anchor-id="principal-component-analysis-pca"><strong>Principal Component Analysis (PCA)</strong></h3>
-<ul>
-<li>PCA is a linear dimensionality reduction technique. It extracts information from a high-dimensional space by projecting it into a lower-dimensional sub-space. Here dimensions are the features (all your thousands of genes from the genome) which represent the data and explain most of the variability.</li>
-<li>PCA preserves the essential parts that have more variation of the data and remove the non-essential parts with fewer variation.</li>
-<li>This plot is useful for visualizing the overall effect of experimental covariates and batch effects.</li>
-<li>Ideally, in your experiment, the most of the variability is explained by the conditions (e.g.&nbsp;WT versus KO in this case). If any of the samples group differently, the DE analysis cannot be relied upon.</li>
-<li>If we have big number of replicate samples, PCA allows you to identify and remove (if required) any outliers.</li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="../fig/PCA_noLegend.png" class="img-fluid"></p>
-</section>
-<section id="challenge-3" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-3"><strong>Challenge #3</strong></h3>
-<ul>
-<li>Looking at just the PCA, can you guess which samples belong to which conditions?</li>
-<li>Why?</li>
-</ul>
-<details>
-<summary>
-Solution
-</summary>
-<p><img src="../fig/PCA.png" class="img-fluid"></p>
-</details>
-</section>
-<section id="why-choose-best-the-dimension" class="level3">
-<h3 class="anchored" data-anchor-id="why-choose-best-the-dimension"><strong>Why choose best the dimension? </strong> <span class="emoji" data-emoji="grinning">😀</span></h3>
-<p><img src="../fig/Prince_William_dimensionality.png" class="img-fluid"></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)<span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="a-scree-plot-can-assist" class="level3">
-<h3 class="anchored" data-anchor-id="a-scree-plot-can-assist"><strong>A Scree plot can assist</strong></h3>
-<ul>
-<li>The Principal Component matrix has the same dimensions as the original data matrix; however, many of the PCs may not be informative. A reduction in the number of PCs is typically required.</li>
-<li>To do so, it is useful to examine the amount of variance explained by each new PC vector.</li>
-<li>A scree plot is a line plot of the principal components in an analysis.
-<ul>
-<li>The scree plot is used to determine the number of principal components to keep in a principal component analysis (PCA).</li>
-<li>It shows the eigenvalues on the y-axis and the number of factors on the x-axis and it always displays a downward curve.</li>
-<li>The point where the slope of the curve is clearly leveling off (the “elbow) indicates the number of factors that should be generated by the analysis.</li>
-<li>Let’s draw a scree plot.</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pca<span class="ot">=</span><span class="fu">prcomp</span>(<span class="fu">t</span>(<span class="fu">assay</span>(vst)),<span class="at">scale=</span><span class="cn">FALSE</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width=</span><span class="fl">0.5</span>, <span class="at">repr.plot.height=</span><span class="fl">0.5</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="../fig/scree_plot.png" class="img-fluid"></p>
-<p>We can see that PC1 followed by PC2 have captured most of the variance.</p>
-</section>
-<section id="small-contributions-of-many-genes-to-variation" class="level3">
-<h3 class="anchored" data-anchor-id="small-contributions-of-many-genes-to-variation"><strong>Small contributions of many genes to variation</strong></h3>
-<p>It is observed that in biological experiments multiple genes contribute to the the principle compoments in a small way. This can be seen in the plot below where the Y-axis shows the small % contributions of multiple genes to PC1</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The function fviz_contrib() [in factoextra package] is used </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to visualize the contributions of rows/columns from the </span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># results of Principal Component Analysis (PCA)</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(pca, <span class="at">choice =</span> <span class="st">"var"</span>, <span class="at">axes =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p></p><figcaption class="figure-caption">Contributions to Dimention 1 from genes</figcaption><p></p>
-<p><img src="../fig/PCA1_gene_contributions.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
-<ul>
-<li>Raw counts can be transformed for doing intial exploratory analysis; however the input to differential expression analysis are the raw counts without transformation.</li>
-<li>Exploratory analysis such as heatmap based clustering, PCA and scree-plots etc can help us get an initial understanding of the data and if the experimental variability is explained by the conditions of interest.</li>
-</ul>
+<p>Raw counts can be transformed for doing intial exploratory analysis; however the input to differential expression analysis are the raw counts without transformation.</p>
 </section>
 
 

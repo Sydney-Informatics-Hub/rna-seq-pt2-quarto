@@ -3,7 +3,7 @@ fig-cap-location: top
 ---
 
 
-# Recap of Day 1: Raw sequence to counts
+# **Recap of Day 1: Raw sequence to counts**
 
 <div class="questions">
 
@@ -17,7 +17,7 @@ fig-cap-location: top
 - Recap Day 1: nfcore-rnaseq pipeline
 </div>  
 
-![nfcore-rnaseq workflow](../fig/typical_and_nfcore_merged.png)
+![](../fig/typical_and_nfcore_merged.png)
 
 
 -   What is RNA sequencing and what are the main applications of RNA-seq?
@@ -30,7 +30,7 @@ fig-cap-location: top
 
 
 
-#### Notes
+#### **Notes**
 
 <sup id="f1">1[↩](#a1)</sup> Here is a list of ['nfcore pipelines'](https://nf-co.re/pipelines/).
 

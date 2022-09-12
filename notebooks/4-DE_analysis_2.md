@@ -8,7 +8,6 @@ font size: 2.5
 
 <div class="questions">  
 ### **Questions**
-
 - How to identify statistically significant DE genes?
 - How to visualise the results from DeSeq2 analysis?
 </div>
@@ -106,7 +105,7 @@ p_site_Sp110
 
 ```
 
-![Gene Sp110 is down-regulated in WT](/fig/Sp110.png)
+![Gene Sp110 is down-regulated in WT](/fig/Sp110.png){width=70%} 
 
 ```r
 # Krt2
@@ -119,13 +118,12 @@ ggplot() + aes(dds$condition, count) +
 p_site_Krt2
 ```
 
-![Gene Krt2 is up-regulated in WT](/fig/Krt2.png)
+![Gene Krt2 is up-regulated in WT](/fig/Krt2.png){width=70%} 
 
 
 
 
 <div class="keypoints">
 ### **Key points**
-
-- We have used DeSeq2 to identify DE genes
+- We have used DeSeq2 to identify statistically significant DE genes
 </div>  

@@ -2,7 +2,7 @@
 fig-cap-location: top
 ---
 
-# Setup
+# **Setup**
 
 <div class="questions">
 
@@ -24,7 +24,7 @@ In this workshop series, we will be using Pawsey's Nimbus cloud. You will need a
 [1. Get a shell terminal emulator](#get-a-shell-terminal-emulator)  
 [2. Download the right web browser](#check-your-web-browser)
 
-## Bioinformatics with Nimbus
+## **Bioinformatics with Nimbus**
 - The [Pawsey Supercomputing Research Centre](https://pawsey.org.au/about-us/about-pawsey/) is one of two, Tier-1, High Performance Computing facilities in Australia, whose primary function is to accelerate scientific research for the benefit of the nation. Pawsey service and expertise in supercomputing, data, cloud services and visualisation, enables research across a spread of domains including astronomy, life sciences, medicine, energy, resources and artificial intelligence.
 
 - Pawsey's Nimbus cloud is a useful solution for bioinformatics applications that may not be suitable for large-scale HPC machines including:
@@ -32,14 +32,14 @@ In this workshop series, we will be using Pawsey's Nimbus cloud. You will need a
     -   Workflows with long runtimes that excede wall time queue limits on HPC facilities. 
     -   Complex data-bound workflows with variable compute resource profiles that are common in bioinformatics pipelines.
 
-## Connecting to a Nimbus instance
+## **Connecting to a Nimbus instance**
 
 - Loggin into a Nimbus instance requires three things:
     - The **YOUR ASSIGNED IP address** (virtual address) of your instance. It is a series of numbers i.e. ###.###.###.###. Every participant is provided with an separate IP Address which points to an independant VM instance.
     - Your **login name**: this depends on the name of the Linux OS image you selected and in our case it is ```training```.
     - Your **password**. Every participant is provided with a password
 
-## Get a shell terminal emulator
+## **Get a shell terminal emulator**
 
 To connect to your Nimbus instance, and follow this lesson, you will need a **'terminal emulator'** program installed on your computer. Often just called a 'terminal', or 'shell terminal', 'shell client', terminal emulators give you a window with a _command line interface_ through which you can send commands to be executed by your computer.
 
@@ -47,11 +47,11 @@ More precisely, these commands are executed by your _shell_, which is a program 
 
 You don't need to worry too much about this! You just need **a** shell -- almost all will understand the commands we're going to be using.
 
-#### A. Linux systems
+#### **A. Linux systems**
 
 If you use Linux, then chances are you already know your shell and how to use it. Basically, just open your preferred terminal program and off you go! An X-Window server (X11) may also be useful if you want to be able to use GUIs; again, if you're using Linux you probably have one, and if you don't have one, it's probably because you intentionally disabled it! 
 
-#### B. OSX (Mac computers and laptops)
+#### **B. OSX (Mac computers and laptops)**
 
 Mac operating systems come with a terminal program, called Terminal. Just look for it in your Applications folder, or hit Command-Space and type 'terminal'. You may find that other, 3rd party terminal programs are more user-friendly and powerful -- I use [Iterm2](https://www.iterm2.com/).
 
@@ -61,7 +61,7 @@ Mac operating systems come with a terminal program, called Terminal. Just look f
 
 We also recommend installing [XQuartz](https://www.xquartz.org/), which will replace OSX's native X-Window server. XQuartz has some extra features that may offer better performance when using GUI programs. You'll need to log out and back in again after installing XQuartz in order for it to activate.
 
-#### C. Windows
+#### **C. Windows**
 
 If you're using a Windows machine, don't panic! You might not have used 'CMD' since Windows 95 but, rest assured, Windows still has a couple of terminal programs and shells buried in the Programs menu.
 However, those aren't going to work for us, as you'll need extra programs and utilities to connect to Nimbus, such as an _SSH_ implementation. 
@@ -69,7 +69,7 @@ However, those aren't going to work for us, as you'll need extra programs and ut
 - To use Nimbus on a Windows computer, you have a couple of options, as shown below. 
 - We recommend using the `MobaXterm` terminal application. 
 
-##### i. MobaXterm (recommended)
+##### **i. MobaXterm (recommended)**
 [MobaXterm](https://mobaxterm.mobatek.net/download.html) offers a rich experience as a full-featured X-server and terminal emulator for ssh connections, the free version is more than adequate.
 
 `Directions` to install and start using MobaXterm
@@ -83,7 +83,7 @@ However, those aren't going to work for us, as you'll need extra programs and ut
 - Type in: ssh training@XXX.XXX.XX
 - When prompted, enter your password
 
-##### ii. PuTTY
+##### **ii. PuTTY**
 PuTTY, an SSH and telnet client, is a good simple option. However, note that PuTTY **does not** provide an X11 server, so you won't be able to use GUI programs with _just_ PuTTY. 
 Head to [https://putty.org](https://putty.org) and download PuTTY. You can install it to your computer, or just download the 'binary' and run it directly. 
 
@@ -96,14 +96,14 @@ Head to [https://putty.org](https://putty.org) and download PuTTY. You can insta
 3. When you are ready to log in to your Nimbus instance, click on 'Open'  
 4. When the terminal opens, enter 'training' for `log in as:` and provide your password.   
 
-![**PuTTY**](/fig/s_putty_nimbus.png)
+![](/fig/s_putty_nimbus.png)
 
 
 
 
-### Logging-in using a terminal (A and B above)
+### **Logging-in using a terminal (A and B above)**
 
-![Connecting from a terminal](/fig/Pawsey_VM_instance.png)
+![](/fig/Pawsey_VM_instance.png)
 
 The primary means by which we can connect to this VM is via a Secure Shell (SSH) over a Command Line Interface (CLI). Type the following into your terminal, using your login name and the instance’s IP address:
 
@@ -129,7 +129,7 @@ Enter password:
 Meaning that next time you log in using this key and IP address you won’t receive this message. Having done that, your terminal should then display something like that shown in the figure below:
 
 
-![Nimbus_login_screen](/fig/Nimbus_login_screen_with_border.png)
+![Nimbus logged-in screen](/fig/Nimbus_login_screen_with_border.png)
 
 
 **Congratulations, you have now successfully logged on to your instance!**

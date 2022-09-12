@@ -210,13 +210,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-rstudio-on-nimbus-vm" id="toc-setup-rstudio-on-nimbus-vm" class="nav-link active" data-scroll-target="#setup-rstudio-on-nimbus-vm">Setup RStudio on Nimbus VM</a>
+  <li><a href="#setup-rstudio-on-nimbus-vm" id="toc-setup-rstudio-on-nimbus-vm" class="nav-link active" data-scroll-target="#setup-rstudio-on-nimbus-vm"><strong>Setup RStudio on Nimbus VM</strong></a>
   <ul class="collapse">
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
-  <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio">R and RStudio</a></li>
-  <li><a href="#run-rstudio-on-the-nimbus-trainee-vm" id="toc-run-rstudio-on-the-nimbus-trainee-vm" class="nav-link" data-scroll-target="#run-rstudio-on-the-nimbus-trainee-vm">Run RStudio on the Nimbus trainee VM</a></li>
+  <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio"><strong>R and RStudio</strong></a>
+  <ul class="collapse">
+  <li><a href="#using-rrstudio-ide-for-de-analysis" id="toc-using-rrstudio-ide-for-de-analysis" class="nav-link" data-scroll-target="#using-rrstudio-ide-for-de-analysis"><strong>Using R/RStudio IDE for DE analysis</strong></a></li>
+  </ul></li>
+  <li><a href="#run-rstudio-on-the-nimbus-trainee-vm" id="toc-run-rstudio-on-the-nimbus-trainee-vm" class="nav-link" data-scroll-target="#run-rstudio-on-the-nimbus-trainee-vm"><strong>Run RStudio on the Nimbus trainee VM</strong></a>
+  <ul class="collapse">
+  <li><a href="#step1-run-the-rserver-command-on-the-nimbus-vm" id="toc-step1-run-the-rserver-command-on-the-nimbus-vm" class="nav-link" data-scroll-target="#step1-run-the-rserver-command-on-the-nimbus-vm"><strong>Step1: Run the rserver command (On the Nimbus VM)</strong></a></li>
+  <li><a href="#step2-open-rstudio-from-a-browser-on-your-local-machine" id="toc-step2-open-rstudio-from-a-browser-on-your-local-machine" class="nav-link" data-scroll-target="#step2-open-rstudio-from-a-browser-on-your-local-machine"><strong>Step2: Open RStudio from a browser (On your local machine)</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -227,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <section id="setup-rstudio-on-nimbus-vm" class="level1">
-<h1>Setup RStudio on Nimbus VM</h1>
+<h1><strong>Setup RStudio on Nimbus VM</strong></h1>
 <section id="objectives" class="level3 objectives">
 <h3 class="anchored" data-anchor-id="objectives"><strong>Objectives</strong></h3>
 <ul>
@@ -243,14 +250,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>How to use count matrix to identify differentially expressed genes?</li>
 </ul>
 </section>
-<section id="r-and-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="r-and-rstudio">R and RStudio</h3>
+<section id="r-and-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="r-and-rstudio"><strong>R and RStudio</strong></h2>
 <ul>
 <li>R is a programming language for statistical computing and graphics.</li>
 <li>RStudio is an integrated development environment which can be used to write and excecute R-code.</li>
 </ul>
-<section id="using-rrstudio-ide-for-de-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="using-rrstudio-ide-for-de-analysis">Using R/RStudio IDE for DE analysis</h4>
+<section id="using-rrstudio-ide-for-de-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="using-rrstudio-ide-for-de-analysis"><strong>Using R/RStudio IDE for DE analysis</strong></h3>
 <ul>
 <li>The gene-count matrix which was generated using the nefcore-rnaseq pipline can be used to perform statistical analyses and determine differentially expressed (DE) genes and pathways.</li>
 <li>Multiple independant packages/libraries have been developed in <a href="https://www.r-project.org/">R-programming</a>, which can be used for performing various kinds of ‘omics’ analysis.</li>
@@ -258,19 +265,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 </section>
-<section id="run-rstudio-on-the-nimbus-trainee-vm" class="level3">
-<h3 class="anchored" data-anchor-id="run-rstudio-on-the-nimbus-trainee-vm">Run RStudio on the Nimbus trainee VM</h3>
+<section id="run-rstudio-on-the-nimbus-trainee-vm" class="level2">
+<h2 class="anchored" data-anchor-id="run-rstudio-on-the-nimbus-trainee-vm"><strong>Run RStudio on the Nimbus trainee VM</strong></h2>
 <p>This is a two step process</p>
-<section id="step1-run-the-rserver-command-on-the-nimbus-vm" class="level4">
-<h4 class="anchored" data-anchor-id="step1-run-the-rserver-command-on-the-nimbus-vm">Step1: Run the rserver command (On the Nimbus VM)</h4>
+<section id="step1-run-the-rserver-command-on-the-nimbus-vm" class="level3">
+<h3 class="anchored" data-anchor-id="step1-run-the-rserver-command-on-the-nimbus-vm"><strong>Step1: Run the rserver command (On the Nimbus VM)</strong></h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># Create a temporary rstudio-server  folder on your instance:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mkdir -p /tmp/rstudio-server</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>PASSWORD='abc' singularity exec -B /tmp/rstudio-server:/var/lib/rstudio-server -B /tmp/rstudio-server:/var/run/rstudio-server -B ~/base_directory/working_directory:/home /cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You should not see any output at this point, except a “running” command, i.e.&nbsp;the port is forwarded and running.</p>
+<p><br><strong>NOTE</strong>: <br>- You can open a new <code>screen</code> command as we did yesterday if you feel good about using it. <br>- The application of the <code>screen</code> command is significant when running commands such as the above (which keep running at the commandline for a significant amount of time and do not allow use to use the terminal for other purposes!)</p>
 </section>
-<section id="step2-open-rstudio-from-a-browser-on-your-local-machine" class="level4">
-<h4 class="anchored" data-anchor-id="step2-open-rstudio-from-a-browser-on-your-local-machine">Step2: Open RStudio from a browser (On your local machine)</h4>
+<section id="step2-open-rstudio-from-a-browser-on-your-local-machine" class="level3">
+<h3 class="anchored" data-anchor-id="step2-open-rstudio-from-a-browser-on-your-local-machine"><strong>Step2: Open RStudio from a browser (On your local machine)</strong></h3>
 <ul>
 <li>Open up a browser window (<strong>IMPORTANT</strong>: Firefox does not work. Use Chrome or Safari.)</li>
 <li>Type <code>146.118.XX.XX:8787</code> in your browser where the XX.XX will be replaced by your IP specific digits. So if my login IP is 146.118.67.219, I will type <code>146.118.67.219 :8787</code> in the browser (e.g.&nbsp;<code>Chrome</code>) and press enter.</li>
@@ -282,16 +290,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lsof -ti:8787 | xargs kill -9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
-<li>This is a key point</li>
-<li>Another one</li>
+<li>RStudio server can be run on the Nimbus VM instance. This allowes the user an end-to-end experience when analysing the RNA-seq data on the Pawsey resource.</li>
 </ul>
 </section>
 
 
+</section>
 </section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->

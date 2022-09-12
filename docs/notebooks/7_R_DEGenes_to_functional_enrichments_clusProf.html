@@ -164,8 +164,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">The count matrix in R</span></a>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
+ <span class="dropdown-text">Load the count matrix in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
     </ul>
   </li>
@@ -210,16 +214,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#de-genes-to-functional-enrichment-in-r" id="toc-de-genes-to-functional-enrichment-in-r" class="nav-link active" data-scroll-target="#de-genes-to-functional-enrichment-in-r">DE genes to functional enrichment in R</a>
+  <li><a href="#de-genes-to-functional-enrichment-in-r" id="toc-de-genes-to-functional-enrichment-in-r" class="nav-link active" data-scroll-target="#de-genes-to-functional-enrichment-in-r"><strong>DE genes to functional enrichment in R</strong></a>
   <ul class="collapse">
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
-  <li><a href="#gene-ontology-go-over-representation-analysis" id="toc-gene-ontology-go-over-representation-analysis" class="nav-link" data-scroll-target="#gene-ontology-go-over-representation-analysis">Gene Ontology (GO) over-representation analysis</a></li>
-  <li><a href="#genes-down-regulated-in-wt" id="toc-genes-down-regulated-in-wt" class="nav-link" data-scroll-target="#genes-down-regulated-in-wt">Genes Down-regulated in WT</a></li>
-  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge #1</a></li>
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2">Challenge #2</a></li>
-  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3">Challenge #3</a></li>
+  <li><a href="#gene-ontology-go-over-representation-analysis" id="toc-gene-ontology-go-over-representation-analysis" class="nav-link" data-scroll-target="#gene-ontology-go-over-representation-analysis"><strong>Gene Ontology (GO) over-representation analysis</strong></a>
+  <ul class="collapse">
+  <li><a href="#prepare-input-and-filter-for-up-and-down-regulated-genes" id="toc-prepare-input-and-filter-for-up-and-down-regulated-genes" class="nav-link" data-scroll-target="#prepare-input-and-filter-for-up-and-down-regulated-genes"><strong>Prepare input and filter for up and down regulated genes</strong></a></li>
+  <li><a href="#genes-down-regulated-in-wt" id="toc-genes-down-regulated-in-wt" class="nav-link" data-scroll-target="#genes-down-regulated-in-wt"><strong>Genes Down-regulated in WT</strong></a></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><strong>Challenge #1</strong></a></li>
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><strong>Challenge #2</strong></a></li>
+  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><strong>Challenge #3</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -230,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <section id="de-genes-to-functional-enrichment-in-r" class="level1">
-<h1>DE genes to functional enrichment in R</h1>
+<h1><strong>DE genes to functional enrichment in R</strong></h1>
 <section id="questions" class="level3 questions">
 <h3 class="anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
 <ul>
@@ -244,15 +251,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Perform Functional enrichment analysis of the DE genes in <code>R</code></li>
 </ul>
 </section>
-<section id="gene-ontology-go-over-representation-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="gene-ontology-go-over-representation-analysis">Gene Ontology (GO) over-representation analysis</h3>
+<section id="gene-ontology-go-over-representation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="gene-ontology-go-over-representation-analysis"><strong>Gene Ontology (GO) over-representation analysis</strong></h2>
 <ul>
 <li>We will be using the R-package clusterProfiler to perform over-representation analysis on GO terms.</li>
 <li>The tool takes as input a list of significant genes (DEGs in this case) and a background gene list to perform statistical enrichment analysis using hypergeometric testing.</li>
 <li>The basic arguments allow the user to select the appropriate organism and GO ontology (BP, CC, MF) to test.</li>
 </ul>
-<section id="prepare-input-and-filter-for-up-and-down-regulated-genes" class="level4">
-<h4 class="anchored" data-anchor-id="prepare-input-and-filter-for-up-and-down-regulated-genes">Prepare input and filter for up and down regulated genes</h4>
+<section id="prepare-input-and-filter-for-up-and-down-regulated-genes" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-input-and-filter-for-up-and-down-regulated-genes"><strong>Prepare input and filter for up and down regulated genes</strong></h3>
 <ul>
 <li>Filter by padjust and log fold change.</li>
 </ul>
@@ -275,11 +282,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.dn.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
 <section id="genes-down-regulated-in-wt" class="level3">
-<h3 class="anchored" data-anchor-id="genes-down-regulated-in-wt">Genes Down-regulated in WT</h3>
+<h3 class="anchored" data-anchor-id="genes-down-regulated-in-wt"><strong>Genes Down-regulated in WT</strong></h3>
 <section id="the-function-enrichgo" class="level4">
-<h4 class="anchored" data-anchor-id="the-function-enrichgo">The function enrichGO()</h4>
+<h4 class="anchored" data-anchor-id="the-function-enrichgo"><strong>The function enrichGO()</strong></h4>
 <p>The clusterProfiler package implements enrichGO() for gene ontology over-representation test.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ego.up <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.up.LFC),</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">OrgDb =</span> org.Mm.eg.db, </span>
@@ -291,12 +297,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">qvalueCutoff =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="bar-plot" class="level4">
-<h4 class="anchored" data-anchor-id="bar-plot">Bar plot</h4>
+<h4 class="anchored" data-anchor-id="bar-plot"><strong>Bar plot</strong></h4>
 <ul>
 <li>Bar plot is the most widely used method to visualize enriched terms.</li>
 <li>It depicts the enrichment scores (e.g.&nbsp;p-values) and gene count or ratio as bar height and color.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.up, <span class="at">showCategory=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.up, <span class="at">showCategory=</span><span class="dv">20</span>){width<span class="ot">=</span><span class="dv">70</span>%}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">Bar Plot: Genes DOWN in WT</figcaption><p></p>
@@ -305,12 +311,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="dot-plot" class="level4">
-<h4 class="anchored" data-anchor-id="dot-plot">Dot plot</h4>
+<h4 class="anchored" data-anchor-id="dot-plot"><strong>Dot plot</strong></h4>
 <ul>
 <li>A Dot plot is similar to a scatter plot and bar plot with the capability to encode another score as dot size.</li>
 <li>In R the dot plot displays the index (each category) in the vertical axis and the corresponding value in the horizontal axis, so you can see the value of each observation following a horizontal line from the label.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.up, <span class="at">showCategory=</span><span class="dv">20</span>,<span class="at">font.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.up, <span class="at">showCategory=</span><span class="dv">20</span>,<span class="at">font.size =</span> <span class="dv">10</span>){width<span class="ot">=</span><span class="dv">70</span>%}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">Dot Plot: Genes DOWN in WT</figcaption><p></p>
@@ -319,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="cnetplot" class="level4">
-<h4 class="anchored" data-anchor-id="cnetplot">cnetplot</h4>
+<h4 class="anchored" data-anchor-id="cnetplot"><strong>cnetplot</strong></h4>
 <ul>
 <li>Both the barplot and dotplot only displayed most significant enriched terms, while users may want to know which genes are involved in these significant terms.</li>
 <li>The cnetplot depicts the linkages of genes and biological concepts (e.g.&nbsp;GO terms or KEGG pathways) as a network.</li>
@@ -332,12 +338,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">cnetPlot: Genes DOWN in WT</figcaption><p></p>
-<p><img src="../fig/cnetPlot_DownInWT.png" class="img-fluid figure-img"></p>
+<p><img src="../fig/cnetPlot_DownInWT.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 <section id="heatmap-like-functional-classification" class="level4">
-<h4 class="anchored" data-anchor-id="heatmap-like-functional-classification">Heatmap-like functional classification</h4>
+<h4 class="anchored" data-anchor-id="heatmap-like-functional-classification"><strong>Heatmap-like functional classification</strong></h4>
 <ul>
 <li>The heatplot is similar to cnetplot, while displaying the relationships as a heatmap.</li>
 <li>The gene-concept network may become too complicated if user want to show a large number significant terms.</li>
@@ -347,13 +353,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">Heatplot: Genes DOWN in WT</figcaption><p></p>
-<p><img src="../fig/heatMap_DownInWT.png" class="img-fluid figure-img"></p>
+<p><img src="../fig/heatMap_DownInWT.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 </section>
 <section id="challenge-1" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-1">Challenge #1</h3>
+<h3 class="anchored" data-anchor-id="challenge-1"><strong>Challenge #1</strong></h3>
 <ul>
 <li>Do you find any of the top enriched GO categories relavant to the experiment?</li>
 <li>If so what is your deduction? Do you feel RNA-seq experiment has helped ?</li>
@@ -366,7 +372,7 @@ Solution
 </details>
 </section>
 <section id="challenge-2" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-2">Challenge #2</h3>
+<h3 class="anchored" data-anchor-id="challenge-2"><strong>Challenge #2</strong></h3>
 <ul>
 <li>Can you perform similar analysis for genes which are UP-regulated in WT?</li>
 </ul>
@@ -375,7 +381,7 @@ Solution
 Solution
 </summary>
 <section id="genes-up-regulated-in-wt" class="level5">
-<h5 class="anchored" data-anchor-id="genes-up-regulated-in-wt">Genes Up-regulated in WT</h5>
+<h5 class="anchored" data-anchor-id="genes-up-regulated-in-wt"><strong>Genes Up-regulated in WT</strong></h5>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ego.dn <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.dn.LFC),</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">OrgDb =</span> org.Mm.eg.db, </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">keyType =</span> <span class="st">'SYMBOL'</span>,</span>
@@ -386,27 +392,27 @@ Solution
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">qvalueCutoff =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="bar-plot-1" class="level4">
-<h4 class="anchored" data-anchor-id="bar-plot-1">Bar plot</h4>
+<h4 class="anchored" data-anchor-id="bar-plot-1"><strong>Bar plot</strong></h4>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.dn, <span class="at">showCategory=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">Bar Plot: Genes UP in WT</figcaption><p></p>
-<p><img src="../fig/BarPlot_UpInWT.png" class="img-fluid figure-img"></p>
+<p><img src="../fig/BarPlot_UpInWT.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 <section id="dot-plot-1" class="level4">
-<h4 class="anchored" data-anchor-id="dot-plot-1">Dot-plot</h4>
+<h4 class="anchored" data-anchor-id="dot-plot-1"><strong>Dot-plot</strong></h4>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.dn, <span class="at">showCategory=</span><span class="dv">20</span>,<span class="at">font.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">Dot Plot: Genes UP in WT</figcaption><p></p>
-<p><img src="../fig/DotPlot_UpInWT.png" class="img-fluid figure-img"></p>
+<p><img src="../fig/DotPlot_UpInWT.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 <section id="cnetplot-1" class="level4">
-<h4 class="anchored" data-anchor-id="cnetplot-1">cnetplot</h4>
+<h4 class="anchored" data-anchor-id="cnetplot-1"><strong>cnetplot</strong></h4>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.dn, </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="at">categorySize=</span><span class="st">"pvalue"</span>, </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="at">foldChange=</span>sig.dn.LFC,</span>
@@ -415,24 +421,24 @@ Solution
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">cnetPlot: Genes UP in WT</figcaption><p></p>
-<p><img src="../fig/cnetPlot_UpInWT.png" class="img-fluid figure-img"></p>
+<p><img src="../fig/cnetPlot_UpInWT.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 <section id="heatmap-like-functional-classification-1" class="level4">
-<h4 class="anchored" data-anchor-id="heatmap-like-functional-classification-1">Heatmap-like functional classification</h4>
+<h4 class="anchored" data-anchor-id="heatmap-like-functional-classification-1"><strong>Heatmap-like functional classification</strong></h4>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.dn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">Heatplot: Genes UP in WT</figcaption><p></p>
-<p><img src="../fig/heatMap_UpInWT.png" class="img-fluid figure-img"></p>
+<p><img src="../fig/heatMap_UpInWT.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section></details>
 </section>
 </section>
 <section id="challenge-3" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-3">Challenge #3</h3>
+<h3 class="anchored" data-anchor-id="challenge-3"><strong>Challenge #3</strong></h3>
 <ul>
 <li>What about the GO categories for the genes found UP-regulated in WT? Any interesting find?</li>
 </ul>
@@ -452,6 +458,7 @@ Solution
 </section>
 
 
+</section>
 
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->

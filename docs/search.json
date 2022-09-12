@@ -200,7 +200,7 @@
     "href": "notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html",
     "title": "RNA-Seq using Nextflow",
     "section": "",
-    "text": "Challenge #3\n\nWhat about the GO categories for the genes found UP-regulated in WT? Any interesting find?\n\n\n\nSolution\n\nMy Solution here\n\n\n\nKey points\n\nThis is a key point\nAnother one\n\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "notebooks/2_nextflow_to_RStudio.html",
@@ -240,6 +240,20 @@
   {
     "objectID": "notebooks/4-DE_analysis_2.html",
     "href": "notebooks/4-DE_analysis_2.html",
+    "title": "RNA-Seq using Nextflow",
+    "section": "",
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/3-LoadCountMatrix.html",
+    "href": "notebooks/3-LoadCountMatrix.html",
+    "title": "RNA-Seq using Nextflow",
+    "section": "",
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/3.1_exploratory_analysis.html",
+    "href": "notebooks/3.1_exploratory_analysis.html",
     "title": "RNA-Seq using Nextflow",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"

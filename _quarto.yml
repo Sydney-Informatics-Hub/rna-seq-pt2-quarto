@@ -19,8 +19,10 @@ website:
           href: notebooks/1.2_Learning_objectives.html
         - text: "Start RStudio on Nimbus instance"
           href: notebooks/2_nextflow_to_RStudio.html
-        - text: "The count matrix in R"
-          href: notebooks/3-LoadCountMatrix_and_explore.html
+        - text: "Load the count matrix in R"
+          href: notebooks/3-LoadCountMatrix.html
+        - text: "Exploratory analysis"
+          href: notebooks/3.1_exploratory_analysis.html
       - text: "Differential expression (DE) analysis"
         menu:
         - text: "Create the DESeqDataSet object in DeSeq2"

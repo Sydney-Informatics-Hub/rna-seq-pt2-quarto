@@ -164,8 +164,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">The count matrix in R</span></a>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
+ <span class="dropdown-text">Load the count matrix in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
     </ul>
   </li>
@@ -241,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="the-deseqdataset-object" class="level4">
 <h4 class="anchored" data-anchor-id="the-deseqdataset-object"><strong>The DESeqDataSet object</strong></h4>
 <ul>
-<li>A DESeqDataSet object must have an associated design formula.
+<li>For performing differential expression analysis, the DESeqDataSet object must have an associated design formula.
 <ul>
 <li>The design formula expresses the variables which will be used in modeling.</li>
 <li>The formula should be a tilde (<code>~</code>) followed by the variables with plus signs between them.</li>
@@ -249,14 +253,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>There are multiple ways of constructing a DESeqDataSet, depending on what pipeline was used upstream of DESeq2 to generated counts or estimated counts
 <ul>
-<li>Here we have a matrix (as read in a dataframe above) of read counts prepared from our previous analysis using nfcore-rnaseq pipeline.</li>
-<li>So we use have used the function - DESeqDataSetFromMatrix</li>
+<li>Here we have a matrix (as read-in a dataframe) of read counts. This is generated using the <code>nfcore-rnaseq pipeline</code>.</li>
+<li>So we use use the function - DESeqDataSetFromMatrix</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> counttable,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> meta,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span> condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the above formula we have - A count matrix (countData) called counttable - A table of sample information called meta. - The design which defines the sample types as per the condition ; here <code>WT</code> and <code>KO</code> - If we are controlling for batch differences then the design can be defined as design= ~ batch + condition. - The two factor variables batch and condition should be columns of coldata.</p>
+<p>In the above formula we have <br><strong>1)</strong> A count matrix (countData) called counttable <br><strong>2)</strong> A table of sample information called meta. <br><strong>3)</strong> The design which defines the sample types as per the condition ; here <code>WT</code> and <code>KO</code> <br>Also, if we are controlling for batch differences then the design can be defined as design= ~ batch + condition.</p>
 </section>
 <section id="pre-filtering-of-lowly-expressed-genes" class="level4">
 <h4 class="anchored" data-anchor-id="pre-filtering-of-lowly-expressed-genes"><strong>Pre-filtering of lowly expressed genes</strong></h4>
@@ -302,9 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
-<ul>
-<li>We have used DeSeq2 to identify DE genes</li>
-</ul>
+<p>The object class used by the DESeq2 package to store the read counts and the intermediate estimated quantities during statistical analysis is the <code>DESeqDataSet</code>.</p>
 </section>
 
 

@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -164,8 +101,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">The count matrix in R</span></a>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
+ <span class="dropdown-text">Load the count matrix in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
     </ul>
   </li>
@@ -210,10 +151,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><strong>Learning objectives</strong></a>
   <ul class="collapse">
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
+  <li><a href="#rrstudio-for-downstream-analysis" id="toc-rrstudio-for-downstream-analysis" class="nav-link" data-scroll-target="#rrstudio-for-downstream-analysis"><strong>R/RStudio for downstream analysis</strong></a></li>
+  <li><a href="#identifying-differentially-exoressed-de-genes" id="toc-identifying-differentially-exoressed-de-genes" class="nav-link" data-scroll-target="#identifying-differentially-exoressed-de-genes"><strong>Identifying differentially exoressed (DE) genes</strong></a></li>
+  <li><a href="#functional-enrichment-anaylsis" id="toc-functional-enrichment-anaylsis" class="nav-link" data-scroll-target="#functional-enrichment-anaylsis"><strong>Functional enrichment anaylsis</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul>
@@ -225,13 +169,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <section id="learning-objectives" class="level1">
-<h1>Learning objectives</h1>
+<h1><strong>Learning objectives</strong></h1>
 <section id="questions" class="level3 questions">
 <h3 class="anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
 <ul>
 <li>What is R/RStudio?</li>
-<li>How to initiate a RStudio environment on the Pawsey Nimbus training-VM?</li>
-<li>How to identify DE genes using R libraries?</li>
+<li>How to start a RStudio environment on the Pawsey Nimbus training-VM?</li>
+<li>How to identify differentially expressed genes using the gene-count matrix in R?</li>
 <li>How to do functional enrichment in R?</li>
 </ul>
 </section>
@@ -241,33 +185,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Quick overview of the primary learning objectives</li>
 </ul>
 </section>
-<section id="rrstudio-for-downstream-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="rrstudio-for-downstream-analysis">R/RStudio for downstream analysis</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>- Introduction to R</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>- Introduction to RStudio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="rrstudio-for-downstream-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="rrstudio-for-downstream-analysis"><strong>R/RStudio for downstream analysis</strong></h3>
+<ul>
+<li>Introduction to R</li>
+<li>Introduction to RStudio</li>
+<li>Start RStudio server on the Pawsey Nimbus Vm instance</li>
+</ul>
 </section>
-<section id="identifying-de-genes" class="level4">
-<h4 class="anchored" data-anchor-id="identifying-de-genes">Identifying DE genes</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>- Importing the read-count matrix in R</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>- Pre-processing steps</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>- Multivariate analysis (PCA plots etc)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>- Generate DE genes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="identifying-differentially-exoressed-de-genes" class="level3">
+<h3 class="anchored" data-anchor-id="identifying-differentially-exoressed-de-genes"><strong>Identifying differentially exoressed (DE) genes</strong></h3>
+<ul>
+<li>Importing the read-count matrix in R</li>
+<li>Pre-processing steps</li>
+<li>Multivariate analysis (PCA plots etc)</li>
+<li>Generate DE genes</li>
+</ul>
 </section>
-<section id="functional-enrichment-anaylsis" class="level4">
-<h4 class="anchored" data-anchor-id="functional-enrichment-anaylsis">Functional enrichment anaylsis</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>- What is Gene ontology?</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>- What is enrichment analysis?</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>- How to perform functional enrichment analysis in R? </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="functional-enrichment-anaylsis" class="level3">
+<h3 class="anchored" data-anchor-id="functional-enrichment-anaylsis"><strong>Functional enrichment anaylsis</strong></h3>
+<ul>
+<li>What is gene ontology?</li>
+<li>What is enrichment analysis?</li>
+<li>How to perform functional enrichment analysis in R?</li>
+</ul>
 <section id="notes" class="level5">
-<h5 class="anchored" data-anchor-id="notes">Notes</h5>
+<h5 class="anchored" data-anchor-id="notes"><strong>Notes</strong></h5>
 <p><sup id="f1">1<a href="#a1">↩︎</a></sup> Here is a list of <a href="https://nf-co.re/pipelines/">‘nfcore pipelines’</a>.</p>
 </section>
 </section>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
-<li>This is a key point</li>
-<li>Another one</li>
+<li>We will work in the R environment using RStudio to identify DE genes from the count matix</li>
+<li>The list of DE gene will be used to identify functional enrichments.</li>
 </ul>
 </section>
 

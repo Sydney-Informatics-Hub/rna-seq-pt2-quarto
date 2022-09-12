@@ -18,13 +18,13 @@ font size: 2.5
 </div>
 
 #### **The DESeqDataSet object**
-- A DESeqDataSet object must have an associated design formula. 
+- For performing differential expression analysis, the DESeqDataSet object must have an associated design formula. 
   - The design formula expresses the variables which will be used in modeling. 
   - The formula should be a tilde (`~`) followed by the variables with plus signs between them.
   - The design can be changed later, however then all differential analysis steps should be repeated, as the design formula is used to estimate the dispersions and to estimate the log2 fold changes of the model.
 - There are multiple ways of constructing a DESeqDataSet, depending on what pipeline was used upstream of DESeq2 to generated counts or estimated counts
-  - Here we have a matrix (as read in a dataframe above) of read counts prepared from our previous analysis using nfcore-rnaseq pipeline.
-  - So we use have used the function - DESeqDataSetFromMatrix
+  - Here we have a matrix (as read-in a dataframe) of read counts. This is generated using the `nfcore-rnaseq pipeline`.
+  - So we use use the function - DESeqDataSetFromMatrix
 
 
 ```r
@@ -34,13 +34,10 @@ dds <- DESeqDataSetFromMatrix(countData = counttable,
 ```
 
 In the above formula we have 
-- A count matrix (countData) called counttable
-- A table of sample information called meta.
-- The design which defines the sample types as per the condition ; here `WT` and `KO`
-- If we are controlling for batch differences then the design can be defined as design= ~ batch + condition.
-- The two factor variables batch and condition should be columns of coldata.
-
-
+<br>**1)** A count matrix (countData) called counttable
+<br>**2)** A table of sample information called meta.
+<br>**3)** The design which defines the sample types as per the condition ; here `WT` and `KO`
+<br>Also, if we are controlling for batch differences then the design can be defined as design= ~ batch + condition.
 
 
 #### **Pre-filtering of lowly expressed genes**
@@ -92,6 +89,5 @@ dds$condition ~ relevel(dds$condition, ref="Wild")
 
 <div class="keypoints">
 ### **Key points**
-
-- We have used DeSeq2 to identify DE genes
+The object class used by the DESeq2 package to store the read counts and the intermediate estimated quantities during statistical analysis is the `DESeqDataSet`.
 </div>  
