@@ -33,7 +33,7 @@ fig-cap-location: top
 ## **Run RStudio on the Nimbus trainee VM**
 This is a two step process
 
-### **Step1: Run the rserver command (On the Nimbus VM)**
+### **Step1: Run the rserver command (Pawsey Nimbus)**
 
 ```default
 # Create a temporary rstudio-server  folder on your instance:
@@ -44,11 +44,12 @@ PASSWORD='abc' singularity exec -B /tmp/rstudio-server:/var/lib/rstudio-server -
 
 You should not see any output at this point, except a "running" command, i.e. the port is forwarded and running.
 
+
 <br>**NOTE**:
 <br>- You can open a new `screen` command as we did yesterday if you feel good about using it. 
 <br>- The application of the `screen` command is significant when running commands such as the above (which keep running at the commandline for a significant amount of time and do not allow use to use the terminal for other purposes!)
 
-### **Step2: Open RStudio from a browser (On your local machine)**
+### **Step2: Open RStudio from a browser (Local machine)**
 - Open up a browser window (__IMPORTANT__: Firefox does not work. Use Chrome or Safari.)
 - Type `146.118.XX.XX:8787` in your browser where the XX.XX will be replaced by your IP specific digits. So if my login IP is 146.118.67.219, I will type `146.118.67.219 :8787` in the browser (e.g. `Chrome`) and press enter.
 - Enter the username, which is your image operating system, which is `ubuntu`.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-seq using Nextflow: Day 2 – exploratory_analysis</title>
+<title>RNA-Seq using Nextflow: Day 2 – exploratory_analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">RNA-seq using Nextflow: Day 2</span>
+    <span class="navbar-title">RNA-Seq using Nextflow: Day 2</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -226,13 +226,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#variance-stabilisting-transformation-vst" id="toc-variance-stabilisting-transformation-vst" class="nav-link" data-scroll-target="#variance-stabilisting-transformation-vst"><strong>Variance stabilisting transformation (VST)</strong></a></li>
   <li><a href="#re-drawing-the-box-plots" id="toc-re-drawing-the-box-plots" class="nav-link" data-scroll-target="#re-drawing-the-box-plots"><strong>Re-drawing the box plots</strong></a></li>
   <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><strong>Challenge #1</strong></a></li>
-  <li><a href="#heatmap-sample-to-sample-distances" id="toc-heatmap-sample-to-sample-distances" class="nav-link" data-scroll-target="#heatmap-sample-to-sample-distances"><strong>Heatmap (Sample-to-sample distances)</strong></a></li>
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><strong>Challenge #2</strong></a></li>
   <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><strong>Principal Component Analysis (PCA)</strong></a></li>
   <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><strong>Challenge #3</strong></a></li>
   <li><a href="#why-choose-best-the-dimension" id="toc-why-choose-best-the-dimension" class="nav-link" data-scroll-target="#why-choose-best-the-dimension"><strong>Why choose best the dimension? </strong> <span class="emoji" data-emoji="grinning">😀</span></a></li>
   <li><a href="#a-scree-plot-can-assist" id="toc-a-scree-plot-can-assist" class="nav-link" data-scroll-target="#a-scree-plot-can-assist"><strong>A Scree plot can assist</strong></a></li>
   <li><a href="#small-contributions-of-many-genes-to-variation" id="toc-small-contributions-of-many-genes-to-variation" class="nav-link" data-scroll-target="#small-contributions-of-many-genes-to-variation"><strong>Small contributions of many genes to variation</strong></a></li>
+  <li><a href="#heatmap-sample-to-sample-distances" id="toc-heatmap-sample-to-sample-distances" class="nav-link" data-scroll-target="#heatmap-sample-to-sample-distances"><strong>Heatmap (Sample-to-sample distances)</strong></a></li>
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><strong>Challenge #2</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul></li>
@@ -350,41 +350,6 @@ Solution
 <p>This is my solution</p>
 </details>
 </section>
-<section id="heatmap-sample-to-sample-distances" class="level3">
-<h3 class="anchored" data-anchor-id="heatmap-sample-to-sample-distances"><strong>Heatmap (Sample-to-sample distances)</strong></h3>
-<ul>
-<li>A heatmap of a distance matrix gives us an overview over similarities and dissimilarities between samples.</li>
-<li>We have to provide a hierarchical clustering hc to the heatmap function based on the sample distances.</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sampleDists <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">t</span>(<span class="fu">assay</span>(vst)))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sampleDistMatrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sampleDists)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(vst<span class="sc">$</span>condition, vst<span class="sc">$</span>type, <span class="at">sep=</span><span class="st">"-"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>( <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Blues"</span>)) )(<span class="dv">255</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(sampleDistMatrix,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows=</span>sampleDists,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols=</span>sampleDists,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span>colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p></p><figcaption class="figure-caption">Heatmap to view distances between samples</figcaption><p></p>
-<p><img src="../fig/Heatmap_sample_distances.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="challenge-2" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-2"><strong>Challenge #2</strong></h3>
-<p>Does the heatmap convey information about the samples and the two conditions?</p>
-<details>
-<summary>
-Solution
-</summary>
-<ul>
-<li>The WT samples cluster together.</li>
-<li>One of the KO samples is a bit distant to it’s replicates.</li>
-</ul>
-</details>
-</section>
 <section id="principal-component-analysis-pca" class="level3">
 <h3 class="anchored" data-anchor-id="principal-component-analysis-pca"><strong>Principal Component Analysis (PCA)</strong></h3>
 <ul>
@@ -394,7 +359,7 @@ Solution
 <li>Ideally, in your experiment, the most of the variability is explained by the conditions (e.g.&nbsp;WT versus KO in this case). If any of the samples group differently, the DE analysis cannot be relied upon.</li>
 <li>If we have big number of replicate samples, PCA allows you to identify and remove (if required) any outliers.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../fig/PCA_noLegend.png" class="img-fluid"></p>
 </section>
 <section id="challenge-3" class="level3 challenge">
@@ -407,7 +372,7 @@ Solution
 <summary>
 Solution
 </summary>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)<span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(vst)<span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../fig/PCA.png" class="img-fluid"></p>
 </details>
 </section>
@@ -428,25 +393,60 @@ Solution
 <li>Let’s draw a scree plot.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pca<span class="ot">=</span><span class="fu">prcomp</span>(<span class="fu">t</span>(<span class="fu">assay</span>(vst)),<span class="at">scale=</span><span class="cn">FALSE</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width=</span><span class="fl">0.5</span>, <span class="at">repr.plot.height=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pca<span class="ot">=</span><span class="fu">prcomp</span>(<span class="fu">t</span>(<span class="fu">assay</span>(vst)),<span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width=</span><span class="fl">0.5</span>, <span class="at">repr.plot.height=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../fig/scree_plot.png" class="img-fluid"></p>
 <p>We can see that PC1 followed by PC2 have captured most of the variance.</p>
 </section>
 <section id="small-contributions-of-many-genes-to-variation" class="level3">
 <h3 class="anchored" data-anchor-id="small-contributions-of-many-genes-to-variation"><strong>Small contributions of many genes to variation</strong></h3>
 <p>It is observed that in biological experiments multiple genes contribute to the the principle compoments in a small way. This can be seen in the plot below where the Y-axis shows the small % contributions of multiple genes to PC1</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The function fviz_contrib() [in factoextra package] is used </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to visualize the contributions of rows/columns from the </span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># results of Principal Component Analysis (PCA)</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(pca, <span class="at">choice =</span> <span class="st">"var"</span>, <span class="at">axes =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The function fviz_contrib() [in factoextra package] is used </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to visualize the contributions of rows/columns from the </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># results of Principal Component Analysis (PCA)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(pca, <span class="at">choice =</span> <span class="st">"var"</span>, <span class="at">axes =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p></p><figcaption class="figure-caption">Contributions to Dimention 1 from genes</figcaption><p></p>
 <p><img src="../fig/PCA1_gene_contributions.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
+</section>
+<section id="heatmap-sample-to-sample-distances" class="level3">
+<h3 class="anchored" data-anchor-id="heatmap-sample-to-sample-distances"><strong>Heatmap (Sample-to-sample distances)</strong></h3>
+<ul>
+<li>A heatmap of a distance matrix gives us an overview over similarities and dissimilarities between samples.</li>
+<li>We have to provide a hierarchical clustering hc to the heatmap function based on the sample distances.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sampleDists <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">t</span>(<span class="fu">assay</span>(vst)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sampleDistMatrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sampleDists)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="fu">paste</span>(vst<span class="sc">$</span>condition, vst<span class="sc">$</span>type, <span class="at">sep=</span><span class="st">"-"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sampleDistMatrix) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>( <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Blues"</span>)) )(<span class="dv">255</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(sampleDistMatrix,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows=</span>sampleDists,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols=</span>sampleDists,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span>colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">Heatmap to view distances between samples</figcaption><p></p>
+<p><img src="../fig/Heatmap_sample_distances.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="challenge-2" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="challenge-2"><strong>Challenge #2</strong></h3>
+<p>Does the heatmap convey information about the samples and the two conditions?</p>
+<details>
+<summary>
+Solution
+</summary>
+<ul>
+<li>The WT samples cluster together.</li>
+<li>One of the KO samples is a bit distant to it’s replicates.</li>
+</ul>
+</details>
 </section>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>

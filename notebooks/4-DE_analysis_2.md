@@ -23,21 +23,38 @@ font size: 2.5
 
 #### **The DESeq function**
 
+The standard differential expression analysis steps are wrapped into a single function, `DESeq`. Results tables are generated using the function results, which extracts a results table with log2 fold changes, p values and adjusted p values.
 ```r
 dds <- DESeq(dds)
 res <- results(dds)
+```
+![](../fig/running_dds_function.png){width=50%}
 
+<br>
+```r
 # padj 0.05
 res_padj0.05<-results(dds,alpha=0.05)
-summary(res_padj0.05)
-resSig005_subset<-subset(res_padj0.05, padj < 0.05)
-write.table(resSig005_subset, "res_DeSeq2_FDR0.05_comparison_Wild_vs_KO_FUllMatrix.tab", sep="\t", col.names=NA, quote=F)
 ```
+![](../fig/res_padj0.05.png){width=70%}
+
+<br>
+```r
+summary(res_padj0.05)
+```
+![](../fig/summary_res_padj0.05.png){width=50%}
+
+<br>
+```r
+resSig005_subset<-subset(res_padj0.05, padj < 0.05)
+write.table(resSig005_subset, "res_FDR0.05.tab", sep="\t", col.names=NA, quote=F)
+```
+
+<br>
 
 #### **Normalized counts**
 ```r
 normalised_counts<-counts(dds,normalized=TRUE)
-write.table(normalised_counts, "normalised_all_samples_DeSeq2_FUllMatrix.tab", sep="\t", col.names=NA, quote=F)
+write.table(normalised_counts, "normalised_counts.tab", sep="\t", col.names=NA, quote=F)
 ```
 
 #### **Volcano plot**

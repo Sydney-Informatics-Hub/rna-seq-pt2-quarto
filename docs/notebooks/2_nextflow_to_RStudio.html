@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow – nextflow_to_rstudio</title>
+<title>RNA-Seq using Nextflow: Day 2 – nextflow_to_rstudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">RNA-Seq using Nextflow</span>
+    <span class="navbar-title">RNA-Seq using Nextflow: Day 2</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -164,8 +164,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">The count matrix in R</span></a>
+    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
+ <span class="dropdown-text">Load the count matrix in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
     </ul>
   </li>
@@ -220,8 +224,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#run-rstudio-on-the-nimbus-trainee-vm" id="toc-run-rstudio-on-the-nimbus-trainee-vm" class="nav-link" data-scroll-target="#run-rstudio-on-the-nimbus-trainee-vm"><strong>Run RStudio on the Nimbus trainee VM</strong></a>
   <ul class="collapse">
-  <li><a href="#step1-run-the-rserver-command-on-the-nimbus-vm" id="toc-step1-run-the-rserver-command-on-the-nimbus-vm" class="nav-link" data-scroll-target="#step1-run-the-rserver-command-on-the-nimbus-vm"><strong>Step1: Run the rserver command (On the Nimbus VM)</strong></a></li>
-  <li><a href="#step2-open-rstudio-from-a-browser-on-your-local-machine" id="toc-step2-open-rstudio-from-a-browser-on-your-local-machine" class="nav-link" data-scroll-target="#step2-open-rstudio-from-a-browser-on-your-local-machine"><strong>Step2: Open RStudio from a browser (On your local machine)</strong></a></li>
+  <li><a href="#step1-run-the-rserver-command-pawsey-nimbus" id="toc-step1-run-the-rserver-command-pawsey-nimbus" class="nav-link" data-scroll-target="#step1-run-the-rserver-command-pawsey-nimbus"><strong>Step1: Run the rserver command (Pawsey Nimbus)</strong></a></li>
+  <li><a href="#step2-open-rstudio-from-a-browser-local-machine" id="toc-step2-open-rstudio-from-a-browser-local-machine" class="nav-link" data-scroll-target="#step2-open-rstudio-from-a-browser-local-machine"><strong>Step2: Open RStudio from a browser (Local machine)</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul></li>
@@ -268,8 +272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="run-rstudio-on-the-nimbus-trainee-vm" class="level2">
 <h2 class="anchored" data-anchor-id="run-rstudio-on-the-nimbus-trainee-vm"><strong>Run RStudio on the Nimbus trainee VM</strong></h2>
 <p>This is a two step process</p>
-<section id="step1-run-the-rserver-command-on-the-nimbus-vm" class="level3">
-<h3 class="anchored" data-anchor-id="step1-run-the-rserver-command-on-the-nimbus-vm"><strong>Step1: Run the rserver command (On the Nimbus VM)</strong></h3>
+<section id="step1-run-the-rserver-command-pawsey-nimbus" class="level3">
+<h3 class="anchored" data-anchor-id="step1-run-the-rserver-command-pawsey-nimbus"><strong>Step1: Run the rserver command (Pawsey Nimbus)</strong></h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># Create a temporary rstudio-server  folder on your instance:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mkdir -p /tmp/rstudio-server</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -277,8 +281,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You should not see any output at this point, except a “running” command, i.e.&nbsp;the port is forwarded and running.</p>
 <p><br><strong>NOTE</strong>: <br>- You can open a new <code>screen</code> command as we did yesterday if you feel good about using it. <br>- The application of the <code>screen</code> command is significant when running commands such as the above (which keep running at the commandline for a significant amount of time and do not allow use to use the terminal for other purposes!)</p>
 </section>
-<section id="step2-open-rstudio-from-a-browser-on-your-local-machine" class="level3">
-<h3 class="anchored" data-anchor-id="step2-open-rstudio-from-a-browser-on-your-local-machine"><strong>Step2: Open RStudio from a browser (On your local machine)</strong></h3>
+<section id="step2-open-rstudio-from-a-browser-local-machine" class="level3">
+<h3 class="anchored" data-anchor-id="step2-open-rstudio-from-a-browser-local-machine"><strong>Step2: Open RStudio from a browser (Local machine)</strong></h3>
 <ul>
 <li>Open up a browser window (<strong>IMPORTANT</strong>: Firefox does not work. Use Chrome or Safari.)</li>
 <li>Type <code>146.118.XX.XX:8787</code> in your browser where the XX.XX will be replaced by your IP specific digits. So if my login IP is 146.118.67.219, I will type <code>146.118.67.219 :8787</code> in the browser (e.g.&nbsp;<code>Chrome</code>) and press enter.</li>
