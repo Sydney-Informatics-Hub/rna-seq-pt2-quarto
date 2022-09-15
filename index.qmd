@@ -6,6 +6,7 @@ output:
     toc_float: false
 
 fig-cap-location: top
+from: markdown+emoji
 
 ---
 
@@ -39,4 +40,4 @@ Please use the Menu bar on the top.
 ## Course survey!
 
 **_Please_** fill out our **[course survey](https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR)** before you leave!
-Help us help you! :smiley:
+Help us help you! :grin:
