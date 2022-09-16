@@ -214,17 +214,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><strong>Setup</strong></a>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up"><strong>Set up</strong></a>
   <ul class="collapse">
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
   <li><a href="#bioinformatics-with-nimbus" id="toc-bioinformatics-with-nimbus" class="nav-link" data-scroll-target="#bioinformatics-with-nimbus"><strong>Bioinformatics with Nimbus</strong></a></li>
-  <li><a href="#connecting-to-a-nimbus-instance" id="toc-connecting-to-a-nimbus-instance" class="nav-link" data-scroll-target="#connecting-to-a-nimbus-instance"><strong>Connecting to a Nimbus instance</strong></a></li>
-  <li><a href="#get-a-shell-terminal-emulator" id="toc-get-a-shell-terminal-emulator" class="nav-link" data-scroll-target="#get-a-shell-terminal-emulator"><strong>Get a shell terminal emulator</strong></a>
-  <ul class="collapse">
-  <li><a href="#logging-in-using-a-terminal-a-and-b-above" id="toc-logging-in-using-a-terminal-a-and-b-above" class="nav-link" data-scroll-target="#logging-in-using-a-terminal-a-and-b-above"><strong>Logging-in using a terminal (A and B above)</strong></a></li>
-  </ul></li>
-  <li><a href="#check-your-web-browser" id="toc-check-your-web-browser" class="nav-link" data-scroll-target="#check-your-web-browser">Check your web browser</a>
+  <li><a href="#get-a-shell-terminal-emulator" id="toc-get-a-shell-terminal-emulator" class="nav-link" data-scroll-target="#get-a-shell-terminal-emulator"><strong>Get a shell terminal emulator</strong></a></li>
+  <li><a href="#connect-to-nimbus" id="toc-connect-to-nimbus" class="nav-link" data-scroll-target="#connect-to-nimbus"><strong>Connect to Nimbus</strong></a></li>
+  <li><a href="#check-your-web-browser" id="toc-check-your-web-browser" class="nav-link" data-scroll-target="#check-your-web-browser"><strong>Check your web browser</strong></a>
   <ul class="collapse">
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
@@ -237,45 +234,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="setup" class="level1">
-<h1><strong>Setup</strong></h1>
+<section id="set-up" class="level1">
+<h1><strong>Set up</strong></h1>
 <section id="questions" class="level3 questions">
 <h3 class="anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
 <ul>
-<li>How do I securely log into a Nimbus VM instance?</li>
+<li>How do I set up a terminal application on my computer?</li>
+<li>What internet browser do I need for this workshop?</li>
+<li>How do I log in to a Nimbus instance?</li>
 </ul>
 </section>
 <section id="objectives" class="level3 objectives">
 <h3 class="anchored" data-anchor-id="objectives"><strong>Objectives</strong></h3>
 <ul>
-<li>Successfully log in to a Nimbus instance using ssh.</li>
+<li>Set up your computer for this workshop series.</li>
+<li>Log in to your Nimbus instance.</li>
 </ul>
 </section>
-<p>In this workshop series, we will be using Pawsey’s Nimbus cloud. You will need a terminal application to access your Nimbus instance and web browser to run all the exercises and visualise the outputs. Instructions on how to download and set up your terminal and which browser to use are below.</p>
+<p>In this workshop series, we will be using Pawsey’s Nimbus cloud. The main requirements for this workshop is a personal computer with a web browser and a command line shell program, or terminal emulator. You will need a terminal emulator to access your Nimbus instance and a web browser to run all the exercises and visualise the outputs. On this page you will find instructions on how to set up a terminal application and web browser on your computer and how to connect to Nimbus.</p>
 <p><a href="#get-a-shell-terminal-emulator">1. Get a shell terminal emulator</a><br>
-<a href="#check-your-web-browser">2. Download the right web browser</a></p>
+<a href="#check-your-web-browser">2. Download the right web browser</a> <br><a href="#connect-to-nimbus">3. Connect to Nimbus</a></p>
 <section id="bioinformatics-with-nimbus" class="level2">
 <h2 class="anchored" data-anchor-id="bioinformatics-with-nimbus"><strong>Bioinformatics with Nimbus</strong></h2>
-<ul>
-<li><p>The <a href="https://pawsey.org.au/about-us/about-pawsey/">Pawsey Supercomputing Research Centre</a> is one of two, Tier-1, High Performance Computing facilities in Australia, whose primary function is to accelerate scientific research for the benefit of the nation. Pawsey service and expertise in supercomputing, data, cloud services and visualisation, enables research across a spread of domains including astronomy, life sciences, medicine, energy, resources and artificial intelligence.</p></li>
-<li><p>Pawsey’s Nimbus cloud is a useful solution for bioinformatics applications that may not be suitable for large-scale HPC machines including:</p>
-<ul>
-<li>Developing and refining scalable workflows in prepration for HPC allocation applications.</li>
-<li>Workflows with long runtimes that excede wall time queue limits on HPC facilities.</li>
-<li>Complex data-bound workflows with variable compute resource profiles that are common in bioinformatics pipelines.</li>
-</ul></li>
-</ul>
-</section>
-<section id="connecting-to-a-nimbus-instance" class="level2">
-<h2 class="anchored" data-anchor-id="connecting-to-a-nimbus-instance"><strong>Connecting to a Nimbus instance</strong></h2>
-<ul>
-<li>Loggin into a Nimbus instance requires three things:
-<ul>
-<li>The <strong>YOUR ASSIGNED IP address</strong> (virtual address) of your instance. It is a series of numbers i.e.&nbsp;###.###.###.###. Every participant is provided with an separate IP Address which points to an independant VM instance.</li>
-<li>Your <strong>login name</strong>: this depends on the name of the Linux OS image you selected and in our case it is <code>training</code>.</li>
-<li>Your <strong>password</strong>. Every participant is provided with a password</li>
-</ul></li>
-</ul>
+<p>The <a href="https://pawsey.org.au/about-us/about-pawsey/">Pawsey Supercomputing Research Centre</a> is one of two, Tier-1, High Performance Computing facilities in Australia, whose primary function is to accelerate scientific research.</p>
+<p>Pawsey’s Nimbus cloud is a flexible solution for bioinformatics applications that may not be suitable for large-scale HPC machines including: - Developing and refining scalable workflows in prepration for HPC allocation applications. - Workflows with long runtimes that excede wall time queue limits on HPC facilities. - Complex data-bound workflows with variable compute resource profiles that are common in bioinformatics pipelines.</p>
 </section>
 <section id="get-a-shell-terminal-emulator" class="level2">
 <h2 class="anchored" data-anchor-id="get-a-shell-terminal-emulator"><strong>Get a shell terminal emulator</strong></h2>
@@ -299,16 +281,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="c.-windows" class="level4">
 <h4 class="anchored" data-anchor-id="c.-windows"><strong>C. Windows</strong></h4>
-<p>If you’re using a Windows machine, don’t panic! You might not have used ‘CMD’ since Windows 95 but, rest assured, Windows still has a couple of terminal programs and shells buried in the Programs menu. However, those aren’t going to work for us, as you’ll need extra programs and utilities to connect to Nimbus, such as an <em>SSH</em> implementation.</p>
-<ul>
-<li>To use Nimbus on a Windows computer, you have a couple of options, as shown below.</li>
-<li>We recommend using the <code>MobaXterm</code> terminal application.</li>
-</ul>
+<p>To use Nimbus on a Windows computer, you have a couple of options, as shown below. We recommend using the <code>MobaXterm</code> terminal application.</p>
 <section id="i.-mobaxterm-recommended" class="level5">
 <h5 class="anchored" data-anchor-id="i.-mobaxterm-recommended"><strong>i. MobaXterm (recommended)</strong></h5>
 <p><a href="https://mobaxterm.mobatek.net/download.html">MobaXterm</a> offers a rich experience as a full-featured X-server and terminal emulator for ssh connections, the free version is more than adequate.</p>
-<p><code>Directions</code> to install and start using MobaXterm</p>
-<ul>
+<p>To install and start using MobaXterm:</p>
+<p><img src="./fig/s_mobaxterm.png" class="img-fluid"></p>
+<ol type="1">
 <li>Go to https://mobaxterm.mobatek.net/download.html</li>
 <li>Under ‘Home Edition’ select the <code>Download now</code> button</li>
 <li>Select the MobaXterm Home Edition (Installer edition)</li>
@@ -318,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>From this screen, click on ‘start local terminal’</li>
 <li>Type in: ssh training@XXX.XXX.XX</li>
 <li>When prompted, enter your password</li>
-</ul>
+</ol>
 </section>
 <section id="ii.-putty" class="level5">
 <h5 class="anchored" data-anchor-id="ii.-putty"><strong>ii. PuTTY</strong></h5>
@@ -341,37 +320,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="./fig/s_putty_nimbus.png" class="img-fluid"></p>
 </section>
 </section>
-<section id="logging-in-using-a-terminal-a-and-b-above" class="level3">
-<h3 class="anchored" data-anchor-id="logging-in-using-a-terminal-a-and-b-above"><strong>Logging-in using a terminal (A and B above)</strong></h3>
-<p><img src="./fig/Pawsey_VM_instance.png" class="img-fluid"></p>
-<p>The primary means by which we can connect to this VM is via a Secure Shell (SSH) over a Command Line Interface (CLI). Type the following into your terminal, using your login name and the instance’s IP address:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh training<span class="sc">@</span><span class="do">###.</span><span class="al">###</span><span class="do">.</span><span class="al">###</span><span class="do">.</span><span class="al">###</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="connect-to-nimbus" class="level2">
+<h2 class="anchored" data-anchor-id="connect-to-nimbus"><strong>Connect to Nimbus</strong></h2>
+<p>To login to Nimbus, we will use a Secure Shell (SSH) connection, which enables 2 computers to communicate with one another. To connect, you need 3 things: <br>1. <em>The assigned IP address</em> of your instance (i.e.&nbsp;###.###.##.###). Each participant will be provided with their instance’s IP address at the beginning of the workshop.<br>
+2. <em>Your login name</em>. In our case, this will be <code>training</code> for all participants. <br>3. <em>Your password</em>. All participants will be provided with a password at the beginning of the workshop.</p>
+<p>To log in, type the following into your terminal, using your login name and the instance’s IP address:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh training@###.###.###.###</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will receive a message saying:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>The authenticity of host <span class="st">'146.118.67.137 (146.118.67.137)'</span> can<span class="st">'t be established.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>The authenticity of host 'XXX.XXX.XX.XXX (XXX.XXX.XX.XXX)' can't be established.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remember your host address will be different than the one above. There will then be a message saying:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Are you sure you want to continue <span class="fu">connecting</span> (yes<span class="sc">/</span>no)?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you are sure (and/or confirm the fingerprint), answer ‘yes’ to continue. It will then give a warning:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Warning<span class="sc">:</span> Permanently added <span class="st">'146.118.67.137'</span> (ECDSA) to the list of known hosts.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Enter password<span class="sc">:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Meaning that next time you log in using this key and IP address you won’t receive this message. Having done that, your terminal should then display something like that shown in the figure below:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p></p><figcaption class="figure-caption">Nimbus logged-in screen</figcaption><p></p>
-<p><img src="./fig/Nimbus_login_screen_with_border.png" class="img-fluid figure-img"></p>
-</figure>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Are you sure you want to continue connecting (yes/no)?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you would like to skip this message next time you log in, answer ‘yes’. It will then give a warning:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Warning: Permanently added 'XXX.XXX.XX.XXX' (ECDSA) to the list of known hosts.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Enter the password provided at the beginning of the workshop. Ask one of the demonstrators if you’ve forgotten it.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Enter password:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-caption-container flex-fill">
+Pay Attention
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you type a password on the terminal, there will not be any indication the password is being entered. You’ll not see a moving cursor, or even any asterisks, or bullets. That is an intentional security mechanism used by all terminal applications and can trip us up sometimes, so be careful when typing or copying your password in.</p>
+</div>
+</div>
+<p>Having successfully logged in, your terminal should then display something like that shown in the figure below:</p>
+<p><img src="./fig/Nimbus_login_screen_with_border.png" class="img-fluid"></p>
 <p><strong>Congratulations, you have now successfully logged on to your instance!</strong></p>
 </section>
-</section>
 <section id="check-your-web-browser" class="level2">
-<h2 class="anchored" data-anchor-id="check-your-web-browser">Check your web browser</h2>
+<h2 class="anchored" data-anchor-id="check-your-web-browser"><strong>Check your web browser</strong></h2>
 <p>We will be using a web browser to view output <code>.html</code> files generated by the nf-core pipeline for part 1 of the workshop and run Rstudio for part 2. We recommend using <a href="https://www.google.com/intl/en_au/chrome/">Google Chrome</a> or Safari (for Mac users). Participants using Firefox may experience issues with running Rstudio.</p>
+<br>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
-<li>Nimbus VM instances from Pawsey provide on-demand access for scalability.</li>
-<li>We use a ssh client to connect to a Linux instance.</li>
-<li>Use Chrome browser for your browser-related operations.</li>
+<li>You’ll need a terminal application to access the command line of your Nimbus instance.</li>
+<li>Safari or Chrome web browsers are required for this workshop.</li>
+<li>Use a ssh connection to login to your Nimbus instance.<br>
+</li>
 </ul>
 </section>
 

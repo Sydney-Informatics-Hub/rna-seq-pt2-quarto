@@ -1,5 +1,6 @@
 ---
 fig-cap-location: top
+from: markdown+emoji
 ---
 
 
@@ -42,12 +43,18 @@ mkdir -p /tmp/rstudio-server
 PASSWORD='abc' singularity exec -B /tmp/rstudio-server:/var/lib/rstudio-server -B /tmp/rstudio-server:/var/run/rstudio-server -B ~/base_directory/working_directory:/home /cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu
 ```
 
-You should not see any output at this point, except a "running" command, i.e. the port is forwarded and running.
+::: {.callout-note appearance="simple"}
+## No output is good output :grinning:
+Once you paste the above command in the termonal window and press `Enter`, you SHOULD NOT see any output (the command prompt is stuck at the terminal, awaiting any further action!). If this happens, we are good to go.. 
+:::
 
 
-<br>**NOTE**:
-<br>- You can open a new `screen` command as we did yesterday if you feel good about using it. 
-<br>- The application of the `screen` command is significant when running commands such as the above (which keep running at the commandline for a significant amount of time and do not allow use to use the terminal for other purposes!)
+::: {.callout-note appearance="simple"}
+## Feel good to use screen :grimacing:
+You can also run the above command using a `screen` window.
+:::
+
+
 
 ### **Step2: Open RStudio from a browser (Local machine)**
 - Open up a browser window (__IMPORTANT__: Firefox does not work. Use Chrome or Safari.)

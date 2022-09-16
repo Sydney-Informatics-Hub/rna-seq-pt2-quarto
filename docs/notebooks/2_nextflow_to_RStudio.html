@@ -278,8 +278,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mkdir -p /tmp/rstudio-server</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>PASSWORD='abc' singularity exec -B /tmp/rstudio-server:/var/lib/rstudio-server -B /tmp/rstudio-server:/var/run/rstudio-server -B ~/base_directory/working_directory:/home /cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should not see any output at this point, except a “running” command, i.e.&nbsp;the port is forwarded and running.</p>
-<p><br><strong>NOTE</strong>: <br>- You can open a new <code>screen</code> command as we did yesterday if you feel good about using it. <br>- The application of the <code>screen</code> command is significant when running commands such as the above (which keep running at the commandline for a significant amount of time and do not allow use to use the terminal for other purposes!)</p>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+No output is good output <span class="emoji" data-emoji="grinning">😀</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you paste the above command in the termonal window and press <code>Enter</code>, you SHOULD NOT see any output (the command prompt is stuck at the terminal, awaiting any further action!). If this happens, we are good to go..</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Feel good to use screen <span class="emoji" data-emoji="grimacing">😬</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can also run the above command using a <code>screen</code> window.</p>
+</div>
+</div>
 </section>
 <section id="step2-open-rstudio-from-a-browser-local-machine" class="level3">
 <h3 class="anchored" data-anchor-id="step2-open-rstudio-from-a-browser-local-machine"><strong>Step2: Open RStudio from a browser (Local machine)</strong></h3>
