@@ -156,33 +156,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">RECAP Day 1</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../notebooks/recap_casestudy.html">
+ <span class="dropdown-text">Recall the case study</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
  <span class="dropdown-text">Learning objectives</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
- <span class="dropdown-text">Load the count matrix in R</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
- <span class="dropdown-text">Exploratory analysis</span></a>
+ <span class="dropdown-text">Setting up R/RStudio on Pawsey Nimbus</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-differential-expression-(de-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Differential expression (DE) analysis</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-differential-expression-(de-analysis">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-identifying-differentially-expressed-(de-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Identifying differentially expressed (DE) genes</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-identifying-differentially-expressed-(de-genes">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
  <span class="dropdown-text">Create the DESeqDataSet object in DeSeq2</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/4-DE_analysis_2.html">
- <span class="dropdown-text">Identify differentially expressed genes</span></a>
+ <span class="dropdown-text">Identify differentially expressed (DE) genes</span></a>
   </li>  
     </ul>
   </li>
@@ -258,15 +258,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../fig/summary_res_padj0.05.png" class="img-fluid" style="width:50.0%"></p>
-<p><br></p>
+<p><br> Write the results to a file</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>resSig005_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.05</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig005_subset, <span class="st">"res_FDR0.05.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
 </section>
 <section id="normalized-counts" class="level4">
 <h4 class="anchored" data-anchor-id="normalized-counts"><strong>Normalized counts</strong></h4>
+<p>To retrieve the normalized counts matrix from dds, we can use the <code>counts()</code> function and add the argument <code>normalized=TRUE</code></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>normalised_counts<span class="ot">&lt;-</span><span class="fu">counts</span>(dds,<span class="at">normalized=</span><span class="cn">TRUE</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, <span class="st">"normalised_counts.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br>*<strong>NOTE:</strong> <br>DESeq2 doesn’t actually use normalized counts, rather it uses the raw counts and models the normalization inside the <code>Generalized Linear Model (GLM)</code>. The normalized counts will be useful for downstream visualization of results, but cannot be used as input to DESeq2</p>
 </section>
 <section id="volcano-plot" class="level4">
 <h4 class="anchored" data-anchor-id="volcano-plot"><strong>Volcano plot</strong></h4>

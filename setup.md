@@ -120,7 +120,8 @@ Enter password:
 ```
 ::: {.callout-note appearance="simple"}
 ## Pay Attention
-When you type a password on the terminal, there will not be any indication the password is being entered. You'll not see a moving cursor, or even any asterisks, or bullets. That is an intentional security mechanism used by all terminal applications and can trip us up sometimes, so be careful when typing or copying your password in.  
+- If you copy and paste the password `(recommended)`, be sure that you copy the EXACT password only, without any `additional trailing spaces`. The system will lock you out if you have 3 bad login attempts!
+- When you type/paste a password on the terminal, there will not be any indication the password is being entered. You'll not see a moving cursor, or even any asterisks, or bullets. That is an intentional security mechanism used by all terminal applications and can trip us up sometimes, so be careful when typing or copying your password in.
 :::
     
 Having successfully logged in, your terminal should then display something like that shown in the figure below:

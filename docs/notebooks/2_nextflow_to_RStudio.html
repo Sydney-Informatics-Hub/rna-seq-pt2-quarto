@@ -156,33 +156,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">RECAP Day 1</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../notebooks/recap_casestudy.html">
+ <span class="dropdown-text">Recall the case study</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
  <span class="dropdown-text">Learning objectives</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Start RStudio on Nimbus instance</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix.html">
- <span class="dropdown-text">Load the count matrix in R</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
- <span class="dropdown-text">Exploratory analysis</span></a>
+ <span class="dropdown-text">Setting up R/RStudio on Pawsey Nimbus</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-differential-expression-(de-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Differential expression (DE) analysis</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-differential-expression-(de-analysis">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-identifying-differentially-expressed-(de-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Identifying differentially expressed (DE) genes</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-identifying-differentially-expressed-(de-genes">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
  <span class="dropdown-text">Create the DESeqDataSet object in DeSeq2</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../notebooks/4-DE_analysis_2.html">
- <span class="dropdown-text">Identify differentially expressed genes</span></a>
+ <span class="dropdown-text">Identify differentially expressed (DE) genes</span></a>
   </li>  
     </ul>
   </li>
@@ -214,10 +214,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-rstudio-on-nimbus-vm" id="toc-setup-rstudio-on-nimbus-vm" class="nav-link active" data-scroll-target="#setup-rstudio-on-nimbus-vm"><strong>Setup RStudio on Nimbus VM</strong></a>
+  <li><a href="#setting-up-rrstudio-on-pawsey-nimbus" id="toc-setting-up-rrstudio-on-pawsey-nimbus" class="nav-link active" data-scroll-target="#setting-up-rrstudio-on-pawsey-nimbus"><strong>Setting up R/RStudio on Pawsey Nimbus</strong></a>
   <ul class="collapse">
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
   <li><a href="#r-and-rstudio" id="toc-r-and-rstudio" class="nav-link" data-scroll-target="#r-and-rstudio"><strong>R and RStudio</strong></a>
   <ul class="collapse">
   <li><a href="#using-rrstudio-ide-for-de-analysis" id="toc-using-rrstudio-ide-for-de-analysis" class="nav-link" data-scroll-target="#using-rrstudio-ide-for-de-analysis"><strong>Using R/RStudio IDE for DE analysis</strong></a></li>
@@ -226,6 +226,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#step1-run-the-rserver-command-pawsey-nimbus" id="toc-step1-run-the-rserver-command-pawsey-nimbus" class="nav-link" data-scroll-target="#step1-run-the-rserver-command-pawsey-nimbus"><strong>Step1: Run the rserver command (Pawsey Nimbus)</strong></a></li>
   <li><a href="#step2-open-rstudio-from-a-browser-local-machine" id="toc-step2-open-rstudio-from-a-browser-local-machine" class="nav-link" data-scroll-target="#step2-open-rstudio-from-a-browser-local-machine"><strong>Step2: Open RStudio from a browser (Local machine)</strong></a></li>
+  <li><a href="#transfer-files-to-correct-path" id="toc-transfer-files-to-correct-path" class="nav-link" data-scroll-target="#transfer-files-to-correct-path"><strong>Transfer files to correct path</strong></a></li>
+  <li><a href="#working-in-rstudio" id="toc-working-in-rstudio" class="nav-link" data-scroll-target="#working-in-rstudio"><strong>Working in RStudio</strong></a></li>
+  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><strong>R-markdown</strong></a></li>
+  <li><a href="#the-correct-gene-count-matrix" id="toc-the-correct-gene-count-matrix" class="nav-link" data-scroll-target="#the-correct-gene-count-matrix"><strong>The correct gene-count matrix</strong></a></li>
+  <li><a href="#open-the-r-markdown-file" id="toc-open-the-r-markdown-file" class="nav-link" data-scroll-target="#open-the-r-markdown-file"><strong>Open the R-markdown file</strong></a></li>
+  <li><a href="#load-the-r-libraries" id="toc-load-the-r-libraries" class="nav-link" data-scroll-target="#load-the-r-libraries"><strong>Load the R-libraries</strong></a></li>
+  <li><a href="#set-the-current-working-directory" id="toc-set-the-current-working-directory" class="nav-link" data-scroll-target="#set-the-current-working-directory"><strong>Set the current working directory</strong></a></li>
+  <li><a href="#import-the-gene-count-matrix" id="toc-import-the-gene-count-matrix" class="nav-link" data-scroll-target="#import-the-gene-count-matrix"><strong>Import the gene-count matrix</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul></li>
@@ -237,21 +245,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="setup-rstudio-on-nimbus-vm" class="level1">
-<h1><strong>Setup RStudio on Nimbus VM</strong></h1>
-<section id="objectives" class="level3 objectives">
-<h3 class="anchored" data-anchor-id="objectives"><strong>Objectives</strong></h3>
-<ul>
-<li>Introduction to RStudio</li>
-<li>How to open RStudio on the Pawsey training VM?</li>
-</ul>
-</section>
+<section id="setting-up-rrstudio-on-pawsey-nimbus" class="level1">
+<h1><strong>Setting up R/RStudio on Pawsey Nimbus</strong></h1>
 <section id="questions" class="level3 questions">
 <h3 class="anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
 <ul>
 <li>How to get the full gene count-matrix for downstream analysis?</li>
 <li>How to open RStudio on the Pawsey training VM?</li>
-<li>How to use count matrix to identify differentially expressed genes?</li>
+<li>How to import a count-matrix in R?</li>
+</ul>
+</section>
+<section id="objectives" class="level3 objectives">
+<h3 class="anchored" data-anchor-id="objectives"><strong>Objectives</strong></h3>
+<ul>
+<li>Introduction to RStudio</li>
+<li>Learn to start RStudio on Pawsey Nimbus</li>
+<li>Load the count matrix in R</li>
 </ul>
 </section>
 <section id="r-and-rstudio" class="level2">
@@ -284,11 +293,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-No output is good output <span class="emoji" data-emoji="grinning">😀</span>
+<strong>No output</strong> is good output <span class="emoji" data-emoji="grinning">😀</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Once you paste the above command in the termonal window and press <code>Enter</code>, you SHOULD NOT see any output (the command prompt is stuck at the terminal, awaiting any further action!). If this happens, we are good to go..</p>
+<p>Once you paste the above command in the termonal window and press <code>Enter</code>, you <strong>SHOULD NOT</strong> see any output (the command prompt is stuck at the terminal, awaiting any further action!). If this happens, we are good to go..</p>
 </div>
 </div>
 <div class="callout-note callout callout-style-simple callout-captioned">
@@ -297,7 +306,7 @@ No output is good output <span class="emoji" data-emoji="grinning">😀</span>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Feel good to use screen <span class="emoji" data-emoji="grimacing">😬</span>
+For advanced command-line users
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -308,15 +317,105 @@ Feel good to use screen <span class="emoji" data-emoji="grimacing">😬</span>
 <section id="step2-open-rstudio-from-a-browser-local-machine" class="level3">
 <h3 class="anchored" data-anchor-id="step2-open-rstudio-from-a-browser-local-machine"><strong>Step2: Open RStudio from a browser (Local machine)</strong></h3>
 <ul>
-<li>Open up a browser window (<strong>IMPORTANT</strong>: Firefox does not work. Use Chrome or Safari.)</li>
-<li>Type <code>146.118.XX.XX:8787</code> in your browser where the XX.XX will be replaced by your IP specific digits. So if my login IP is 146.118.67.219, I will type <code>146.118.67.219 :8787</code> in the browser (e.g.&nbsp;<code>Chrome</code>) and press enter.</li>
-<li>Enter the username, which is your image operating system, which is <code>ubuntu</code>.</li>
-<li>Enter the password, which in this example is <code>abc</code>.</li>
-<li>Since you have entered the directory <code>~/base_directory/working_directory/</code>in the to bind-mount in the RStudio server command above, you can only see the path <code>~/base_directory/working_directory/rstudio</code> from your RStudio interface. Please transfer all inpout files to this path.</li>
-<li>Run your R commands as you normally would.</li>
-<li>To end the session, simply exit from the browser. To also end the session on your Nimbus instance, run the following:</li>
+<li><p>Open up a browser window (<strong>IMPORTANT</strong>: Firefox does not work. Use Chrome or Safari.)</p></li>
+<li><p>Type <code>146.118.XX.XX:8787</code> in your browser where the XX.XX will be replaced by your IP specific digits. So if my login IP is 146.118.67.219, I will type <code>146.118.67.219 :8787</code> in the browser (e.g.&nbsp;<code>Chrome</code>) and press enter.</p></li>
+<li><p>Enter the username, which is your image operating system, which is <code>ubuntu</code>.</p></li>
+<li><p>Enter the password, which in this example is <code>abc</code>.</p></li>
+<li><p>To end the session, simply exit from the browser.</p></li>
+<li><p>To also end the session on your Pawsey Nimbus, run the following command:</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lsof -ti:8787 | xargs kill -9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="transfer-files-to-correct-path" class="level3">
+<h3 class="anchored" data-anchor-id="transfer-files-to-correct-path"><strong>Transfer files to correct path</strong></h3>
+<p>Please transfer the files <code>Full_count_matrix.txt</code> and<code>rnaseq_DE_Full_matrix.Rmd</code> from the path <code>~/base_directory/working_directory/</code> to the path <code>~/base_directory/working_directory/rstudio/</code> by running the following two commands</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cp ~/base_path/working_directory/Full_count_matrix.txt/ rstudio/</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cp ~/base_path/working_directory/rnaseq_DE_Full_matrix.Rmd rstudio/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will discuss what these files contain in the sections below.</p>
+</section>
+<section id="working-in-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="working-in-rstudio"><strong>Working in RStudio</strong></h3>
+</section>
+<section id="r-markdown" class="level3">
+<h3 class="anchored" data-anchor-id="r-markdown"><strong>R-markdown</strong></h3>
+<ul>
+<li>R Markdown is a file format for making dynamic documents with R.</li>
+<li>An R Markdown document is written in markdown (an easy-to-write plain text format) and contains chunks of embedded R code, like the document shown below.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">RStudio interface</figcaption><p></p>
+<p><img src="../fig/R_markdown.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="the-correct-gene-count-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="the-correct-gene-count-matrix"><strong>The correct gene-count matrix</strong></h3>
+<p>In yesterday’s session, we had generated a gene-count matrix was generated using the <code>nf-core/rnaseq</code> pipeline. This file can be seen in the path:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>~/base_directory/working_directory/results/star_salmon/salmon.merged.gene_counts.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The input to the <code>nf-core/rnaseq</code> pipeline were sub-setted fastq files from the 6 samples and these were mapped to a specific region of <code>chr18</code> of the mouse genome. This was done so that the excecution of the <code>nf-core/rnaseq</code> pipeline can be demonstrated on our small-sized training VMs <code>(2 cpus and 8 GB RAM)</code> in practical time <code>(~ 20 mins)</code>. <br><strong>However</strong>, for today’s session, we will be using a pre-computed gene-count matrix which was generated by aligning the full set of reads to the complete mouse genome (version mm10). This gene-count matrix file was downloaded previously along with the other files from cloudstor and is named as <code>Full_count_matrix.txt</code>.</p>
+</section>
+<section id="open-the-r-markdown-file" class="level3">
+<h3 class="anchored" data-anchor-id="open-the-r-markdown-file"><strong>Open the R-markdown file</strong></h3>
+<p><img src="../fig/Rmarkdown_open_file.png" class="img-fluid"></p>
+<p>The Rmarkdown file <code>rnaseq_DE_Full_matrix.Rmd</code> contains all R-scipts required for today’s analysis. Each individual chunk of code can be run separately by clicking on the arrow next to it top left corner. <br>*<strong>NOTE</strong> <br> Please use this <code>.rmd</code> file for excecuting the code (<strong>recommended</strong>), but make sure that you run the code chunks in a sequential order. <br>Alternatively you can make your own new markdown (.rmd) file and insert R-code chunks into it <span class="emoji" data-emoji="grimacing">😬</span></p>
+</section>
+<section id="load-the-r-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-r-libraries"><strong>Load the R-libraries</strong></h3>
+<ul>
+<li>Import all the R libraries/packages which will assist us at various steps in the analysis.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DESeq2"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"edgeR"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"limma"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"RColorBrewer"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"gplots"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"factoextra"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rstudioapi"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tibble"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"pheatmap"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"biomaRt"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"annotables"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"org.Mm.eg.db"</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"biobroom"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"clusterProfiler"</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"pathfindR"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-the-current-working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="set-the-current-working-directory"><strong>Set the current working directory</strong></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>current_path <span class="ot">&lt;-</span> <span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(current_path ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="import-the-gene-count-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="import-the-gene-count-matrix"><strong>Import the gene-count matrix</strong></h3>
+<p>The DESeq2 package expects count data from RNA-seq or another high-throughput sequencing experiment in the form of a matrix of integer values, as input. The rows in the matrix correspond to genes, and the columns correspond to samples. The values in the matrix should be un-normalized counts.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Full count matrix</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>counttable_original<span class="ot">&lt;-</span><span class="fu">read.delim</span>(<span class="st">"FULL_count_matrix.txt"</span>, <span class="at">header=</span>T, <span class="at">row.names=</span><span class="dv">1</span>) </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View the count matrix</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#View(counttable_original)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gene symbol as the identifier (when compared to ENSG ID)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>counttable<span class="ot">&lt;-</span>counttable_original[,<span class="fu">c</span>(<span class="st">"Symbol"</span>,<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(counttable) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Column'GeneSymbol' to rowname)</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(counttable) <span class="ot">&lt;-</span> counttable<span class="sc">$</span>Symbol</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>counttable<span class="ot">&lt;-</span>counttable[,<span class="fu">c</span>(<span class="st">"WT1"</span>,<span class="st">"WT2"</span>,<span class="st">"WT3"</span>,<span class="st">"KO1"</span>,<span class="st">"KO2"</span>,<span class="st">"KO3"</span>)]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#View(counttable)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p></p><figcaption class="figure-caption">The count matrix</figcaption><p></p>
+<p><img src="../fig/count_matrix.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </section>
 <section id="key-points" class="level3 keypoints">
 <h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>

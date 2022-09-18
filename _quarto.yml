@@ -15,19 +15,19 @@ website:
         menu:
         - text: "RECAP Day 1"
           href: notebooks/1-recap_Day1.html
+        - text: Recall the case study
+          href: notebooks/recap_casestudy.html  
         - text: "Learning objectives"
           href: notebooks/1.2_Learning_objectives.html
-        - text: "Start RStudio on Nimbus instance"
+        - text: "Setting up R/RStudio on Pawsey Nimbus"
           href: notebooks/2_nextflow_to_RStudio.html
-        - text: "Load the count matrix in R"
-          href: notebooks/3-LoadCountMatrix.html
+      - text: "Identifying differentially expressed (DE) genes"
+        menu:
         - text: "Exploratory analysis"
           href: notebooks/3.1_exploratory_analysis.html
-      - text: "Differential expression (DE) analysis"
-        menu:
         - text: "Create the DESeqDataSet object in DeSeq2"
           href: notebooks/4-DE_analysis.html
-        - text: "Identify differentially expressed genes"
+        - text: "Identify differentially expressed (DE) genes"
           href: notebooks/4-DE_analysis_2.html
       - text: "Enrichment analysis"
         menu:

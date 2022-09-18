@@ -43,19 +43,22 @@ summary(res_padj0.05)
 ```
 ![](../fig/summary_res_padj0.05.png){width=50%}
 
-<br>
+<br> Write the results to a file
 ```r
 resSig005_subset<-subset(res_padj0.05, padj < 0.05)
 write.table(resSig005_subset, "res_FDR0.05.tab", sep="\t", col.names=NA, quote=F)
 ```
 
-<br>
-
 #### **Normalized counts**
+To retrieve the normalized counts matrix from dds, we can use the `counts()` function and add the argument `normalized=TRUE`
+
 ```r
 normalised_counts<-counts(dds,normalized=TRUE)
 write.table(normalised_counts, "normalised_counts.tab", sep="\t", col.names=NA, quote=F)
 ```
+<br>***NOTE:** 
+<br>DESeq2 doesn’t actually use normalized counts, rather it uses the raw counts and models the normalization inside the `Generalized Linear Model (GLM)`. The normalized counts will be useful for downstream visualization of results, but cannot be used as input to DESeq2
+
 
 #### **Volcano plot**
 - A volcano plot can help us summarise the differential expression of gene for our analysis.

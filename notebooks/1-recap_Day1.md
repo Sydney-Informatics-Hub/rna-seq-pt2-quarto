@@ -8,23 +8,23 @@ fig-cap-location: top
 <div class="questions">
 
 ### **Questions**
-- How to use nfcore-rnaseq pipeline for differential expression analysis?
+- How to use nf-core/rnaseq pipeline for differential expression analysis?
 </div>  
 
 <div class="objectives">
 
 ### **Objectives**
-- Recap Day 1: nfcore-rnaseq pipeline
+- **Recap Day 1:** nf-core/rnaseq pipeline
 </div>  
 
-![](../fig/typical_and_nfcore_merged.png)
+![](../fig/nfcore_whatNext.png)
 
 
 -   What is RNA sequencing and what are the main applications of RNA-seq?
 -   What are the typical steps in a RNA-seq differential expression analysis pipeline?
 -   Why do we require workflow managers such as nextflow for bioinformatics pipelines?
--   How to run the nfcore-rnaseq pipeline on the Pawsey Nimbus VM?
--   What are the important features of the nfcore-rnaseq pipeline?
+-   How to run the nf-core/rnaseq pipeline on the Pawsey Nimbus VM?
+-   What are the important features of the nf-core/rnaseq pipeline?
 -   What to do next; using the gene-count matrix?
 
 
@@ -32,7 +32,7 @@ fig-cap-location: top
 
 #### **Notes**
 
-<sup id="f1">1[↩](#a1)</sup> Here is a list of ['nfcore pipelines'](https://nf-co.re/pipelines/).
+<sup id="f1">1[↩](#a1)</sup> Here is a list of ['nf-core/rnaseq'](https://nf-co.re/pipelines/).
 
 
 
@@ -40,6 +40,6 @@ fig-cap-location: top
 
 ### **Key points**
 
-- We generated a gene-count matrix using the nfcore-rnaseq pipeline, using a single command.
+- We generated a gene-count matrix using the nf-core/rnaseq pipeline, using a single command.
 - The gene-count matrix will be used today for identifying differentially expressed genes.
 </div>  
