@@ -229,14 +229,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1"><strong>Challenge #1</strong></a></li>
   <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><strong>Principal Component Analysis (PCA)</strong></a></li>
   </ul></li>
-  <li><a href="#plot-pca-without-condition-legend" id="toc-plot-pca-without-condition-legend" class="nav-link" data-scroll-target="#plot-pca-without-condition-legend">Plot PCA without condition legend</a>
+  <li><a href="#plot-pca-without-identifying-condition" id="toc-plot-pca-without-identifying-condition" class="nav-link" data-scroll-target="#plot-pca-without-identifying-condition"><strong>Plot PCA without identifying <code>condition</code></strong></a>
   <ul class="collapse">
-  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><strong>Challenge #3</strong></a></li>
+  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><strong>Challenge #2</strong></a></li>
   <li><a href="#why-choose-best-the-dimension" id="toc-why-choose-best-the-dimension" class="nav-link" data-scroll-target="#why-choose-best-the-dimension"><strong>Why choose best the dimension? </strong> <span class="emoji" data-emoji="grinning">😀</span></a></li>
   <li><a href="#a-scree-plot-can-assist" id="toc-a-scree-plot-can-assist" class="nav-link" data-scroll-target="#a-scree-plot-can-assist"><strong>A Scree plot can assist</strong></a></li>
   <li><a href="#small-contributions-of-many-genes-to-variation" id="toc-small-contributions-of-many-genes-to-variation" class="nav-link" data-scroll-target="#small-contributions-of-many-genes-to-variation"><strong>Small contributions of many genes to variation</strong></a></li>
   <li><a href="#heatmap-sample-to-sample-distances" id="toc-heatmap-sample-to-sample-distances" class="nav-link" data-scroll-target="#heatmap-sample-to-sample-distances"><strong>Heatmap (Sample-to-sample distances)</strong></a></li>
-  <li><a href="#challenge-2" id="toc-challenge-2" class="nav-link" data-scroll-target="#challenge-2"><strong>Challenge #2</strong></a></li>
+  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3"><strong>Challenge #3</strong></a></li>
   <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul></li>
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="objectives" class="level3 objectives">
 <h3 class="anchored" data-anchor-id="objectives"><strong>Objectives</strong></h3>
 <ul>
-<li>Perform initial exploratory analysis on the geen-count matrix</li>
+<li>Perform initial exploratory analysis on the gene-count matrix</li>
 </ul>
 </section>
 <section id="questions" class="level3 questions">
@@ -364,8 +364,8 @@ Solution
 </ul>
 </section>
 </section>
-<section id="plot-pca-without-condition-legend" class="level2">
-<h2 class="anchored" data-anchor-id="plot-pca-without-condition-legend">Plot PCA without condition legend</h2>
+<section id="plot-pca-without-identifying-condition" class="level2">
+<h2 class="anchored" data-anchor-id="plot-pca-without-identifying-condition"><strong>Plot PCA without identifying <code>condition</code></strong></h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pcaData <span class="ot">&lt;-</span> <span class="fu">plotPCA</span>(vst, <span class="at">intgroup=</span><span class="fu">c</span>(<span class="st">"condition"</span>), <span class="at">returnData=</span><span class="cn">TRUE</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>percentVar <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">attr</span>(pcaData, <span class="st">"percentVar"</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pcaData, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span></span>
@@ -374,11 +374,11 @@ Solution
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">paste0</span>(<span class="st">"PC2: "</span>,percentVar[<span class="dv">2</span>],<span class="st">"% variance"</span>)) <span class="sc">+</span> </span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../fig/PCA_black.png" class="img-fluid" style="width:90.0%"></p>
-<section id="challenge-3" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-3"><strong>Challenge #3</strong></h3>
+<section id="challenge-2" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="challenge-2"><strong>Challenge #2</strong></h3>
 <ul>
 <li>Looking at just the PCA, can you guess which samples belong to which conditions?</li>
-<li>Why?</li>
+<li>How did you reach this conclusion?</li>
 </ul>
 <details>
 <summary>
@@ -427,8 +427,8 @@ Solution
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span>colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../fig/Heatmap_sample_distances.png" class="img-fluid"></p>
 </section>
-<section id="challenge-2" class="level3 challenge">
-<h3 class="anchored" data-anchor-id="challenge-2"><strong>Challenge #2</strong></h3>
+<section id="challenge-3" class="level3 challenge">
+<h3 class="anchored" data-anchor-id="challenge-3"><strong>Challenge #3</strong></h3>
 <p>Does the heatmap convey information about the samples and the two conditions?</p>
 <details>
 <summary>
