@@ -23,7 +23,7 @@ font size: 2.5
   - The formula should be a tilde (`~`) followed by the variables with plus signs between them.
   - The design can be changed later, however then all differential analysis steps should be repeated, as the design formula is used to estimate the dispersions and to estimate the log2 fold changes of the model.
 - There are multiple ways of constructing a DESeqDataSet, depending on what pipeline was used upstream of DESeq2 to generated counts or estimated counts
-  - Here we have a matrix (as read-in a dataframe) of read counts. This is generated using the `nfcore-rnaseq pipeline`.
+  - Here we have a matrix (as read-in a dataframe) of read counts. This is generated using the `nf-core/rnaseq pipeline`.
   - So we use use the function - DESeqDataSetFromMatrix
 
 
