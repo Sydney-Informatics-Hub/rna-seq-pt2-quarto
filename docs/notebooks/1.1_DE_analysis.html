@@ -213,7 +213,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#volcano-plot" id="toc-volcano-plot" class="nav-link" data-scroll-target="#volcano-plot"><strong>Volcano plot</strong></a></li>
   <li><a href="#diagnostic-plots" id="toc-diagnostic-plots" class="nav-link" data-scroll-target="#diagnostic-plots"><strong>Diagnostic plots</strong></a></li>
-  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -318,8 +317,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="diagnostic-plots" class="level3">
 <h3 class="anchored" data-anchor-id="diagnostic-plots"><strong>Diagnostic plots</strong></h3>
 <p>Before we get too excited about our results, we need to confirm that DESeq2’s assumptions were met and that statistical analysis was performed appropriately. We will explore a few plots and concepts to better understand what is happening under the hood.</p>
-<section id="ma-plot" class="level4">
-<h4 class="anchored" data-anchor-id="ma-plot"><strong>MA plot</strong></h4>
+<section id="ma-plot" class="level4 unlisted">
+<h4 class="unlisted anchored" data-anchor-id="ma-plot"><strong>MA plot</strong></h4>
 <p>The MA plot provides an overview of the relationship between significantly differentially expressed genes, gene expression and log fold change in the form of a scatter plot. Each dot on the plot represents a single gene, significant genes are coloured as a blue dot. The average gene expression is on the x axis (expressed as a mean of normalized counts) and the log fold change is on the Y axis.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There is another R function called plotMA, so we need to specify to use DESeq2's plotMA</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -329,8 +328,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>That gene expression is symmetrical around log fold change 0</li>
 </ul>
 </section>
-<section id="dispersion-estimates" class="level4">
-<h4 class="anchored" data-anchor-id="dispersion-estimates"><strong>Dispersion estimates</strong></h4>
+<section id="dispersion-estimates" class="level4 unlisted">
+<h4 class="unlisted anchored" data-anchor-id="dispersion-estimates"><strong>Dispersion estimates</strong></h4>
 <p>The dispersion plot is useful to examine whether your data is meeting DESeq2’s assumptions around heteroskedasticity and that the data fits DESeq2’s model well. Dispersion is how DESeq2 quantifies variability in the data. It considers variance and mean expression within each experimental group.</p>
 <p>Let’s use plotDispEsts() to generate the dispersion plot and discuss what this means.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
@@ -352,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>There is <strong>a lot</strong> happening here, but the main point is that our dispersion plot looks as expected and plots should generally appear like this. Check this <a href="https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html">website</a> for a deeper explanation of this concept, and for examples of what bad dispersion plots look like.</p>
 </section>
-<section id="histogram-of-p-values" class="level4">
-<h4 class="anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
+<section id="histogram-of-p-values" class="level4 unlisted">
+<h4 class="unlisted anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
 <p>Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -363,8 +362,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br> Now that we’ve identified our differentially expressed genes, we can move on to functional enrichment analysis to interpret our results in their biological context. We can proceed to the next lesson: <a href="">Gene counts to differentially expressed genes &gt; Enrichment analysis</a>. <strong>GS- this needs a link</strong></p>
 </section>
 </section>
-<section id="key-points" class="level3 keypoints">
-<h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
+<section id="key-points" class="level3 unlisted keypoints">
+<h3 class="unlisted anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
 <li>We need to normalise our DE data to account for differences in sequencing depth between samples</li>
 <li>We need to transform our data to make sure we don’t violate the assumptions of statistical models we’re applying.</li>
