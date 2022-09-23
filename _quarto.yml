@@ -9,33 +9,29 @@ website:
     left:
       - href: https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/
         text: Home
-      - href: setup.html
+      - href: https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/setup.html 
         text: "Setup"
-      - text: "nfcore-rnaseq to RStudio"
+      - text: "Day 2 kick off"
         menu:
-        - text: "RECAP Day 1"
-          href: notebooks/1-recap_Day1.html
-        - text: Recall the case study
-          href: notebooks/recap_casestudy.html  
+        - text: "Recap Day 1"
+          href: notebooks/0.0_recap_Day1.html
+        - text: "Revisit the case study"
+          href: notebooks/0.1_recap_casestudy.html  
         - text: "Learning objectives"
-          href: notebooks/1.2_Learning_objectives.html
-        - text: "Setting up R/RStudio on Pawsey Nimbus"
-          href: notebooks/2_nextflow_to_RStudio.html
-      - text: "Identifying differentially expressed (DE) genes"
+          href: notebooks/0.2_Learning_objectives.html
+        - text: "Set up RStudio"
+          href: notebooks/0.3_nextflow_to_RStudio.html
+      - text: "Gene counts to differentially expressed genes"
         menu:
         - text: "Exploratory analysis"
-          href: notebooks/3.1_exploratory_analysis.html
-        - text: "Create the DESeqDataSet object in DeSeq2"
-          href: notebooks/4-DE_analysis.html
-        - text: "Identify differentially expressed (DE) genes"
-          href: notebooks/4-DE_analysis_2.html
-      - text: "Enrichment analysis"
-        menu:
-        - text: "What is enrichment analysis?"
-          href: notebooks/6_Whatis_Enrichment_analysis.html
-        - text: "DE genes to functional enrichments"
-          href: notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html
-          
+          href: notebooks/1.0_exploratory_analysis.html
+        - text: "Differential expression"
+          href: notebooks/1.1_DE_analysis.html
+        - text: "Enrichment analysis"
+          href: notebooks/1.2_Whatis_Enrichment_analysis.html
+      - text: "Day 2 wrap up"
+        href: notebooks/2.0_Day2_wrapup.html
+
   body-footer: "All materials copyright Sydney Informatics Hub, University of Sydney"
           
 format:

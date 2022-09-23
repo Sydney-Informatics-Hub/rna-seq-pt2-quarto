@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RNA-Seq using Nextflow: Day 2 – de_analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../lesson.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">RNA-Seq using Nextflow: Day 2</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/setup.html">Setup</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2-kick-off" role="button" data-bs-toggle="dropdown" aria-expanded="false">Day 2 kick off</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2-kick-off">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/0.0_recap_Day1.html">
+ <span class="dropdown-text">Recap Day 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/0.1_recap_casestudy.html">
+ <span class="dropdown-text">Revisit the case study</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/0.2_Learning_objectives.html">
+ <span class="dropdown-text">Learning objectives</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/0.3_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Set up RStudio</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-gene-counts-to-differentially-expressed-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gene counts to differentially expressed genes</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-gene-counts-to-differentially-expressed-genes">    
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.0_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.1_DE_analysis.html">
+ <span class="dropdown-text">Differential expression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/2.0_Day2_wrapup.html">Day 2 wrap up</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#identify-differentially-expressed-genes" id="toc-identify-differentially-expressed-genes" class="nav-link active" data-scroll-target="#identify-differentially-expressed-genes"><strong>Identify differentially expressed genes</strong></a></li>
+  <li><a href="#the-deseq-function" id="toc-the-deseq-function" class="nav-link" data-scroll-target="#the-deseq-function"><strong>The DESeq() function</strong></a></li>
+  <li><a href="#inspecting-the-results" id="toc-inspecting-the-results" class="nav-link" data-scroll-target="#inspecting-the-results"><strong>Inspecting the results</strong></a></li>
+  <li><a href="#defining-significance" id="toc-defining-significance" class="nav-link" data-scroll-target="#defining-significance"><strong>Defining significance</strong></a></li>
+  <li><a href="#subset-the-data-and-write-out-results" id="toc-subset-the-data-and-write-out-results" class="nav-link" data-scroll-target="#subset-the-data-and-write-out-results"><strong>Subset the data and write out results</strong></a></li>
+  <li><a href="#visualise-the-results" id="toc-visualise-the-results" class="nav-link" data-scroll-target="#visualise-the-results"><strong>Visualise the results</strong></a>
+  <ul class="collapse">
+  <li><a href="#volcano-plot" id="toc-volcano-plot" class="nav-link" data-scroll-target="#volcano-plot"><strong>Volcano plot</strong></a></li>
+  <li><a href="#diagnostic-plots" id="toc-diagnostic-plots" class="nav-link" data-scroll-target="#diagnostic-plots"><strong>Diagnostic plots</strong></a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="identify-differentially-expressed-genes" class="level2">
+<h2 class="anchored" data-anchor-id="identify-differentially-expressed-genes"><strong>Identify differentially expressed genes</strong></h2>
+<section id="questions" class="level3 unlisted questions">
+<h3 class="unlisted anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
+<ul>
+<li>How do we perform differential expression analysis with DESeq2?</li>
+<li>What is the DESeq() function?</li>
+<li>Why should we visualise our results? How do we do this?<br>
+</li>
+</ul>
+</section>
+<p><br></p>
+<p><strong>GS- this section is incomplete, missing PCA code and no challenges set</strong></p>
+<p>Before we commence with DE, there are some key concepts that you should know:</p>
+<ul>
+<li>Each sample is sequenced to a slightly different depth and this needs to be <strong>normalised</strong> (if we have 60 million reads for sample A but 30 million for sample B, it does not mean that all of sample A’s genes are expressed twice as high!)</li>
+<li>RNA-Seq data count data is distributed in a heteroskedatic manner - in other words, the amount of variance changes with the mean. Lowly expressed genes tend to have a higher read count variance than highly expressed genes. This violates the assumption of most statistical models which assume homoskedatic data. Therefore, the data needs to be <strong>transformed</strong>.</li>
+<li>Differential expression tests are performed for every single gene. If we use a simple P &lt; 0.05 cut-off value, 1,000 genes will be defined as DE by chance for a species with ~20,000 genes (humans and mice). Therefore, we need to <strong>reduce and adjust for multiple testing</strong>.</li>
+</ul>
+<p>All DE methods account for the above in their own way. In this workshop, we will use and explore DESeq2’s method.</p>
+</section>
+<section id="the-deseq-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-deseq-function"><strong>The DESeq() function</strong></h2>
+<p>We are finally ready to perform DE analysis with DESeq2’s DESeq() function. This performs a number of steps required to perform DE - the console output gives you a clue as to what these steps are doing.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform DE and store the results back in the dds object</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results to res</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In brief, by default, DESeq2 is:</p>
+<ul>
+<li>Estimating size factors, required to normalize data. DESEq2 uses the median of ratios method. There are many other normalization methods, each with their pros and cons.</li>
+<li><strong>Transforming the data</strong> by estimating dispersion (DESeq2’s way of quantifying within group variability). DESeq2 uses a negative binomial distribution model.</li>
+<li>Performing <strong>independent filtering</strong> to reduce the number of statistical tests to perform. DESeq2 will automatically do this. A common method to do this is by removing lowly expressed genes as these don’t have enough data confidently test for DE (DESeq2 actually recommends this to also reduce the size and memory required by DESeq())</li>
+</ul>
+</section>
+<section id="inspecting-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="inspecting-the-results"><strong>Inspecting the results</strong></h2>
+<p>Get a summary of results by running the code below:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Order by the smallest adjusted p value, and have a look at the top 5/bottom 5 DE genes.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> res[<span class="fu">order</span>(res<span class="sc">$</span>padj), ]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the above, we can see that DE was performed for KO vs Wild samples for 19,859 genes and 6 columns (6 samples). We then see a table of DE results. The column headers include:</p>
+<ul>
+<li>B*aseMean: this is an average of the normalized count values, dividing by size factors, taken over all samples. This gives you a general idea of how many reads were detected over all samples present for any one gene.</li>
+<li>Log2FoldChange: This measures the magnitude of differential expression of a gene. A positive value indicates that the KO expression was higher than Wild (remember the fuss about setting factor levels?).
+<ul>
+<li>This number is on the logarithmic scale to base 2, e.g.&nbsp;log2 fold change of 1.5 means that the gene’s expression is increased by 2^1.5 = 2.82 times.</li>
+</ul></li>
+<li>LfcSE: this is the standard error of the log2FoldChange estimate stat: Wald statistic</li>
+<li>P-value: Wald test p-value</li>
+<li>Padj: p-value adjusted for multiple testing. This is sometimes referred to as the false discovery rate or FDR.
+<ul>
+<li>By default, DESeq2 performs this with the Benjamini Hochberg method. Note - DESeq2 will report “NA” (not available) values if multiple testing was not applied for this gene, usually because the counts for these gene were too low or this was an extreme outlier.</li>
+</ul></li>
+</ul>
+</section>
+<section id="defining-significance" class="level2">
+<h2 class="anchored" data-anchor-id="defining-significance"><strong>Defining significance</strong></h2>
+<p>Differentially expressed genes are usually defined by cut-offs for two metrics, which are the adjusted p-value and the fold change value. We commonly see differential expression defined as genes with:</p>
+<ul>
+<li>Adjusted p-value of &lt; 0.05 (sometimes &lt; 0.1)</li>
+<li>Fold change of 2 (log2 fold change ~ 1)</li>
+</ul>
+<p>This is somewhat arbitrary - we need to have just the right number of differentially expressed genes to perform pathway analysis (around 100 - 3,000 is a general guide). Gene expression should be thought of in a biological context - we care about the “top” most differentially expressed genes.</p>
+</section>
+<section id="subset-the-data-and-write-out-results" class="level2">
+<h2 class="anchored" data-anchor-id="subset-the-data-and-write-out-results"><strong>Subset the data and write out results</strong></h2>
+<p>Here we will use padj &lt; 0.05 as our cut-off value for significance and use these genes for enrichment analysis.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Redefine the significance cut-off used for independent filtering (default = 0.1). </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This should be done if we want to use p adj to a value other than 0.1 </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res_padj0<span class="fl">.05</span> <span class="ot">&lt;-</span> <span class="fu">results</span>(dds, <span class="at">alpha=</span><span class="fl">0.05</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the results and write these to an output file</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>resSig005_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.05</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig005_subset, <span class="st">"res_DeSeq2_FDR0.05_comparison_Wild_vs_KO_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformat the output results into a data.frame</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>resSig005_subset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">genes =</span> <span class="fu">row.names</span>(resSig005_subset), resSig005_subset)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(resSig005_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice how our summary of results has changed slightly now</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Normalized count data can be used for visualisation/other analyses, so it is also handy to save these results.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>normalised_counts<span class="ot">&lt;-</span><span class="fu">counts</span>(dds,<span class="at">normalized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, <span class="st">"normalised_all_samples_DeSeq2_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="visualise-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="visualise-the-results"><strong>Visualise the results</strong></h2>
+<section id="volcano-plot" class="level3">
+<h3 class="anchored" data-anchor-id="volcano-plot"><strong>Volcano plot</strong></h3>
+<p><strong>GS- this is incomplete, needs updated volcano plot</strong></p>
+</section>
+<section id="diagnostic-plots" class="level3">
+<h3 class="anchored" data-anchor-id="diagnostic-plots"><strong>Diagnostic plots</strong></h3>
+<p>Before we get too excited about our results, we need to confirm that DESeq2’s assumptions were met and that statistical analysis was performed appropriately. We will explore a few plots and concepts to better understand what is happening under the hood.</p>
+<section id="ma-plot" class="level4">
+<h4 class="anchored" data-anchor-id="ma-plot"><strong>MA plot</strong></h4>
+<p>The MA plot provides an overview of the relationship between significantly differentially expressed genes, gene expression and log fold change in the form of a scatter plot. Each dot on the plot represents a single gene, significant genes are coloured as a blue dot. The average gene expression is on the x axis (expressed as a mean of normalized counts) and the log fold change is on the Y axis.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There is another R function called plotMA, so we need to specify to use DESeq2's plotMA</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are a few things we notice:</p>
+<ul>
+<li>Genes with a lower mean expression have higher variable log fold changes (heteroskedatic - as we expected)</li>
+<li>That gene expression is symmetrical around log fold change 0</li>
+</ul>
+</section>
+<section id="dispersion-estimates" class="level4">
+<h4 class="anchored" data-anchor-id="dispersion-estimates"><strong>Dispersion estimates</strong></h4>
+<p>The dispersion plot is useful to examine whether your data is meeting DESeq2’s assumptions around heteroskedasticity and that the data fits DESeq2’s model well. Dispersion is how DESeq2 quantifies variability in the data. It considers variance and mean expression within each experimental group.</p>
+<p>Let’s use plotDispEsts() to generate the dispersion plot and discuss what this means.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - we have set our experimental design to ~ condition and it is using this to estimate dispersion</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>( dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are a few things to note:</p>
+<ul>
+<li>Dispersion is higher for genes with small mean of normalized counts, and lower for genes with high mean of normalized counts.
+<ul>
+<li>If you see any other trend, this is a sign that you should not trust DESeq2’s results and that you need to investigate further</li>
+</ul></li>
+<li>To transform the data, we need to use the variation observed within each experimental group. We cannot do this accurately with few biological replicates (e.g n =3 for KO, n = 3 for wildtype).
+<ul>
+<li>DESeq2 assumes that genes with similar expression have a similar level of dispersion to get a more accurate estimation of variability - one of its many benefits! A model (the red curve) is calculated by DESeq2 with this information, using a method called shrinkage.</li>
+<li>In other words, the red line represents the expected dispersion for any given level of expression</li>
+</ul></li>
+<li>The black dots represent each gene and their own dispersion (using within group variance as described above)</li>
+<li>The gene-wise dispersion estimate (black dots) need to be shrunken towards the red line. This helps to reduce false positive results in our differential expression analysis</li>
+</ul>
+<p>There is <strong>a lot</strong> happening here, but the main point is that our dispersion plot looks as expected and plots should generally appear like this. Check this <a href="https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html">website</a> for a deeper explanation of this concept, and for examples of what bad dispersion plots look like.</p>
+</section>
+<section id="histogram-of-p-values" class="level4">
+<h4 class="anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
+<p>Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A nicely histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).</p>
+<p>A histogram of p-values that looks anything other than what is described above means that something weird has happened and you may need to contact your local statistician/bioinformatician.</p>
+<p>This <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">blog post</a> has a nice explanation of each scenario if you want to explore this further.</p>
+<p><br> Now that we’ve identified our differentially expressed genes, we can move on to functional enrichment analysis to interpret our results in their biological context. We can proceed to the next lesson: <a href="">Gene counts to differentially expressed genes &gt; Enrichment analysis</a>. <strong>GS- this needs a link</strong></p>
+</section>
+</section>
+<section id="key-points" class="level3 keypoints">
+<h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
+<ul>
+<li>We need to normalise our DE data to account for differences in sequencing depth between samples</li>
+<li>We need to transform our data to make sure we don’t violate the assumptions of statistical models we’re applying.</li>
+<li>We need to account for multiple testing, as we are performing a DE test for every gene.<br>
+</li>
+<li>Gene expression should be thought of in its biological context, consider this when defining your significance threshold.</li>
+<li>Visualising our results can aid our interpretation and confirm the statistical assumptions have been met.</li>
+</ul>
+<p>The object class used by the DESeq2 package to store the read counts and the intermediate estimated quantities during statistical analysis is the <code>DESeqDataSet</code>.</p>
+</section>
+
+
+</section>
+
+<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

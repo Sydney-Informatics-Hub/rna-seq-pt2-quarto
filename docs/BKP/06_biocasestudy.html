@@ -2,19 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.345">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow - Bonus: Bioinformatics Case Study</title>
+<title>RNA-Seq using Nextflow: Day 2 - Bonus: Bioinformatics Case Study</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -80,22 +85,23 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -126,58 +132,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">RNA-Seq using Nextflow</span>
-  </a>
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">RNA-Seq using Nextflow: Day 2</span>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../setup.html">Setup</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/setup.html">Setup</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 1</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-1">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2-kick-off" role="button" data-bs-toggle="dropdown" aria-expanded="false">Day 2 kick off</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2-kick-off">    
         <li>
-    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
- <span class="dropdown-text">Recap day 1</span></a>
+    <a class="dropdown-item" href="../notebooks/0.0_recap_Day1.html">
+ <span class="dropdown-text">Recap Day 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+    <a class="dropdown-item" href="../notebooks/0.1_recap_casestudy.html">
+ <span class="dropdown-text">Revisit the case study</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/0.2_Learning_objectives.html">
  <span class="dropdown-text">Learning objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Nextflow to RStudio</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/3-LoadCountMatrix_and_explore.html">
- <span class="dropdown-text">Loading &amp; exploring a count matrix</span></a>
+    <a class="dropdown-item" href="../notebooks/0.3_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Set up RStudio</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-session-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Session 2</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-session-2">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-gene-counts-to-differentially-expressed-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gene counts to differentially expressed genes</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-gene-counts-to-differentially-expressed-genes">    
         <li>
-    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
- <span class="dropdown-text">DE analysis</span></a>
+    <a class="dropdown-item" href="../notebooks/1.0_exploratory_analysis.html">
+ <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
+    <a class="dropdown-item" href="../notebooks/1.1_DE_analysis.html">
+ <span class="dropdown-text">Differential expression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../notebooks/1.2_Whatis_Enrichment_analysis.html">
  <span class="dropdown-text">Enrichment analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
- <span class="dropdown-text">DE genes to enrichments</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/2.0_Day2_wrapup.html">Day 2 wrap up</a>
+  </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -189,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -219,8 +230,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title">
 <h1 class="title">Bonus: Bioinformatics Case Study</h1>
 </div>
-
-
 
 
 
@@ -255,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../fig/04_nanoindex.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Nano index</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Nano index</figcaption><p></p>
 </figure>
 </div>
 <p>When you’re done, save the script (on nano <kbd>Ctrl</kbd>+<kbd>o</kbd>), and exit (on nano <kbd>Ctrl</kbd>+<kbd>x</kbd>).</p>
@@ -324,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../fig/04_nanoalign.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">The <b>align.pbs</b> PBS script</figcaption><p></p>
+<p></p><figcaption class="figure-caption">The <b>align.pbs</b> PBS script</figcaption><p></p>
 </figure>
 </div>
 <section id="change-1" class="level3 challenge">
@@ -477,7 +486,7 @@ Solution
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../fig/04_cali.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Willet et al 2015, PLoS ONE 10(2): e0117055a</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Willet et al 2015, PLoS ONE 10(2): e0117055a</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -495,6 +504,24 @@ Solution
  <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -544,7 +571,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

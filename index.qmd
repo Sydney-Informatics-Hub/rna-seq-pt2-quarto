@@ -1,5 +1,5 @@
 ---
-title: "**Part 2 Counts to genes and pathways**"
+title: "**Day 2: Counts to genes and pathways**"
 output:
   html_document:
     toc: false
@@ -10,34 +10,21 @@ from: markdown+emoji
 
 ---
 
+## **Synopsis**{.unlisted}
 
-### Synopsis:
+In part 2 of this workshop series, participants will use raw gene count data generated in part 1 to perform downstream analysis of RNA-seq data using R/Rstudio - including how to analyse **raw count data to obtain differentially expressed genes and pathways**. This will be run on **[Pawsey's Nimbus Cloud](https://support.pawsey.org.au/documentation/display/US/Cloud+Documentation)** platform.
 
-Introduces downstream analysis steps of RNA sequencing analysis using R/Rstudio - including how to analyse __raw count data to obtain differentially expressed genes and pathways__. This will be performed on __[Pawsey Nimbus Cloud](https://support.pawsey.org.au/documentation/display/US/Cloud+Documentation)__.
+## **Pre-requisites** {.unlisted}
 
-### Target audience:
-
-Researchers, students and life scientists who are new to RNA sequencing for differential expression and pathway analysis. The course is beginner friendly and intended for those interested in using R/Rstudio for their analysis. 
-
-### Pre-requisites:
 - Introduction to **[Unix/Linux command line](https://datacarpentry.org/shell-genomics/)** 
 - Introduction to **[R/RStudio](https://datacarpentry.org/genomics-r-intro/)**
+- Part 1 of the **[RNA-seq training series](https://sydney-informatics-hub.github.io/training.RNAseq.series/)**
 
-### **Note: OWN LAPTOP REQUIRED**
-<br>
-This course is __part two__ of the two-part __[RNA sequencing training series](https://sydney-informatics-hub.github.io/training.RNAseq.series/)__. 
-We recommend attending going through Day 1 materials first, before attending Day 2.
+## **How to navigate the web-pages** {.unlisted}
+Please use the menu bar on the top of the page to move through the lessons.
 
+![](/fig/MenuBar_Day2.png)
 
-### How to navigate the web-pages
-Please use the Menu bar on the top.
+## **Course survey!** {.unlisted}
 
-![**Menu bar for navigation**](/fig/MenuBar_Day2.png)
-
-
-
-
-## Course survey!
-
-**_Please_** fill out our **[course survey](https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR)** before you leave!
-Help us help you! :grin:
+Please fill out our **[course survey]( https://www.surveymonkey.com/r/rnaseq2022)** before you leave! Help us help you! :grin:

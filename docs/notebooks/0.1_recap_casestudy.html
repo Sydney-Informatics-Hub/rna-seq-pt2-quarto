@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow: Day 2 – recap_day1</title>
+<title>RNA-Seq using Nextflow: Day 2 – recap_casestudy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,62 +80,52 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../setup.html">Setup</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/setup.html">Setup</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nfcore-rnaseq-to-rstudio" role="button" data-bs-toggle="dropdown" aria-expanded="false">nfcore-rnaseq to RStudio</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-nfcore-rnaseq-to-rstudio">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2-kick-off" role="button" data-bs-toggle="dropdown" aria-expanded="false">Day 2 kick off</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2-kick-off">    
         <li>
-    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
- <span class="dropdown-text">RECAP Day 1</span></a>
+    <a class="dropdown-item" href="../notebooks/0.0_recap_Day1.html">
+ <span class="dropdown-text">Recap Day 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/recap_casestudy.html">
- <span class="dropdown-text">Recall the case-study</span></a>
+    <a class="dropdown-item" href="../notebooks/0.1_recap_casestudy.html">
+ <span class="dropdown-text">Revisit the case study</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+    <a class="dropdown-item" href="../notebooks/0.2_Learning_objectives.html">
  <span class="dropdown-text">Learning objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Setting up R/RStudio on Pawsey Nimbus</span></a>
+    <a class="dropdown-item" href="../notebooks/0.3_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Set up RStudio</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-differential-expression-(de-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Differential expression (DE) analysis</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-differential-expression-(de-analysis">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-gene-counts-to-differentially-expressed-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gene counts to differentially expressed genes</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-gene-counts-to-differentially-expressed-genes">    
         <li>
-    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+    <a class="dropdown-item" href="../notebooks/1.0_exploratory_analysis.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
- <span class="dropdown-text">Create the DESeqDataSet object in DeSeq2</span></a>
+    <a class="dropdown-item" href="../notebooks/1.1_DE_analysis.html">
+ <span class="dropdown-text">Differential expression</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/4-DE_analysis_2.html">
- <span class="dropdown-text">Identify differentially expressed genes</span></a>
+    <a class="dropdown-item" href="../notebooks/1.2_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-enrichment-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enrichment analysis</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-enrichment-analysis">    
-        <li>
-    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
- <span class="dropdown-text">What is enrichment analysis?</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/2.0_Day2_wrapup.html">Day 2 wrap up</a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
- <span class="dropdown-text">DE genes to functional enrichments</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -151,11 +141,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#recap-of-day-1-raw-sequence-to-counts" id="toc-recap-of-day-1-raw-sequence-to-counts" class="nav-link active" data-scroll-target="#recap-of-day-1-raw-sequence-to-counts"><strong>Recap of Day 1: Raw sequence to counts</strong></a>
+  <li><a href="#revisit-the-case-study" id="toc-revisit-the-case-study" class="nav-link active" data-scroll-target="#revisit-the-case-study"><strong>Revisit the case study</strong></a>
   <ul class="collapse">
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><strong>Objectives</strong></a></li>
-  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><strong>Research questions</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -165,42 +153,40 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="recap-of-day-1-raw-sequence-to-counts" class="level1">
-<h1><strong>Recap of Day 1: Raw sequence to counts</strong></h1>
-<section id="questions" class="level3 questions">
-<h3 class="anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
+<section id="revisit-the-case-study" class="level1">
+<h1><strong>Revisit the case study</strong></h1>
+<p>In this workshop series we are working with a real dataset from a study of a knockout mouse model by <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2801-4">Corley et al.&nbsp;(2016)</a>. This study used the mouse model to study Williams-Beuren Syndrome (WBS), a rare genetic disease in people.</p>
+<p><img src="../fig/caseStudy_reference.png" class="img-fluid"></p>
+<p>WBS affects multiple body systems and has physical, cognitive, and behavioural components. Previous studies of WBS patients with deletions of the 7q11.23 chromosomal region have led to the conclusion that a disruption of <em>Gtf2ird1</em> and <em>Gtf2i</em> genes explain the features of WBS, including:</p>
 <ul>
-<li>How to use nf-core/rnaseq pipeline for differential expression analysis?</li>
+<li>Delays in prenatal and postnatal growth</li>
+<li>Short stature</li>
+<li>Intellectual disabilities</li>
+<li>Distinctive facial features</li>
 </ul>
-</section>
-<section id="objectives" class="level3 objectives">
-<h3 class="anchored" data-anchor-id="objectives"><strong>Objectives</strong></h3>
+<p><a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2801-4">Corley et al.&nbsp;(2016)</a> used lip tissue from a <em>Gtf2ird1</em> knockout mouse model to capture phenotypic effects most present in the epidermal tissues. <em>Gtf2ird1</em> is located on <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=mm10&amp;lastVirtModeType=default&amp;lastVirtModeExtraState=&amp;virtModeType=default&amp;virtMode=0&amp;nonVirtPosition=&amp;position=chr5%3A134357669%2D134456716&amp;hgsid=1456220341_mnD8xWDvrPHm8X2fFTJs0p1vMHoU">chromosome 5 (5qG2) of the mouse genome</a>. We <a href="https://sydney-informatics-hub.github.io/rna-seq-pt1-quarto/notebooks/3.4_Alignment_using_STAR.html#alignment-to-reference-genome">visualised this region</a> of our alignment files using IGV, yesterday.</p>
+<section id="the-study-design" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="the-study-design"><strong>The study design</strong></h3>
 <ul>
-<li><strong>Recap Day 1:</strong> nf-core/rnaseq pipeline</li>
-</ul>
-</section>
-<p><img src="../fig/nfcore_whatNext.png" class="img-fluid"></p>
+<li>6 mice
 <ul>
-<li>What is RNA sequencing and what are the main applications of RNA-seq?</li>
-<li>What are the typical steps in a RNA-seq differential expression analysis pipeline?</li>
-<li>Why do we require workflow managers such as nextflow for bioinformatics pipelines?</li>
-<li>How to run the nf-core/rnaseq pipeline on the Pawsey Nimbus VM?</li>
-<li>What are the important features of the nf-core/rnaseq pipeline?</li>
-<li>What to do next; using the gene-count matrix?</li>
+<li>3 knockouts (missing exon 1 of <em>Gtf2ird1</em>)</li>
+<li>3 wildtypes</li>
+</ul></li>
+<li>Total RNA extracted from epidermal (lip) tissue</li>
+<li>101 bp single end reads sequenced on Illumina HiSeq2000</li>
 </ul>
-<section id="notes" class="level4">
-<h4 class="anchored" data-anchor-id="notes"><strong>Notes</strong></h4>
-<p><sup id="f1">1<a href="#a1">↩︎</a></sup> Here is a list of <a href="https://nf-co.re/pipelines/">‘nf-core/rnaseq’</a>.</p>
+<p><img src="../fig/caseStudy_design.png" class="img-fluid" style="width:70.0%"></p>
 </section>
-<section id="key-points" class="level3 keypoints">
-<h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
+<section id="research-questions" class="level3">
+<h3 class="anchored" data-anchor-id="research-questions"><strong>Research questions</strong></h3>
 <ul>
-<li>We generated a gene-count matrix using the nf-core/rnaseq pipeline, using a single command.</li>
-<li>The gene-count matrix will be used today for identifying differentially expressed genes.</li>
+<li>Which genes (if any) are upregulated or downregulated in our knockout mice compared with normal mice?</li>
+<li>How do these differentially expressed genes relate to the disease phenotype?​</li>
 </ul>
-</section>
 
 
+</section>
 </section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->

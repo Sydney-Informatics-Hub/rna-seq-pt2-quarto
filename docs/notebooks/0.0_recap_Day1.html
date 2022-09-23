@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow: Day 2 – learning_objectives</title>
+<title>RNA-Seq using Nextflow: Day 2 – recap_day1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -80,62 +143,52 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../setup.html">Setup</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/setup.html">Setup</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nfcore-rnaseq-to-rstudio" role="button" data-bs-toggle="dropdown" aria-expanded="false">nfcore-rnaseq to RStudio</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-nfcore-rnaseq-to-rstudio">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2-kick-off" role="button" data-bs-toggle="dropdown" aria-expanded="false">Day 2 kick off</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2-kick-off">    
         <li>
-    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
- <span class="dropdown-text">RECAP Day 1</span></a>
+    <a class="dropdown-item" href="../notebooks/0.0_recap_Day1.html">
+ <span class="dropdown-text">Recap Day 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/recap_casestudy.html">
- <span class="dropdown-text">Recall the case study</span></a>
+    <a class="dropdown-item" href="../notebooks/0.1_recap_casestudy.html">
+ <span class="dropdown-text">Revisit the case study</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+    <a class="dropdown-item" href="../notebooks/0.2_Learning_objectives.html">
  <span class="dropdown-text">Learning objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Setting up R/RStudio on Pawsey Nimbus</span></a>
+    <a class="dropdown-item" href="../notebooks/0.3_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Set up RStudio</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-identifying-differentially-expressed-(de-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Identifying differentially expressed (DE) genes</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-identifying-differentially-expressed-(de-genes">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-gene-counts-to-differentially-expressed-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gene counts to differentially expressed genes</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-gene-counts-to-differentially-expressed-genes">    
         <li>
-    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+    <a class="dropdown-item" href="../notebooks/1.0_exploratory_analysis.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
- <span class="dropdown-text">Create the DESeqDataSet object in DeSeq2</span></a>
+    <a class="dropdown-item" href="../notebooks/1.1_DE_analysis.html">
+ <span class="dropdown-text">Differential expression</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/4-DE_analysis_2.html">
- <span class="dropdown-text">Identify differentially expressed (DE) genes</span></a>
+    <a class="dropdown-item" href="../notebooks/1.2_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-enrichment-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enrichment analysis</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-enrichment-analysis">    
-        <li>
-    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
- <span class="dropdown-text">What is enrichment analysis?</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../notebooks/2.0_Day2_wrapup.html">Day 2 wrap up</a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
- <span class="dropdown-text">DE genes to functional enrichments</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -151,14 +204,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#day-2-learning-objectives" id="toc-day-2-learning-objectives" class="nav-link active" data-scroll-target="#day-2-learning-objectives"><strong>Day 2: Learning objectives</strong></a>
-  <ul class="collapse">
-  <li><a href="#setting-up-rrstudio-on-pawsey-nimbus" id="toc-setting-up-rrstudio-on-pawsey-nimbus" class="nav-link" data-scroll-target="#setting-up-rrstudio-on-pawsey-nimbus"><strong>Setting up R/RStudio on Pawsey Nimbus</strong></a></li>
-  <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link" data-scroll-target="#exploratory-analysis"><strong>Exploratory analysis</strong></a></li>
-  <li><a href="#identifying-differentially-expressed-de-genes" id="toc-identifying-differentially-expressed-de-genes" class="nav-link" data-scroll-target="#identifying-differentially-expressed-de-genes"><strong>Identifying differentially expressed (DE) genes</strong></a></li>
-  <li><a href="#functional-enrichment-anaylsis" id="toc-functional-enrichment-anaylsis" class="nav-link" data-scroll-target="#functional-enrichment-anaylsis"><strong>Functional enrichment anaylsis</strong></a></li>
-  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
-  </ul></li>
+  <li><a href="#recap-of-day-1-and-introduction-to-day-2" id="toc-recap-of-day-1-and-introduction-to-day-2" class="nav-link active" data-scroll-target="#recap-of-day-1-and-introduction-to-day-2"><strong>Recap of day 1 and introduction to day 2</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -167,54 +213,26 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="day-2-learning-objectives" class="level1">
-<h1><strong>Day 2: Learning objectives</strong></h1>
-<p>Today we will use the analysis ready gene-count data generated in part 1 of the series to perform differential expression and pathway analysis</p>
-<section id="setting-up-rrstudio-on-pawsey-nimbus" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-rrstudio-on-pawsey-nimbus"><strong>Setting up R/RStudio on Pawsey Nimbus</strong></h3>
+<section id="recap-of-day-1-and-introduction-to-day-2" class="level1">
+<h1><strong>Recap of day 1 and introduction to day 2</strong></h1>
+<section id="questions" class="level3 unlisted questions">
+<h3 class="unlisted anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
 <ul>
-<li>Start R/RStudio on the Pawsey Nimbus</li>
-<li>Learn how to import the read-count matrix in R/RStudio</li>
+<li>What stages of the RNA-seq workflow does the nf-core/rnaseq pipeline perform?</li>
+<li>What were results and files were created by nf-core/rnaseq?</li>
 </ul>
 </section>
-<section id="exploratory-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="exploratory-analysis"><strong>Exploratory analysis</strong></h3>
-<ul>
-<li>Learn how to perform exploratory analysis</li>
-<li>Learn about principal component analysis (PCA)</li>
-<li>Learn how to check the quality of the data and experimental design</li>
-</ul>
-</section>
-<section id="identifying-differentially-expressed-de-genes" class="level3">
-<h3 class="anchored" data-anchor-id="identifying-differentially-expressed-de-genes"><strong>Identifying differentially expressed (DE) genes</strong></h3>
-<ul>
-<li>Become familiar with DESeq2</li>
-<li>Create and understand the DESeq2 dataset object</li>
-<li>Generate DE genes</li>
-<li>Visualise the DE genes</li>
-</ul>
-</section>
-<section id="functional-enrichment-anaylsis" class="level3">
-<h3 class="anchored" data-anchor-id="functional-enrichment-anaylsis"><strong>Functional enrichment anaylsis</strong></h3>
-<ul>
-<li>Understand and perform gene ontology enrichement analysis</li>
-<li>Understand and perform pathway enrichment analysis</li>
-<li>Visualise enriched gene ontologies and pathways</li>
-</ul>
-<section id="notes" class="level5">
-<h5 class="anchored" data-anchor-id="notes"><strong>Notes</strong></h5>
-<p><sup id="f1">1<a href="#a1">↩︎</a></sup> Here is a list of <a href="https://nf-co.re/pipelines/">‘nf-core/rnaseq’</a>.</p>
-</section>
-</section>
-<section id="key-points" class="level3 keypoints">
-<h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
-<ul>
-<li>We will work in the R environment using RStudio to identify DE genes from the count matix</li>
-<li>The list of DE gene will be used to identify functional enrichments.</li>
-</ul>
-</section>
+<p><br> On day 1 of this workshop series, we used the <a href="https://nf-co.re/rnaseq/3.8.1">nf-core/rnaseq</a> pipeline to <strong>process raw sequence reads to generate a gene count matrix</strong>. We learned what steps are involved in a typical differential expression RNA-seq workflow. While we <strong>ran the default nf-core/rnaseq pipeline</strong>, we also discussed <strong>how to customise the pipeline’s run command</strong> depending on our own needs. Finally, we learned <strong>how to use quality control reports and alignment files</strong> generated by nf-core/rnaseq to evaluate and explore our data.</p>
+<p>Given the computational resources and hours required to run this pipeline on the mouse genome, we worked only with a subset of the real data. Today, we’ll be working with a whole genome count matrix, that has already been prepared. Today’s sessions will be a lot more hands on as we explore our gene count data, perform differential expression analysis, and enrichment analysis.</p>
+<section id="whats-the-plan-for-day-2" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="whats-the-plan-for-day-2"><strong>What’s the plan for day 2?</strong></h2>
+<p>In part 2, we will perform differential expression and pathway analysis in R/Rstudio, launched from Nimbus. We will use a Singularity container that contains R/Rstudio with pre-installed libraries. We like using containers because they can be shared and run elsewhere, making your analysis <strong>portable</strong> and <strong>reproducible</strong>.</p>
+<p>We’ll be using a prepared R markdown file to work through today’s activities. You can find at:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>/home/training/base_directory/working_directory/rnaseq_DE_analysis_Day2.Rmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="../fig/nfcore_whatNext.png" class="img-fluid"></p>
 
 
+</section>
 </section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->

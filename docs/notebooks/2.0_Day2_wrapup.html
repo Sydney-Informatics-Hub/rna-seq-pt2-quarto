@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow: Day 2 – recap_casestudy</title>
+<title>RNA-Seq using Nextflow: Day 2 – day2_wrapup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,62 +80,52 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../setup.html">Setup</a>
+    <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/setup.html">Setup</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-nfcore-rnaseq-to-rstudio" role="button" data-bs-toggle="dropdown" aria-expanded="false">nfcore-rnaseq to RStudio</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-nfcore-rnaseq-to-rstudio">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-day-2-kick-off" role="button" data-bs-toggle="dropdown" aria-expanded="false">Day 2 kick off</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-day-2-kick-off">    
         <li>
-    <a class="dropdown-item" href="../notebooks/1-recap_Day1.html">
- <span class="dropdown-text">RECAP Day 1</span></a>
+    <a class="dropdown-item" href="../notebooks/0.0_recap_Day1.html">
+ <span class="dropdown-text">Recap Day 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/recap_casestudy.html">
- <span class="dropdown-text">Recall the case-study</span></a>
+    <a class="dropdown-item" href="../notebooks/0.1_recap_casestudy.html">
+ <span class="dropdown-text">Revisit the case study</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/1.2_Learning_objectives.html">
+    <a class="dropdown-item" href="../notebooks/0.2_Learning_objectives.html">
  <span class="dropdown-text">Learning objectives</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/2_nextflow_to_RStudio.html">
- <span class="dropdown-text">Setting up R/RStudio on Pawsey Nimbus</span></a>
+    <a class="dropdown-item" href="../notebooks/0.3_nextflow_to_RStudio.html">
+ <span class="dropdown-text">Set up RStudio</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-differential-expression-(de-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Differential expression (DE) analysis</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-differential-expression-(de-analysis">    
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-gene-counts-to-differentially-expressed-genes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gene counts to differentially expressed genes</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-gene-counts-to-differentially-expressed-genes">    
         <li>
-    <a class="dropdown-item" href="../notebooks/3.1_exploratory_analysis.html">
+    <a class="dropdown-item" href="../notebooks/1.0_exploratory_analysis.html">
  <span class="dropdown-text">Exploratory analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/4-DE_analysis.html">
- <span class="dropdown-text">Create the DESeqDataSet object in DeSeq2</span></a>
+    <a class="dropdown-item" href="../notebooks/1.1_DE_analysis.html">
+ <span class="dropdown-text">Differential expression</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/4-DE_analysis_2.html">
- <span class="dropdown-text">Identify differentially expressed genes</span></a>
+    <a class="dropdown-item" href="../notebooks/1.2_Whatis_Enrichment_analysis.html">
+ <span class="dropdown-text">Enrichment analysis</span></a>
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-enrichment-analysis" role="button" data-bs-toggle="dropdown" aria-expanded="false">Enrichment analysis</a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-enrichment-analysis">    
-        <li>
-    <a class="dropdown-item" href="../notebooks/6_Whatis_Enrichment_analysis.html">
- <span class="dropdown-text">What is enrichment analysis?</span></a>
+  <li class="nav-item">
+    <a class="nav-link active" href="../notebooks/2.0_Day2_wrapup.html" aria-current="page">Day 2 wrap up</a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../notebooks/7_R_DEGenes_to_functional_enrichments_clusProf.html">
- <span class="dropdown-text">DE genes to functional enrichments</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -151,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-case-study" id="toc-the-case-study" class="nav-link active" data-scroll-target="#the-case-study"><strong>The case-study</strong></a></li>
+  <li><a href="#workshop-wrap-up" id="toc-workshop-wrap-up" class="nav-link active" data-scroll-target="#workshop-wrap-up"><strong>Workshop wrap up</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -160,29 +150,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="the-case-study" class="level1">
-<h1><strong>The case-study</strong></h1>
-<p><img src="../fig/caseStudy_reference.png" class="img-fluid" style="width:70.0%"></p>
-<section id="knockout-mouse-model-to-study-williams-beuren-syndrome-wbs" class="level4">
-<h4 class="anchored" data-anchor-id="knockout-mouse-model-to-study-williams-beuren-syndrome-wbs"><strong>Knockout mouse model to study Williams-Beuren Syndrome (WBS)</strong></h4>
-<ul>
-<li>It is a rare disease found in people​ with the folowing phenotypes:
-<ul>
-<li>distinctive facial features​</li>
-<li>intellectual disability​</li>
-<li>cardiovascular abnormalities ​</li>
-</ul></li>
-<li>It is caused by a disruption in the Gtf2ird1gene​</li>
-</ul>
-<p>To improve our understanding of this disease, <em>Corley et al.&nbsp;2016</em> created a knockout mouse model of this disease. ​</p>
-<p><img src="../fig/caseStudy_design.png" class="img-fluid" style="width:70.0%"></p>
-</section>
-<section id="question-asked" class="level4">
-<h4 class="anchored" data-anchor-id="question-asked"><strong>Question asked</strong></h4>
-<p>Which genes (if any) are upregulated or downregulated in our knockout mice and how do these relate to the disease phenotype?​</p>
+<section id="workshop-wrap-up" class="level2">
+<h2 class="anchored" data-anchor-id="workshop-wrap-up"><strong>Workshop wrap up</strong></h2>
+<p><strong>GS- this is incomplete</strong></p>
 
 
-</section>
 </section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
