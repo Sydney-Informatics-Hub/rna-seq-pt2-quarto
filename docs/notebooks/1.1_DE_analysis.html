@@ -205,6 +205,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#identify-differentially-expressed-genes" id="toc-identify-differentially-expressed-genes" class="nav-link active" data-scroll-target="#identify-differentially-expressed-genes"><strong>Identify differentially expressed genes</strong></a></li>
+  <li><a href="#experimental-design" id="toc-experimental-design" class="nav-link" data-scroll-target="#experimental-design"><strong>Experimental design</strong></a></li>
+  <li><a href="#explicitly-set-the-factors-levels" id="toc-explicitly-set-the-factors-levels" class="nav-link" data-scroll-target="#explicitly-set-the-factors-levels"><strong>Explicitly set the factors levels</strong></a></li>
+  <li><a href="#differential-expression-de-analysis" id="toc-differential-expression-de-analysis" class="nav-link" data-scroll-target="#differential-expression-de-analysis"><strong>Differential expression (DE) analysis</strong></a></li>
   <li><a href="#the-deseq-function" id="toc-the-deseq-function" class="nav-link" data-scroll-target="#the-deseq-function"><strong>The DESeq() function</strong></a></li>
   <li><a href="#inspecting-the-results" id="toc-inspecting-the-results" class="nav-link" data-scroll-target="#inspecting-the-results"><strong>Inspecting the results</strong></a></li>
   <li><a href="#defining-significance" id="toc-defining-significance" class="nav-link" data-scroll-target="#defining-significance"><strong>Defining significance</strong></a></li>
@@ -212,6 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#visualise-the-results" id="toc-visualise-the-results" class="nav-link" data-scroll-target="#visualise-the-results"><strong>Visualise the results</strong></a>
   <ul class="collapse">
   <li><a href="#volcano-plot" id="toc-volcano-plot" class="nav-link" data-scroll-target="#volcano-plot"><strong>Volcano plot</strong></a></li>
+  <li><a href="#visualise-some-de-genes" id="toc-visualise-some-de-genes" class="nav-link" data-scroll-target="#visualise-some-de-genes"><strong>Visualise some DE genes</strong></a></li>
   <li><a href="#diagnostic-plots" id="toc-diagnostic-plots" class="nav-link" data-scroll-target="#diagnostic-plots"><strong>Diagnostic plots</strong></a></li>
   </ul></li>
   </ul>
@@ -234,7 +238,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 <p><br></p>
-<p><strong>GS- this section is incomplete, missing PCA code and no challenges set</strong></p>
+<p>We are happy with what we have observed in our exploratory analysis and are finally ready to start DE analysis.</p>
+</section>
+<section id="experimental-design" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-design"><strong>Experimental design</strong></h2>
+<p>In order for DESeq2 to perform DE, we need to revisit the DESeqDataSet object (dds), this time telling it our experimental design. In our case, this will be the column <strong>“condition”</strong>, taken from <strong>“meta”</strong>.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+More complex designs with DESeq2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Design formulas can be much, much more complex! This gives you the power to model and account for other variation (e.g.&nbsp;you could model batch effects using something like ~ condition + batch)</p>
+</div>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> counttable,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> meta,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span> condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="challenge" class="level3 unlisted challenge">
+<h3 class="unlisted anchored" data-anchor-id="challenge"><strong>Challenge</strong></h3>
+<p>Let’s stop here and take some time to understand dds. In the console, type in the code below:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice dim - can you tell from this how many genes are are analysing?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">counts</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This extracts the count matrix out of dds</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This extracts our experimental design metadata out of dds</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">design</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This extracts our design formula out of dds</p>
+</section>
+</section>
+<section id="explicitly-set-the-factors-levels" class="level2">
+<h2 class="anchored" data-anchor-id="explicitly-set-the-factors-levels"><strong>Explicitly set the factors levels</strong></h2>
+<p>When we perform differential expression and interpret the results, we want to see what changed in the knockout mice (“treatment”) compared to the wildtype mice (“control”) - not the other way around!</p>
+<p>The experimental design information in dds is stored as a factor in R (check by running <code>class(dds\$condition</code> - without the backslash). By default, R will choose a reference level for factors based on alphabetical order. That means, the knockout group is currently our baseline (check by typing in the console: dds$condition, without the backslash).</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Markdown vs R code writing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The backslashes are required to escape the “$” as they are interpreted differently in Markdown vs R.</p>
+</div>
+</div>
+<p>We will need to explicitly set “Wild” as the baseline level for easier interpretation of results.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set Wild to base level, using relevel</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dds<span class="sc">$</span>condition <span class="ot">&lt;-</span> <span class="fu">relevel</span>(dds<span class="sc">$</span>condition, <span class="st">"Wild"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that Wild appears as the first level</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>dds<span class="sc">$</span>condition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="differential-expression-de-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="differential-expression-de-analysis"><strong>Differential expression (DE) analysis</strong></h2>
 <p>Before we commence with DE, there are some key concepts that you should know:</p>
 <ul>
 <li>Each sample is sequenced to a slightly different depth and this needs to be <strong>normalised</strong> (if we have 60 million reads for sample A but 30 million for sample B, it does not mean that all of sample A’s genes are expressed twice as high!)</li>
@@ -246,13 +308,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="the-deseq-function" class="level2">
 <h2 class="anchored" data-anchor-id="the-deseq-function"><strong>The DESeq() function</strong></h2>
 <p>We are finally ready to perform DE analysis with DESeq2’s DESeq() function. This performs a number of steps required to perform DE - the console output gives you a clue as to what these steps are doing.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform DE and store the results back in the dds object</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results to res</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform DE and store the results back in the dds object</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the results to res</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">results</span>(dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In brief, by default, DESeq2 is:</p>
 <ul>
-<li>Estimating size factors, required to normalize data. DESEq2 uses the median of ratios method. There are many other normalization methods, each with their pros and cons.</li>
+<li>Estimating size factors, required to normalise data. DESEq2 uses the median of ratios method. There are many other normalisation methods, each with their pros and cons.</li>
 <li><strong>Transforming the data</strong> by estimating dispersion (DESeq2’s way of quantifying within group variability). DESeq2 uses a negative binomial distribution model.</li>
 <li>Performing <strong>independent filtering</strong> to reduce the number of statistical tests to perform. DESeq2 will automatically do this. A common method to do this is by removing lowly expressed genes as these don’t have enough data confidently test for DE (DESeq2 actually recommends this to also reduce the size and memory required by DESeq())</li>
 </ul>
@@ -260,23 +322,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="inspecting-the-results" class="level2">
 <h2 class="anchored" data-anchor-id="inspecting-the-results"><strong>Inspecting the results</strong></h2>
 <p>Get a summary of results by running the code below:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Order by the smallest adjusted p value, and have a look at the top 5/bottom 5 DE genes.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> res[<span class="fu">order</span>(res<span class="sc">$</span>padj), ]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>From the above, we can see that DE was performed for KO vs Wild samples for 19,859 genes and 6 columns (6 samples). We then see a table of DE results. The column headers include:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> res[<span class="fu">order</span>(res<span class="sc">$</span>padj), ]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From the above, we can see that DE was performed for <strong>KO vs Wild samples for 19,859 genes and 6 columns (6 samples)</strong>. We then see a table of DE results. The column headers include:</p>
 <ul>
-<li>B*aseMean: this is an average of the normalized count values, dividing by size factors, taken over all samples. This gives you a general idea of how many reads were detected over all samples present for any one gene.</li>
-<li>Log2FoldChange: This measures the magnitude of differential expression of a gene. A positive value indicates that the KO expression was higher than Wild (remember the fuss about setting factor levels?).
-<ul>
-<li>This number is on the logarithmic scale to base 2, e.g.&nbsp;log2 fold change of 1.5 means that the gene’s expression is increased by 2^1.5 = 2.82 times.</li>
-</ul></li>
-<li>LfcSE: this is the standard error of the log2FoldChange estimate stat: Wald statistic</li>
-<li>P-value: Wald test p-value</li>
-<li>Padj: p-value adjusted for multiple testing. This is sometimes referred to as the false discovery rate or FDR.
-<ul>
-<li>By default, DESeq2 performs this with the Benjamini Hochberg method. Note - DESeq2 will report “NA” (not available) values if multiple testing was not applied for this gene, usually because the counts for these gene were too low or this was an extreme outlier.</li>
-</ul></li>
+<li><strong>baseMean</strong>: this is an average of the normalized count values, dividing by size factors, taken over all samples. This gives you a general idea of how many reads were detected over all samples present for any one gene.</li>
+<li><strong>log2FoldChange</strong>: This measures the magnitude of differential expression of a gene. A positive value indicates that the KO expression was higher than Wild (remember the fuss about setting factor levels?). This number is on the logarithmic scale to base 2, e.g.&nbsp;log2 fold change of 1.5 means that the gene’s expression is increased by 2^1.5 = 2.82 times.</li>
+<li><strong>lfcSE</strong>: this is the standard error of the log2FoldChange estimate</li>
+<li><strong>stat</strong>: Wald statistic</li>
+<li><strong>p-value</strong>: Wald test p-value</li>
+<li><strong>padj</strong>: p-value adjusted for <strong>multiple testing</strong>. This is sometimes referred to as the false discovery rate or FDR. By default, DESeq2 performs this with the Benjamini Hochberg method. Note - DESeq2 will report “NA” (not available) values if multiple testing was not applied for this gene, usually because the counts for these gene were too low or the gene was an extreme outlier.</li>
 </ul>
 </section>
 <section id="defining-significance" class="level2">
@@ -291,50 +348,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="subset-the-data-and-write-out-results" class="level2">
 <h2 class="anchored" data-anchor-id="subset-the-data-and-write-out-results"><strong>Subset the data and write out results</strong></h2>
 <p>Here we will use padj &lt; 0.05 as our cut-off value for significance and use these genes for enrichment analysis.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Redefine the significance cut-off used for independent filtering (default = 0.1). </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This should be done if we want to use p adj to a value other than 0.1 </span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res_padj0<span class="fl">.05</span> <span class="ot">&lt;-</span> <span class="fu">results</span>(dds, <span class="at">alpha=</span><span class="fl">0.05</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the results and write these to an output file</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>resSig005_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.05</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig005_subset, <span class="st">"res_DeSeq2_FDR0.05_comparison_Wild_vs_KO_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformat the output results into a data.frame</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>resSig005_subset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">genes =</span> <span class="fu">row.names</span>(resSig005_subset), resSig005_subset)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(resSig005_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Notice how our summary of results has changed slightly now</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Normalized count data can be used for visualisation/other analyses, so it is also handy to save these results.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>normalised_counts<span class="ot">&lt;-</span><span class="fu">counts</span>(dds,<span class="at">normalized=</span><span class="cn">TRUE</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, <span class="st">"normalised_all_samples_DeSeq2_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Redefine the significance cut-off used for independent filtering (default = 0.1). </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This should be done if we want to use p adj to a value other than 0.1 </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>res_padj0<span class="fl">.05</span> <span class="ot">&lt;-</span> <span class="fu">results</span>(dds, <span class="at">alpha=</span><span class="fl">0.05</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the results and write these to an output file</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>resSig005_subset<span class="ot">&lt;-</span><span class="fu">subset</span>(res_padj0<span class="fl">.05</span>, padj <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(resSig005_subset, </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"res_DeSeq2_FDR0.05_comparison_Wild_vs_KO_FUllMatrix.tab"</span>, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">col.names=</span><span class="cn">NA</span>, </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">quote=</span>F)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformat the output results into a data.frame</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>resSig005_subset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">genes =</span> <span class="fu">row.names</span>(resSig005_subset), resSig005_subset)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># We can also order padj-filtered results by log fold change</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>resSig005_subset_lfc <span class="ot">&lt;-</span> resSig005_subset[<span class="fu">order</span>(resSig005_subset<span class="sc">$</span>log2FoldChange), ]</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Notice how our summary of results has changed slightly now</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res_padj0<span class="fl">.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Normalised count data can be used for visualisation/other analyses. The code below extracts and prints normalised counts to file.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract normalized counts from dds</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>normalised_counts <span class="ot">&lt;-</span> <span class="fu">counts</span>(dds, <span class="at">normalized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save normalized counts (tab separated) to file</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"normalised_all_samples_DeSeq2_FUllMatrix.tab"</span>, </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">col.names=</span><span class="cn">NA</span>, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Normalised count data can be used for visualisation/other analyses, so it is also handy to save these results.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>normalised_counts<span class="ot">&lt;-</span><span class="fu">counts</span>(dds,<span class="at">normalized=</span><span class="cn">TRUE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(normalised_counts, <span class="st">"normalised_all_samples_DeSeq2_FUllMatrix.tab"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names=</span><span class="cn">NA</span>, <span class="at">quote=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="visualise-the-results" class="level2">
 <h2 class="anchored" data-anchor-id="visualise-the-results"><strong>Visualise the results</strong></h2>
 <section id="volcano-plot" class="level3">
 <h3 class="anchored" data-anchor-id="volcano-plot"><strong>Volcano plot</strong></h3>
-<p><strong>GS- this is incomplete, needs updated volcano plot</strong></p>
+<p>The volcano plot is a scatterplot that shows magnitude of change (fold change, x axis) against statistical significance (p-value, y axis). It provides an overall visual snapshot of the number of up and downregulated genes that are statistically significant.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basic volcano plot (scatter plot) with x axis = LogFC, y axis = -log10(pvalue)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>resdata <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(res)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define whether genes are significantly DE or not and store this in a new column called DE</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant <span class="ot">&lt;-</span> <span class="st">"No"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant[resdata<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> resdata<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span> ] <span class="ot">&lt;-</span> <span class="st">"Upregulated"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>resdata<span class="sc">$</span>Significant[resdata<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">&amp;</span> resdata<span class="sc">$</span>pvalue <span class="sc">&lt;</span> <span class="fl">0.05</span> ] <span class="ot">&lt;-</span> <span class="st">"Downregulated"</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the volcano plot</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>resdata,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>log2FoldChange, <span class="at">y=</span><span class="sc">-</span><span class="fu">log10</span>(pvalue), <span class="at">col=</span>Significant)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add significance lines at log2FoldChange -1, 1 and pvalue 0.05</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">col=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the plot</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="visualise-some-de-genes" class="level3">
+<h3 class="anchored" data-anchor-id="visualise-some-de-genes"><strong>Visualise some DE genes</strong></h3>
+<p>We have applied low read-count filtering followed by appropriate statistical tests using the DESeq2 package for identification of the differentially expressed geens across our conditions of interest.</p>
+<p>However we recommend that you visualise a few genes (of specific interest or otherwise) to check if the identification of these genes is supported by sufficient read-counts.</p>
+<p>Use plotCounts function to plot normalized counts for a single gene of interest. Here we plot</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCounts</span>(dds, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">gene=</span><span class="st">"Dip2b"</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">intgroup=</span><span class="st">"condition"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="challenge-1" class="level3 unlisted challenge">
+<h3 class="unlisted anchored" data-anchor-id="challenge-1"><strong>Challenge</strong></h3>
+<p>Choose a significant gene that is downregulated in the knockout mice. Enter the plotCounts code in the grey box below to plot the normalized counts for each sample for the gene you have chosen.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to be removed</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCounts</span>(dds, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gene=</span><span class="st">"Krt2"</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">intgroup=</span><span class="st">"condition"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="diagnostic-plots" class="level3">
 <h3 class="anchored" data-anchor-id="diagnostic-plots"><strong>Diagnostic plots</strong></h3>
 <p>Before we get too excited about our results, we need to confirm that DESeq2’s assumptions were met and that statistical analysis was performed appropriately. We will explore a few plots and concepts to better understand what is happening under the hood.</p>
-<section id="ma-plot" class="level4 unlisted">
-<h4 class="unlisted anchored" data-anchor-id="ma-plot"><strong>MA plot</strong></h4>
+<section id="ma-plot" class="level4">
+<h4 class="anchored" data-anchor-id="ma-plot"><strong>MA plot</strong></h4>
 <p>The MA plot provides an overview of the relationship between significantly differentially expressed genes, gene expression and log fold change in the form of a scatter plot. Each dot on the plot represents a single gene, significant genes are coloured as a blue dot. The average gene expression is on the x axis (expressed as a mean of normalized counts) and the log fold change is on the Y axis.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There is another R function called plotMA, so we need to specify to use DESeq2's plotMA</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There is another R function called plotMA, so we need to specify to use DESeq2's plotMA</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotMA</span>(res, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are a few things we notice:</p>
 <ul>
 <li>Genes with a lower mean expression have higher variable log fold changes (heteroskedatic - as we expected)</li>
 <li>That gene expression is symmetrical around log fold change 0</li>
 </ul>
 </section>
-<section id="dispersion-estimates" class="level4 unlisted">
-<h4 class="unlisted anchored" data-anchor-id="dispersion-estimates"><strong>Dispersion estimates</strong></h4>
+<section id="dispersion-estimates" class="level4">
+<h4 class="anchored" data-anchor-id="dispersion-estimates"><strong>Dispersion estimates</strong></h4>
 <p>The dispersion plot is useful to examine whether your data is meeting DESeq2’s assumptions around heteroskedasticity and that the data fits DESeq2’s model well. Dispersion is how DESeq2 quantifies variability in the data. It considers variance and mean expression within each experimental group.</p>
 <p>Let’s use plotDispEsts() to generate the dispersion plot and discuss what this means.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - we have set our experimental design to ~ condition and it is using this to estimate dispersion</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>( dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot dispersion estimates using dds</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - we have set our experimental design to ~ condition and it is using this to estimate dispersion</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotDispEsts</span>( dds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are a few things to note:</p>
 <ul>
 <li>Dispersion is higher for genes with small mean of normalized counts, and lower for genes with high mean of normalized counts.
@@ -351,13 +460,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>There is <strong>a lot</strong> happening here, but the main point is that our dispersion plot looks as expected and plots should generally appear like this. Check this <a href="https://hbctraining.github.io/DGE_workshop/lessons/04_DGE_DESeq2_analysis.html">website</a> for a deeper explanation of this concept, and for examples of what bad dispersion plots look like.</p>
 </section>
-<section id="histogram-of-p-values" class="level4 unlisted">
-<h4 class="unlisted anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
+<section id="histogram-of-p-values" class="level4">
+<h4 class="anchored" data-anchor-id="histogram-of-p-values"><strong>Histogram of P-values</strong></h4>
 <p>Remember that for every gene, we perform a statistical test to determine whether gene expression is significantly different in the knockout samples, compared to the wildtype. This results in thousands (~20,000 genes in the mouse genome) of p-values. We can look at the histogram of p-values to see how our well our statistical test behaves before we apply correction for multiple testing.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A nicely histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bin frequency of p-value counts by 0.05 incremets (i.e plot 20 columns from p-value of 0 to 1)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(res<span class="sc">$</span>pvalue, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">20</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A nice histogram of p-values will have a peak at the 0.05 end, and a uniform frequency at all other p-value bins. Think back to your null and alternate hypothesis. Under the null hypothesis, there is a 5% chance of genes will fall under p-value 0.05, 10 % for p-value under 0.1, etc. The high peak at the first bin (p-value 0 - 0.5) represents genes that reject the null hypothesis (in addition to all the false discoveries - hence our need to adjust for multiple testing!).</p>
 <p>A histogram of p-values that looks anything other than what is described above means that something weird has happened and you may need to contact your local statistician/bioinformatician.</p>
+<p>This <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">blog post</a> has a nice explanation of each scenario if you want to explore this further.</p>
 <p>This <a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/">blog post</a> has a nice explanation of each scenario if you want to explore this further.</p>
 <p><br> Now that we’ve identified our differentially expressed genes, we can move on to functional enrichment analysis to interpret our results in their biological context. We can proceed to the next lesson: <a href="">Gene counts to differentially expressed genes &gt; Enrichment analysis</a>. <strong>GS- this needs a link</strong></p>
 </section>

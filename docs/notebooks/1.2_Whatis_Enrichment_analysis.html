@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -143,17 +206,32 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#functional-enrichment-analysis" id="toc-functional-enrichment-analysis" class="nav-link active" data-scroll-target="#functional-enrichment-analysis"><strong>Functional enrichment analysis</strong></a>
   <ul class="collapse">
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><strong>Questions</strong></a></li>
   <li><a href="#functional-enrichment-analysis-1" id="toc-functional-enrichment-analysis-1" class="nav-link" data-scroll-target="#functional-enrichment-analysis-1"><strong>Functional enrichment analysis</strong></a></li>
   <li><a href="#over-representation-analysis" id="toc-over-representation-analysis" class="nav-link" data-scroll-target="#over-representation-analysis"><strong>Over-representation analysis</strong></a></li>
-  <li><a href="#gene-ontology-project" id="toc-gene-ontology-project" class="nav-link" data-scroll-target="#gene-ontology-project"><strong>Gene Ontology project</strong></a></li>
-  <li><a href="#go-ontologies" id="toc-go-ontologies" class="nav-link" data-scroll-target="#go-ontologies"><strong>GO Ontologies</strong></a>
+  <li><a href="#gene-ontologies" id="toc-gene-ontologies" class="nav-link" data-scroll-target="#gene-ontologies"><strong>Gene Ontologies</strong></a></li>
+  <li><a href="#clusterprofiler" id="toc-clusterprofiler" class="nav-link" data-scroll-target="#clusterprofiler"><strong>clusterProfiler</strong></a></li>
+  <li><a href="#prepare-the-de-gene-results-for-enrichment-analysis" id="toc-prepare-the-de-gene-results-for-enrichment-analysis" class="nav-link" data-scroll-target="#prepare-the-de-gene-results-for-enrichment-analysis"><strong>Prepare the DE gene results for enrichment analysis</strong></a></li>
+  <li><a href="#go-enrichment-of-upregulated-genes" id="toc-go-enrichment-of-upregulated-genes" class="nav-link" data-scroll-target="#go-enrichment-of-upregulated-genes"><strong>GO enrichment of upregulated genes</strong></a>
   <ul class="collapse">
-  <li><a href="#biological-process" id="toc-biological-process" class="nav-link" data-scroll-target="#biological-process"><strong>Biological process</strong></a></li>
-  <li><a href="#molecular-function" id="toc-molecular-function" class="nav-link" data-scroll-target="#molecular-function"><strong>Molecular function</strong></a></li>
-  <li><a href="#cellular-component" id="toc-cellular-component" class="nav-link" data-scroll-target="#cellular-component"><strong>Cellular component</strong></a></li>
-  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points"><strong>Key points</strong></a></li>
+  <li><a href="#bar-plot-of-upregulated-enriched-go-terms" id="toc-bar-plot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></a></li>
+  <li><a href="#dot-plot-of-upregulated-enriched-go-terms" id="toc-dot-plot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#dot-plot-of-upregulated-enriched-go-terms"><strong>Dot plot of upregulated enriched GO terms</strong></a></li>
+  <li><a href="#cnetplot-of-upregulated-enriched-go-terms" id="toc-cnetplot-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#cnetplot-of-upregulated-enriched-go-terms"><strong>cnetplot of upregulated enriched GO terms</strong></a></li>
+  <li><a href="#heatmap-like-functional-classification-of-upregulated-enriched-go-terms" id="toc-heatmap-like-functional-classification-of-upregulated-enriched-go-terms" class="nav-link" data-scroll-target="#heatmap-like-functional-classification-of-upregulated-enriched-go-terms"><strong>Heatmap-like functional classification of upregulated enriched GO terms</strong></a></li>
   </ul></li>
+  <li><a href="#go-enrichment-of-downregulated-genes" id="toc-go-enrichment-of-downregulated-genes" class="nav-link" data-scroll-target="#go-enrichment-of-downregulated-genes"><strong>GO enrichment of downregulated genes</strong></a>
+  <ul class="collapse">
+  <li><a href="#bar-plot-of-downregulated-enriched-go-terms" id="toc-bar-plot-of-downregulated-enriched-go-terms" class="nav-link" data-scroll-target="#bar-plot-of-downregulated-enriched-go-terms"><strong>Bar plot of downregulated enriched GO terms</strong></a></li>
+  <li><a href="#dot-plot-of-downregulated-enriched-go-terms" id="toc-dot-plot-of-downregulated-enriched-go-terms" class="nav-link" data-scroll-target="#dot-plot-of-downregulated-enriched-go-terms"><strong>Dot-plot of downregulated enriched GO terms</strong></a></li>
+  <li><a href="#cnetplot-of-downregulated-enriched-go-terms" id="toc-cnetplot-of-downregulated-enriched-go-terms" class="nav-link" data-scroll-target="#cnetplot-of-downregulated-enriched-go-terms"><strong>cnetplot of downregulated enriched GO terms</strong></a></li>
+  <li><a href="#heatmap-like-functional-classification-of-downregulated-enriched-go-terms" id="toc-heatmap-like-functional-classification-of-downregulated-enriched-go-terms" class="nav-link" data-scroll-target="#heatmap-like-functional-classification-of-downregulated-enriched-go-terms"><strong>Heatmap-like functional classification of downregulated enriched GO terms</strong></a></li>
+  <li><a href="#other-enrich-functions-in-clusterprofiler" id="toc-other-enrich-functions-in-clusterprofiler" class="nav-link" data-scroll-target="#other-enrich-functions-in-clusterprofiler"><strong>Other enrich functions in clusterprofiler</strong></a></li>
+  </ul></li>
+  <li><a href="#other-resources-for-enrichment-analysis" id="toc-other-resources-for-enrichment-analysis" class="nav-link" data-scroll-target="#other-resources-for-enrichment-analysis"><strong>Other resources for enrichment analysis</strong></a>
+  <ul class="collapse">
+  <li><a href="#open-source-options" id="toc-open-source-options" class="nav-link" data-scroll-target="#open-source-options"><strong>Open source options</strong></a></li>
+  <li><a href="#commercial-options" id="toc-commercial-options" class="nav-link" data-scroll-target="#commercial-options"><strong>Commercial options</strong></a></li>
+  </ul></li>
+  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><strong>sessionInfo()</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -165,74 +243,192 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="functional-enrichment-analysis" class="level1">
 <h1><strong>Functional enrichment analysis</strong></h1>
-<section id="questions" class="level3 questions">
-<h3 class="anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
+<section id="questions" class="level3 unlisted questions">
+<h3 class="unlisted anchored" data-anchor-id="questions"><strong>Questions</strong></h3>
 <ul>
 <li>What is functional enrichment analysis?</li>
 <li>What are Gene Ontologies?</li>
 </ul>
 </section>
-<p><strong>GS- this section is incomplete, no code or challenges set</strong></p>
 <section id="functional-enrichment-analysis-1" class="level2">
 <h2 class="anchored" data-anchor-id="functional-enrichment-analysis-1"><strong>Functional enrichment analysis</strong></h2>
+<p>We now have a list of significant DE genes. To gain greater biological insights on the DE genes we can determine if there is enrichment of known biological functions, pathways or interactions.</p>
+<p>There are different methods for identifying functional enrichments, e.g.:</p>
 <ul>
-<li>The output of RNA-seq differential expression analysis is a list of significant differentially expressed genes (DEGs). To gain greater biological insight on the differentially expressed genes there are various analyses that can be done:</li>
-<li>determine whether there is enrichment of known biological functions, interactions, or pathways identify genes’ involvement in novel pathways or networks by grouping genes together based on similar trends.</li>
-<li>Use global changes in gene expression by visualizing all genes being significantly up- or down-regulated in the context of external interaction data.</li>
+<li>Over representation analysis (ORA). These databases typically categorize genes into groups based on shared function, involvement in a biological pathway, presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
+<li>Functional class scoring (FCS) e.g.&nbsp;Gene set enrichment analysis (GSEA).</li>
+<li>Enrichment analysis can be done using some of the freely available web- and R-based tools. Today we will use a R-package “clusterprofile” to perform Over representation analysis. You can read more about the GSEA method at https://www.gsea-msigdb.org/gsea/index.jsp</li>
 </ul>
+<p>In this workshop, we will learn how to perform gene ontology enrichment analysis.</p>
 </section>
 <section id="over-representation-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="over-representation-analysis"><strong>Over-representation analysis</strong></h2>
+<p>There are a range of functional enrichment tools that perform some type of “over-representation” analysis by querying databases containing information about gene function and interactions. These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc. Essentially, known genes are binned into categories that have been consistently named based on how the gene has been annotated functionally. These categories are independent of any organism, however each organism has distinct categories available.</p>
+<p><img src="../fig/overrepresentation_analysis.png" class="img-fluid"></p>
+<p>To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background set (gene categorizations for the appropriate organism).</p>
+</section>
+<section id="gene-ontologies" class="level2">
+<h2 class="anchored" data-anchor-id="gene-ontologies"><strong>Gene Ontologies</strong></h2>
+<p>One of the most widely-used categorizations is Gene Ontology (GO) established by the Gene Ontology project. To describe the functional roles of genes and gene products, they are categorized into GO terms. GO terms are organized into three independent controlled vocabularies (ontologies) in a species-independent manner:</p>
 <ul>
-<li>There are a range of functional enrichment tools that perform some type of “over-representation” analysis by querying databases containing information about gene function and interactions.</li>
-<li>These databases typically categorize genes into groups based on shared function, or involvement in a pathway, or presence in a specific cellular location, or other categorizations, e.g.&nbsp;functional pathways, etc.</li>
-<li>Essentially, known genes are binned into categories that have been consistently named (controlled vocabulary) based on how the gene has been annotated functionally. These categories are independent of any organism, however each organism has distinct categorizations available.</li>
+<li><strong>Biological process</strong>: Refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.</li>
+<li><strong>Molecular function</strong>: Represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.</li>
+<li><strong>Cellular component</strong>: Refers to the location in the cell of the gene product. Cellular components could include “nucleus”, “lysosome”, and “plasma membrane”.</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p></p><figcaption class="figure-caption">Over-representation of a category</figcaption><p></p>
-<p><img src="../fig/overrepresentation_analysis.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p>GO enrichment analysis tools will determine GO terms that are enriched when you supply it will a list of DE genes.</p>
+</section>
+<section id="clusterprofiler" class="level2">
+<h2 class="anchored" data-anchor-id="clusterprofiler"><strong>clusterProfiler</strong></h2>
+<p>The clusterProfiler package implements methods to analyze and visualize functional profiles of genes. The clusterProfiler R-library supports functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation. It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation.</p>
+</section>
+<section id="prepare-the-de-gene-results-for-enrichment-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-the-de-gene-results-for-enrichment-analysis"><strong>Prepare the DE gene results for enrichment analysis</strong></h2>
+<p>We will use clusterProfiler to perform enrichment analysis for upregulated and downregulated significant DE genes separately. We can use the <code>resSig005_subset_lfc</code> dataframe created earlier and prepare the data for clusterProfiler.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We will use the resSig005_subset_lfc dataframe created earlier</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This has been filtered for padj &lt; 0.05 and |LFC| &gt; 1 DE genes</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Upregulated genes</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for significant upregulated genes by log2 fold change &gt; 1. Remove NAs.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sig.up <span class="ot">&lt;-</span> resSig005_subset_lfc[resSig005_subset_lfc<span class="sc">$</span>log2FoldChange <span class="sc">&gt;</span> <span class="dv">1</span>, ]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sig.up <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sig.up)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list by decreasing log fold change for upregulated genes</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sig.up.LFC <span class="ot">&lt;-</span> sig.up<span class="sc">$</span>log2FoldChange</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sig.up.LFC) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sig.up)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sig.up.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.up.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Downregulated genes - let's do the same thing</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sig.dn <span class="ot">&lt;-</span> resSig005_subset_lfc[resSig005_subset_lfc<span class="sc">$</span>log2FoldChange <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span>, ]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for significant upregulated genes by log2 fold change &lt; -1. Remove NAs.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>sig.dn <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sig.dn)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create list by decreasing log fold change for upregulated genes</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> sig.dn<span class="sc">$</span>log2FoldChange</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sig.dn.LFC) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sig.dn)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by LFC, decreasing</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sig.dn.LFC <span class="ot">&lt;-</span> <span class="fu">sort</span>(sig.dn.LFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>You can check that you have correctly prepared the data by inspecting sig.up.LFC and sig.dn.LFC in the console. Use class() to check what type of R class we have stored the data in.</strong></p>
+</section>
+<section id="go-enrichment-of-upregulated-genes" class="level2">
+<h2 class="anchored" data-anchor-id="go-enrichment-of-upregulated-genes"><strong>GO enrichment of upregulated genes</strong></h2>
+<p>Clusterprofiler implements the function enrichGO() for gene ontology over-representation test. Let’s run the analysis for up-regulated genes. You can check what the different parameters in the function do by running the command <code>?enrichGO</code>. The command will take a few minutes to run.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ego.up <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.up.LFC),</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">OrgDb =</span> org.Mm.eg.db, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">keyType =</span> <span class="st">'SYMBOL'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">readable =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ont =</span> <span class="st">"ALL"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="bar-plot-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="bar-plot-of-upregulated-enriched-go-terms"><strong>Bar plot of upregulated enriched GO terms</strong></h3>
+<p>The bar plot is a commonly used method to visualize enriched terms. It depicts the enrichment scores (e.g.&nbsp;p-adj values) and gene count or ratio as bar height and colour.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.up, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dot-plot-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="dot-plot-of-upregulated-enriched-go-terms"><strong>Dot plot of upregulated enriched GO terms</strong></h3>
+<p>A dot plot is similar to a scatter plot and bar plot with the capability to encode another score as dot size. In R the dot plot displays the index (each category) in the vertical axis and the corresponding value in the horizontal axis, so you can see the value of each observation following a horizontal line from the label.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.up, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">font.size =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cnetplot-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="cnetplot-of-upregulated-enriched-go-terms"><strong>cnetplot of upregulated enriched GO terms</strong></h3>
+<p>Both the barplot and dotplot only displayed most significant enriched terms, while users may want to know which genes are involved in these significant terms. The cnetplot depicts the linkages of genes and biological concepts (e.g.&nbsp;GO terms or KEGG pathways) as a network.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.up, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">categorySize=</span><span class="st">"pvalue"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange=</span>sig.up.LFC,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_gene =</span> <span class="fl">0.7</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">5</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_category=</span><span class="fl">1.2</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">shadowtext=</span><span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="heatmap-like-functional-classification-of-upregulated-enriched-go-terms"><strong>Heatmap-like functional classification of upregulated enriched GO terms</strong></h3>
+<p>The heatplot is similar to cnetplot, while displaying the relationships as a heatmap. The gene-concept network may become too complicated if user want to show a large number significant terms. The heatplot can simplify the result and more easy to identify expression patterns.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.up,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange =</span> sig.up.LFC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="go-enrichment-of-downregulated-genes" class="level2">
+<h2 class="anchored" data-anchor-id="go-enrichment-of-downregulated-genes"><strong>GO enrichment of downregulated genes</strong></h2>
+<p><strong>A breakout room task: Try re-doing the above steps for downregulated genes. Please remember to rename the variable differently so as to not over-write them e.g.&nbsp;ego.dn in place of ego.up etc…</strong>*</p>
+<p>This will be a good time to familiarise yourself with the various functions you have used. Remember, you can try and run ?Function_NAME e.g.&nbsp;?enrichGO to get the help manual pages for that function. You can play with pvalue and qvalue cutoffs, categories etc. Try and interpret the results. We will discuss them at the end of this session.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ego.dn <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene =</span> <span class="fu">names</span>(sig.dn.LFC),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">OrgDb =</span> org.Mm.eg.db, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">keyType =</span> <span class="st">'SYMBOL'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">readable =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ont =</span> <span class="st">"ALL"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">qvalueCutoff =</span> <span class="fl">0.05</span>??q)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="bar-plot-of-downregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="bar-plot-of-downregulated-enriched-go-terms"><strong>Bar plot of downregulated enriched GO terms</strong></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ego.dn,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dot-plot-of-downregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="dot-plot-of-downregulated-enriched-go-terms"><strong>Dot-plot of downregulated enriched GO terms</strong></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego.dn, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">font.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cnetplot-of-downregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="cnetplot-of-downregulated-enriched-go-terms"><strong>cnetplot of downregulated enriched GO terms</strong></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cnetplot</span>(ego.dn,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">categorySize=</span><span class="st">"pvalue"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange=</span>sig.dn.LFC,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_gene =</span> <span class="fl">0.7</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">5</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex_label_category=</span><span class="fl">1.5</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">shadowtext=</span><span class="st">'category'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="heatmap-like-functional-classification-of-downregulated-enriched-go-terms" class="level3">
+<h3 class="anchored" data-anchor-id="heatmap-like-functional-classification-of-downregulated-enriched-go-terms"><strong>Heatmap-like functional classification of downregulated enriched GO terms</strong></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatplot</span>(ego.dn,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">showCategory =</span> <span class="dv">20</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">foldChange =</span> sig.dn.LFC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="other-enrich-functions-in-clusterprofiler" class="level3">
+<h3 class="anchored" data-anchor-id="other-enrich-functions-in-clusterprofiler"><strong>Other enrich functions in clusterprofiler</strong></h3>
+<p>clustrprofiler has other functions</p>
 <ul>
-<li>To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background set (gene categorizations for the appropriate organism).</li>
+<li>enrichKEGG KEGG</li>
+<li>enrichWP WikiPathways</li>
+<li>enrichPathway Reactome</li>
+<li>enrichr Enrichr resource</li>
 </ul>
 </section>
-<section id="gene-ontology-project" class="level2">
-<h2 class="anchored" data-anchor-id="gene-ontology-project"><strong>Gene Ontology project</strong></h2>
+</section>
+<section id="other-resources-for-enrichment-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="other-resources-for-enrichment-analysis"><strong>Other resources for enrichment analysis</strong></h2>
+<section id="open-source-options" class="level3">
+<h3 class="anchored" data-anchor-id="open-source-options"><strong>Open source options</strong></h3>
 <ul>
-<li>One of the most widely-used categorizations is the Gene Ontology (GO) established by the <a href="http://geneontology.org/page/go-consortium-contributors-list">Gene Ontology project</a>.</li>
-<li>Tools that investigate enrichment of biological functions or interactions often use the Gene Ontology (GO) categorizations, i.e.&nbsp;the GO terms to determine whether any have significantly modified representation in a given list of genes.</li>
+<li>Pantherdb http://pantherdb.org/</li>
+<li>Enrichr https://maayanlab.cloud/Enrichr/</li>
+<li>David https://david.ncifcrf.gov/</li>
+<li>gprofiler https://biit.cs.ut.ee/gprofiler/ And many more …</li>
 </ul>
 </section>
-<section id="go-ontologies" class="level2">
-<h2 class="anchored" data-anchor-id="go-ontologies"><strong>GO Ontologies</strong></h2>
+<section id="commercial-options" class="level3">
+<h3 class="anchored" data-anchor-id="commercial-options"><strong>Commercial options</strong></h3>
 <ul>
-<li>To describe the roles of genes and gene products, GO terms are organized into three independent controlled vocabularies (ontologies) in a species-independent manner:</li>
-</ul>
-<section id="biological-process" class="level3">
-<h3 class="anchored" data-anchor-id="biological-process"><strong>Biological process</strong></h3>
-<ul>
-<li>refers to the biological role involving the gene or gene product, and could include “transcription”, “signal transduction”, and “apoptosis”. A biological process generally involves a chemical or physical change of the starting material or input.</li>
+<li>Ingenuity Pathway Analysis (IPA) https://www.qiagen.com/us/</li>
+<li>Metacore https://portal.genego.com/</li>
 </ul>
 </section>
-<section id="molecular-function" class="level3">
-<h3 class="anchored" data-anchor-id="molecular-function"><strong>Molecular function</strong></h3>
-<ul>
-<li>Represents the biochemical activity of the gene product, such activities could include “ligand”, “GTPase”, and “transporter”.</li>
-</ul>
 </section>
-<section id="cellular-component" class="level3">
-<h3 class="anchored" data-anchor-id="cellular-component"><strong>Cellular component</strong></h3>
+<section id="sessioninfo" class="level2">
+<h2 class="anchored" data-anchor-id="sessioninfo"><strong>sessionInfo()</strong></h2>
+<p>It is good practice to record the version of R and all tools you are using for reproducibility purposes (and for the methods section in your paper!). R’s sessionInfo() prints all of this information.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="key-points" class="level3 unlisted keypoints">
+<h3 class="unlisted anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
-<li>Refers to the location in the cell of the gene product. Cellular components could include “nucleus”, “lysosome”, and “plasma membrane”.</li>
-</ul>
-</section>
-<section id="key-points" class="level3 keypoints">
-<h3 class="anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
-<ul>
-<li>This is a key point</li>
-<li>Another one</li>
+<li>Functional enrichments can guide our intepretation of results in their biological context.</li>
+<li>Functional enrichments can include pathways and gene ontologies</li>
 </ul>
 </section>
 

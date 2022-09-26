@@ -210,10 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#using-rrstudio-for-differential-expression-analysis" id="toc-using-rrstudio-for-differential-expression-analysis" class="nav-link" data-scroll-target="#using-rrstudio-for-differential-expression-analysis"><strong>Using R/RStudio for differential expression analysis</strong></a></li>
   <li><a href="#run-the-rstudio-container-on-nimbus" id="toc-run-the-rstudio-container-on-nimbus" class="nav-link" data-scroll-target="#run-the-rstudio-container-on-nimbus"><strong>Run the RStudio container on Nimbus</strong></a></li>
   <li><a href="#working-in-rstudio" id="toc-working-in-rstudio" class="nav-link" data-scroll-target="#working-in-rstudio"><strong>Working in RStudio</strong></a></li>
-  <li><a href="#prepare-your-r-environment" id="toc-prepare-your-r-environment" class="nav-link" data-scroll-target="#prepare-your-r-environment"><strong>Prepare your R environment</strong></a>
-  <ul class="collapse">
-  <li><a href="#import-the-count-matrix-file" id="toc-import-the-count-matrix-file" class="nav-link" data-scroll-target="#import-the-count-matrix-file"><strong>Import the count matrix file</strong></a></li>
-  </ul></li>
+  <li><a href="#prepare-your-r-environment" id="toc-prepare-your-r-environment" class="nav-link" data-scroll-target="#prepare-your-r-environment"><strong>Prepare your R environment</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -239,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="using-rrstudio-for-differential-expression-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="using-rrstudio-for-differential-expression-analysis"><strong>Using R/RStudio for differential expression analysis</strong></h2>
-<p>We’ll be using the raw gene count matrix output by the nf-core/rnaseq pipline to perform statistical analyses and determine differentially expressed (DE) genes and pathways. As we’re working with R/RStudio, we’ll be using a number of different R packages to evaluate, analyse and visualise our data. A number of R packages have been developed specifically to identify differencially expressed (DE) genes, today we’re using the <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DeSeq2</a> package.</p>
+<p>We’ll be using the raw gene count matrix output by the nf-core/rnaseq pipline to perform statistical analyses and determine differentially expressed (DE) genes and pathways. As we’re working with R/RStudio, we’ll be using a number of different R packages to evaluate, analyse and visualise our data. A number of R packages have been developed specifically to identify differencially expressed (DE) genes, today we’re using the <a href="https://bioconductor.org/packages/release/bioc/html/DESeq2.html">DESeq2</a> package.</p>
 <p>We’ve created a Singularity container that houses R/Rstudio with all the libraries we’ll be using today already pre-installed. We’ll be using that container to run RStudio on Nimbus.</p>
 </section>
 <section id="run-the-rstudio-container-on-nimbus" class="level2">
@@ -258,14 +255,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Containers are closed environments</strong>, so we have to explicitly bind (<code>-B</code>) or expose directories that we want it to access on our machine.</li>
 </ul>
 <p>To start the Rserver, run:</p>
-<p><font size="2.7"></font></p><font size="2.7">
+<p><font size="3"></font></p><font size="3">
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PASSWORD='abc' singularity exec \</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/lib/rstudio-server \</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    -B /tmp/rstudio-server:/var/run/rstudio-server \</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    -B /home/training/base_directory/working_directory:/home/training/R \</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    /cvmfs/containers.biocommons.aarnet.edu.au/r/n/rnaseq_rstudio.sif \</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    rserver --auth-none=0 --auth-pam-helper-path=pam-helper --server-user ubuntu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</font><p><font size="2.7"></font></p>
+</font><p><font size="3"></font></p>
 <div class="callout-note callout callout-style-simple callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -295,7 +292,7 @@ For experienced CLI users
 </section>
 <section id="open-rstudio-in-a-web-browser" class="level4 unlisted">
 <h4 class="unlisted anchored" data-anchor-id="open-rstudio-in-a-web-browser"><strong>2. Open RStudio in a web browser</strong></h4>
-<p>Open up a web browser on your local machine. Remember, you will need to use Chrome or Safari for this. Participants using Firefox may experience technical issues.</p>
+<p>Open up a web browser on your local machine. Remember, you will need to <strong>use Chrome or Safari</strong> for this. Participants using Firefox may experience technical issues.</p>
 <p>Type <code>146.118.XX.XX:8787</code> in your browser where the XX.XX will be replaced by your IP specific digits:</p>
 <p><img src="../fig/Rstudio_chrome.png" class="img-fluid"></p>
 <p>When the RServer interface launches, sign in to RStudio. Enter <strong>‘training’</strong> in the username text box and <strong>‘abc’</strong> in the password text box:</p>
@@ -308,25 +305,39 @@ For experienced CLI users
 <h2 class="anchored" data-anchor-id="working-in-rstudio"><strong>Working in RStudio</strong></h2>
 <section id="open-the-analysis-file" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="open-the-analysis-file"><strong>Open the analysis file</strong></h3>
-<p>In RStudio, go to <strong>File &gt; Open File … &gt; base_directory &gt; working_directory &gt; rnaseq_DE_Full_matrix_DryRun.Rmd</strong>.</p>
+<p>In RStudio, go to <strong>File &gt; Open File … &gt; base_directory &gt; working_directory &gt; rnaseq_DE_analysis_Day2.Rmd</strong>.</p>
 <p>You should have something similar to what’s in the image below. We will be running our analysis from this file.</p>
 <p><img src="../fig/Rstudio_chrome_rmd.png" class="img-fluid"></p>
 </section>
 <section id="using-rrstudio-and-rmarkdown" class="level3 unlisted">
 <h3 class="unlisted anchored" data-anchor-id="using-rrstudio-and-rmarkdown"><strong>Using R/Rstudio and Rmarkdown</strong></h3>
-<p>In part 2 of this course, we will be writing and running code in an R Markdown (.Rmd) file format. R Markdown combines R code (analysis) with Markdown code (yes - another language!). This will allow us to run code in chunks. At the end of our analysis, we will create a nice HTML report containing our results and commentary.</p>
+<p>For this part of the workshop, we will be writing and running code in an R Markdown (.Rmd) file format. R Markdown combines R code (analysis) with Markdown code (yes - another language!). This will allow us to run code in chunks. At the end of our analysis, we will create a nice HTML report containing our results and commentary.</p>
 <p>R Markdown is very simple - all you need to know for now is:</p>
 <ul>
-<li>The grey blocks contain R code, run the code by clicking the green arrow on the top right</li>
-<li><strong>Run code in sequential order</strong></li>
-<li>Pretty much everything else is Markdown format. This is mainly instructions or an explanation to the following R code chunk
+<li>The grey blocks contain R code, run the code by clicking the green arrow <span class="emoji" data-emoji="arrow_forward">▶️</span> on the top right. * Within the code blocks:
 <ul>
-<li>Headers begin with “#”, bullet points begin with “-”</li>
+<li>Comment lines begin with “#”, bullet points begin with “-”</li>
+</ul></li>
+<li><strong>Run code blocks in sequential order</strong></li>
+<li>Pretty much everything else outside these boxes is Markdown format. This is mainly instructions or an explanation of the R code blocks that follow:
+<ul>
 <li>Feel free to add your own notes and save a copy of this file</li>
 </ul></li>
 </ul>
-<p>For more details on using R Markdown see http://rmarkdown.rstudio.com.</p>
-<p>This webpage will contain the same R code in the grey blocks. You are welcome to use and modify this code for your own analysis, but <strong>during the course, we recommend working from RStudio and the .Rmd file</strong>.</p>
+<p>For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com">here</a>.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+We are only working from the .Rmd!!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This webpage will contain the same R code as is in <code>rnaseq_DE_analysis_Day2.Rmd</code>. You are welcome to use and modify this webpage’s code for your own future experiments, but <strong>during today, we will be working from RStudio and the .Rmd file only</strong>.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="prepare-your-r-environment" class="level2">
@@ -362,8 +373,8 @@ For experienced CLI users
 <p>We will set our working directory to the path that contains our count matrix file. Run the next code block by clicking the green arrow.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/home/training/base_directory/working_directory"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="import-the-count-matrix-file" class="level3">
-<h3 class="anchored" data-anchor-id="import-the-count-matrix-file"><strong>Import the count matrix file</strong></h3>
+<section id="import-the-count-matrix-file" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="import-the-count-matrix-file"><strong>Import the count matrix file</strong></h3>
 <p>The count matrix file contains raw (un-normalized) counts for every gene (rows) in mm10 and every sample (columns). The value in the i-th row and the j-th column of the matrix tells how many raw reads were assigned to gene i in sample j.</p>
 <p>We created a count matrix file with subsetted data in Part 1 of this workshop (salmon.merged.gene_counts.tsv). In Part 2, we will use a count matrix file produced from the full dataset, in order to have enough data to generate differential pathways.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the full count matrix file</span></span>
@@ -386,7 +397,16 @@ For experienced CLI users
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># View the count table with the code below</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># It is hashed out becaues we don't want to see ~20,000 lines of counts in our final analysis file!</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># counttable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>After you have prepare your working environment in RStudio, move onto the next lesson: <a href="">Gene counts to differentially expressed genes &gt; Exploratory analysis</a>. <strong>GS- this needs a link</strong></p>
+</section>
+<section id="experimental-design-metadata" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="experimental-design-metadata"><strong>Experimental design metadata</strong></h3>
+<p>DE requires some metadata that tells our R libraries about the experimental design of the study, so that it knows how to handle the data. In this analysis, we have two experimental groups, the wildtype (“Wild”) and the knockout (“KO”) groups.</p>
+<p>We will create and store this metadata in a specific format required by the R libraries that we will use later. The samples are in rows (sample IDs as rownames), and columns are the experimental groupings. You can have more than one column, but need a minimum of one that describes your experimental groups.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a condition variable, ensuring they match the order of sample IDs in counttable</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>condition<span class="ot">=</span><span class="fu">c</span>(<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"Wild"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>,<span class="st">"KO"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe called meta with condition and sample IDs as rownames (taken from counttable)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names=</span><span class="fu">colnames</span>(counttable),condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="key-points" class="level3 unlisted keypoints">
 <h3 class="unlisted anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>

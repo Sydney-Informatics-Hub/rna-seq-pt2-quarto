@@ -206,12 +206,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link active" data-scroll-target="#exploratory-analysis"><strong>Exploratory analysis</strong></a>
   <ul class="collapse">
-  <li><a href="#estimate-the-total-library-size-across-all-samples" id="toc-estimate-the-total-library-size-across-all-samples" class="nav-link" data-scroll-target="#estimate-the-total-library-size-across-all-samples"><strong>Estimate the total library size across all samples</strong></a></li>
-  <li><a href="#raw-gene-count-distribution-for-each-sample" id="toc-raw-gene-count-distribution-for-each-sample" class="nav-link" data-scroll-target="#raw-gene-count-distribution-for-each-sample"><strong>Raw gene count distribution for each sample</strong></a></li>
-  <li><a href="#deseq2-for-exploratory-analysis" id="toc-deseq2-for-exploratory-analysis" class="nav-link" data-scroll-target="#deseq2-for-exploratory-analysis"><strong>DESeq2 for exploratory analysis</strong></a></li>
+  <li><a href="#the-total-library-size" id="toc-the-total-library-size" class="nav-link" data-scroll-target="#the-total-library-size"><strong>The total library size</strong></a></li>
+  <li><a href="#raw-data-distribution" id="toc-raw-data-distribution" class="nav-link" data-scroll-target="#raw-data-distribution"><strong>Raw data distribution</strong></a></li>
+  <li><a href="#deseq2" id="toc-deseq2" class="nav-link" data-scroll-target="#deseq2"><strong>DESeq2</strong></a></li>
+  <li><a href="#experimental-design-and-the-deseqdataset-object" id="toc-experimental-design-and-the-deseqdataset-object" class="nav-link" data-scroll-target="#experimental-design-and-the-deseqdataset-object"><strong>Experimental design and the DESeqDataSet object</strong></a></li>
   <li><a href="#data-transformation" id="toc-data-transformation" class="nav-link" data-scroll-target="#data-transformation"><strong>Data transformation</strong></a></li>
-  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis"><strong>Principal component analysis</strong></a></li>
+  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis"><strong>Principal component analysis</strong></a>
+  <ul class="collapse">
   <li><a href="#sample-to-sample-distances-heatmap" id="toc-sample-to-sample-distances-heatmap" class="nav-link" data-scroll-target="#sample-to-sample-distances-heatmap"><strong>Sample-to-sample distances heatmap</strong></a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -232,10 +235,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </section>
 <p><br></p>
-<p>Before performing any DE analysis, it is good to explore and visualise our data. This helps us to understand and get a sense of the quality of our data at this stage of the analysis. We’ll be performing the following techniques in order to evaluate the quality of our raw counts data.</p>
-<section id="estimate-the-total-library-size-across-all-samples" class="level2">
-<h2 class="anchored" data-anchor-id="estimate-the-total-library-size-across-all-samples"><strong>Estimate the total library size across all samples</strong></h2>
-<p>Before performing any DE analysis, it is good to explore and visualise our data. This helps us to understand and get a sense of the quality of our data at this stage of the analysis.</p>
+<p>Before performing any DE analysis, it is good to explore and visualise our data. This helps us get a sense of the quality of our data at this stage of the analysis. We’ll be performing the following techniques in order to evaluate the quality of our raw counts data.</p>
+<p><strong>This session will be done in breakout rooms. Work through the code and challenge questions in the .Rmd file with your facilitators.</strong></p>
+<section id="the-total-library-size" class="level2">
+<h2 class="anchored" data-anchor-id="the-total-library-size"><strong>The total library size</strong></h2>
+<p>For each sample, check the total library size. This is essentially the total number of reads which we have aligned to each sample.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum raw gene counts for each sample (each column)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(counttable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="challenge" class="level3 unlisted challenge">
@@ -246,12 +250,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Solution
 </summary>
 <p>Notice that the counts are different for each sample, which we will need to account for. Total library size can give us an indication of sensitivity (more reads = higher ability to detect lowly expressed genes).</p>
-<p>This was briefly discussed in the introductory slides. There are recommendations available online for how deeply you should sequence a sample, depending on the species. or if anything went wrong in the upstream analysis steps (e.g.&nbsp;no reads aligning to genes could indicate DNA contamination).</p>
 </details>
 </section>
 </section>
-<section id="raw-gene-count-distribution-for-each-sample" class="level2">
-<h2 class="anchored" data-anchor-id="raw-gene-count-distribution-for-each-sample"><strong>Raw gene count distribution for each sample</strong></h2>
+<section id="raw-data-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="raw-data-distribution"><strong>Raw data distribution</strong></h2>
 <p>Here we plot a boxplot of gene level raw counts (y axis) for each sample (x axis).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(counttable,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -262,25 +265,26 @@ Solution
 <summary>
 Solution
 </summary>
-<p>For most genes, the total number of raw counts are relatively low. We can visualise distribution better if the counts were on a log2 scale.</p>
+<p>For most genes, the total number of raw counts for each gene are relatively low. We can visualise distribution better if the counts were on a log2 scale.</p>
 </details>
 </section>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 1 to make sure all values are &gt; 0</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">log2</span>((counttable)<span class="sc">+</span><span class="dv">1</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The distribution of counts across samples is not comparable (although not too dissimilar in this case!). This is a consideration to take if you plan to use any statistical tests that assume an equal distribution of counts.</p>
+<p>The distribution of counts across samples is not comparable (although not too dissimilar in this case!). This is a consideration to take if you plan to use any statistical tests that assume an equal distribution of counts across samples.</p>
 </section>
-<section id="deseq2-for-exploratory-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="deseq2-for-exploratory-analysis"><strong>DESeq2 for exploratory analysis</strong></h2>
-<p>The DESeq2 package contains functions that perform normalization, data transformation, visualization and DE. This is a highly regarded and popular tool. We will use some of its functions to perform exploratory analysis.</p>
+<section id="deseq2" class="level2">
+<h2 class="anchored" data-anchor-id="deseq2"><strong>DESeq2</strong></h2>
+<p>The DESeq2 package contains functions that perform normalisation, data transformation, visualisation and DE. This is a highly regarded and popular tool. We will use some of its functions to perform exploratory analysis.</p>
 <p>This is a large package and we will only scratch the surface of key concepts in this workshop. We recommend you read the DESeq2 paper and manual before performing your own analysis.</p>
 <ul>
-<li><p>The original DESeq 2 (Love et al.&nbsp;2014) paper is [here] (https://doi.org/10.1186/s13059-014-0550-8)</p></li>
-<li><p>The DESeq2 manual is <a href="http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">here</a></p></li>
-<li><p>A beginners guide (written by the DESeq2 authors) is <a href="https://bioc.ism.ac.jp/packages/2.14/bioc/vignettes/DESeq2/inst/doc/beginner.pdf">here</a></p></li>
+<li><a href="https://doi.org/10.1186/s13059-014-0550-8">The original DESeq 2 paper, Love et al.&nbsp;2014</a></li>
+<li><a href="http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html">The DESeq2 manual</a></li>
+<li><a href="https://bioc.ism.ac.jp/packages/2.14/bioc/vignettes/DESeq2/inst/doc/beginner.pdf">A beginners guide (written by the DESeq2 authors)</a></li>
 </ul>
-<section id="experimental-design-and-the-deseqdataset-object" class="level3 unlisted">
-<h3 class="unlisted anchored" data-anchor-id="experimental-design-and-the-deseqdataset-object"><strong>Experimental design and the DESeqDataSet object</strong></h3>
+</section>
+<section id="experimental-design-and-the-deseqdataset-object" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-design-and-the-deseqdataset-object"><strong>Experimental design and the DESeqDataSet object</strong></h2>
 <p>In order for DESeq2 to perform DE, we need to store data in a DESeqDataSet object (dds) which contains:</p>
 <ul>
 <li>Our count matrix file</li>
@@ -288,11 +292,11 @@ Solution
 <li>Our design formula</li>
 </ul>
 <p>For exploratory analysis, we set design = ~ 1 which tells DESeq2 to be blind to experimental groups. We do not want DESeq2 to account for any within group variability during exploratory analysis and quality checking. This will allow us to observe for any unexpected batch effects.</p>
+<p>We will spend more time understanding the dds object later in this workshop.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We will call this object by name 'dds' as this is a standard practice</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> counttable, </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">colData =</span> meta, </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">design =</span> <span class="sc">~</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
 </section>
 <section id="data-transformation" class="level2">
 <h2 class="anchored" data-anchor-id="data-transformation"><strong>Data transformation</strong></h2>
@@ -301,64 +305,92 @@ Solution
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate rlog and store it in a dds-like object</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rlog <span class="ot">&lt;-</span> <span class="fu">rlog</span>(dds, <span class="at">blind =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rlog.data <span class="ot">&lt;-</span> <span class="fu">assay</span>(rlog)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We can check the effect of transformation by using boxplots again.</p>
+<p>We can check the effect of transformation by again using boxplots.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(rlog.data,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice that the count distribution across samples is much more comparable with rlog transformed data.</p>
 </section>
 <section id="principal-component-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="principal-component-analysis"><strong>Principal component analysis</strong></h2>
-<p>Principal component analysis (PCA) is a dimensionality reduction method that summarises high dimensionality data into a number of principal components (PCs). For RNA-Seq, our highly dimensional data is our per sample gene-expression data and the variance that exists across samples. We can observe the relationship between these in a simple 2D space, by plotting two components at a time (usually the top two that account for most of the variance).</p>
+<p>Principal component analysis (PCA) is a dimensionality reduction method that summarises high dimensionality data into a number of principal components (PCs). For RNA-Seq, our highly dimensional data is our per sample gene-expression data and the variance that exists across samples. We can observe the relationship between these in a 2D space, by plotting two components at a time (usually the top two that account for most of the variance).</p>
+<p>Create a PCA plot using rlog transformed data. By default, <code>DESeq2::plotPCA()</code> will colour each dot by the sample’s experimental group, but we have included some additional code to remove these for our discussion.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DESeq2's plotPCA function will create a PCA plot using an object that has rlog or vst values</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># It will colour samples using </span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotPCA</span>(rlog)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>GS- this is incomplete, no ungrouped PCA yet and challenge needs a solution</strong></p>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pcaData <span class="ot">&lt;-</span> <span class="fu">plotPCA</span>(rlog, <span class="at">returnData=</span><span class="cn">TRUE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to percentages</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>percentVar <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">attr</span>(pcaData, <span class="st">"percentVar"</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot table</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pcaData, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">paste0</span>(<span class="st">"PC1: "</span>,percentVar[<span class="dv">1</span>],<span class="st">"% variance"</span>)) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">paste0</span>(<span class="st">"PC2: "</span>,percentVar[<span class="dv">2</span>],<span class="st">"% variance"</span>)) <span class="sc">+</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="challenge-2" class="level3 unlisted challenge">
 <h3 class="unlisted anchored" data-anchor-id="challenge-2"><strong>Challenge</strong></h3>
+<p>Each dot represents one sample. Samples that appear closer together have a more similar gene expression profile. Can you speculate which samples belong to the same experimental group?</p>
+<details>
+<summary>
+Solution
+</summary>
+<p>The 3 on the left are likely to belong to one experimental group, and the 3 on the right to another.</p>
+</details>
+</section>
+<p>Let’s recreate the plot, now colouring samples by their experimental group.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DESeq2's plotPCA function will create a PCA plot using an object that has rlog or vst values</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotPCA</span>(rlog)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="challenge-3" class="level3 unlisted">
+<h3 class="unlisted anchored" data-anchor-id="challenge-3"><strong>Challenge</strong></h3>
 <ul>
-<li><p>Can you comment on how the samples cluster together in the plot?</p></li>
-<li><p>Is this what you would expect?</p></li>
-<li><p>If you saw one red dot cluster more closely with the blue dots, what might this suggest?</p></li>
-<li><p>How much of the overall variance is explained by PC1?</p></li>
-<li><p>How much of the overall variance is explained by PC1 &amp; PC2?</p></li>
+<li>Can you comment on how the samples cluster together in the plot?</li>
+<li>If you saw one red dot cluster more closely with the blue dots, what might this suggest?</li>
+<li>Apart from experimental groups, what other relationships might be revealed when looking at PCA plots?</li>
+<li>How much of the overall variance is explained by PC1 &amp; PC2?</li>
 </ul>
 <details>
 <summary>
 Solution
 </summary>
+<ul>
+<li>The wild samples cluster together nicely, as do the knockout, although the knockout samples are a little bit more spread out.</li>
+<li>The gene expression profile of that knockout is more similar to the wildtype mice and the knockout might not have worked. This is not the case here and we have checked our alignments - all knockouts do not have exon 1 of the <em>Gtf2ird1</em> gene.</li>
+<li>Batch effects can be very tricky to deal with and ideally, you would implement strategies to avoid or control for unwanted batch effects before starting your experiment.</li>
+<li>90%. As PC1 and PC2 explain most of the variance observed in the dataset, we do not check the other PCs.</li>
+</ul>
 </details>
-</section>
-</section>
-<section id="sample-to-sample-distances-heatmap" class="level2">
-<h2 class="anchored" data-anchor-id="sample-to-sample-distances-heatmap"><strong>Sample-to-sample distances heatmap</strong></h2>
+</section></section></section><p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main></div>
+<p>Plotting the other PCs is something you may want to do until you have explored most of the variation in the dataset and what their potential sources might be. We will not have time to cover this in the workshop, but do recommend you look into scree plots and observing the genes contributing to each PC.</p>
+
+<section id="sample-to-sample-distances-heatmap" class="level3">
+<h3 data-anchor-id="sample-to-sample-distances-heatmap"><strong>Sample-to-sample distances heatmap</strong></h3>
 <p>Another way to visualise how similar or dissimilar our samples are is to plot sample distances in a heatmap and a hierarchical cluster.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dist() calculates eucleadean distance, which requires data to be in a specific format</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sampleDists <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">t</span>(<span class="fu">assay</span>(rlog)))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sampleDistMatrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sampleDists)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get some pretty blue colours</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>( <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Blues"</span>)) )(<span class="dv">255</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the sampleDistMatrix in a heatmap</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># pheatmap also calculates and plots hierachical clusters </span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(sampleDistMatrix,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows=</span>sampleDists,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols=</span>sampleDists,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span>colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="challenge-3" class="level3 unlisted challenge">
-<h3 class="unlisted anchored" data-anchor-id="challenge-3"><strong>Challenge</strong></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dist() calculates eucleadean distance, which requires data to be in a specific format</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sampleDists <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">t</span>(<span class="fu">assay</span>(rlog)))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sampleDistMatrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(sampleDists)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get some pretty blue colours</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>( <span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Blues"</span>)) )(<span class="dv">255</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the sampleDistMatrix in a heatmap</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># pheatmap also calculates and plots hierachical clusters </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(sampleDistMatrix,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows=</span>sampleDists,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols=</span>sampleDists,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span>colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dark blue indicates samples that are more similar (distance = 0).</p>
+</section>
+<section id="challenge-4" class="level3 unlisted challenge">
+<h3 class="unlisted" data-anchor-id="challenge-4"><strong>Challenge</strong></h3>
 <p>What do you notice about sample KO3?</p>
 <details>
 <summary>
 Solution
 </summary>
-<p>The hierarchical cluster groups KO3 more closely with the wild type samples. This could be an indication that our knockout has not worked - although we have confirmed that it has in part 1 of this workshop!</p>
-<p>Another reason could be that the knockout effect is not as strong in this sample as the other KO samples - for reasons we do not yet know!</p>
+<p>The hierarchical cluster groups KO3 more closely with the wild type samples. This could be an indication that our knockout has not worked - although we have confirmed that it has in part 1 of this workshop and are hence not too worried about it. Another reason could be that the knockout effect is not as strong in this sample as the other KO samples - for reasons we do not yet know!</p>
 </details>
 </section>
-<p>Now that we’ve evaluated the integrity of our data, we can finally perform differential expression analysis: <a href="">Gene counts to differentially expressed genes &gt; Differential expression</a>. <strong>GS- this needs a link</strong></p>
 <section id="key-points" class="level3 unlisted keypoints">
-<h3 class="unlisted anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
+<h3 class="unlisted" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
 <li>Performing exploratory analysis is required in order to understand our data and decide if the experimental variability is explained by the conditions of interest.</li>
 <li>Exploratory analysis can also help to identify and avoid possible outlier samples from the experiment.</li>
@@ -366,10 +398,10 @@ Solution
 </section>
 
 
-</section>
-</section>
 
-<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
+
+
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -468,7 +500,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 

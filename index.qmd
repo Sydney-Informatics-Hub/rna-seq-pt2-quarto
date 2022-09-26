@@ -12,19 +12,22 @@ from: markdown+emoji
 
 ## **Synopsis**{.unlisted}
 
-In part 2 of this workshop series, participants will use raw gene count data generated in part 1 to perform downstream analysis of RNA-seq data using R/Rstudio - including how to analyse **raw count data to obtain differentially expressed genes and pathways**. This will be run on **[Pawsey's Nimbus Cloud](https://support.pawsey.org.au/documentation/display/US/Cloud+Documentation)** platform.
+In **part 2** of this workshop series, participants will use raw gene count data generated in [part 1](https://sydney-informatics-hub.github.io/training.RNAseq.series/) to perform downstream analysis of RNA-seq data using R/Rstudio, including how to analyse **raw count data to obtain differentially expressed genes and pathways**. We will be working on **[Pawsey's Nimbus Cloud](https://support.pawsey.org.au/documentation/display/US/Cloud+Documentation)** platform.
 
-## **Pre-requisites** {.unlisted}
+## **Target audience**{.unlisted}
 
-- Introduction to **[Unix/Linux command line](https://datacarpentry.org/shell-genomics/)** 
-- Introduction to **[R/RStudio](https://datacarpentry.org/genomics-r-intro/)**
-- Part 1 of the **[RNA-seq training series](https://sydney-informatics-hub.github.io/training.RNAseq.series/)**
+This workshop series is suitable for people who are familiar with working at command line interface and may be new to RNA-seq for differential expression analysis. The course is beginner friendly and intended for those interested in using the command line interface for their analysis. It is also suitable for those who want to learn about and use nf-co.re workflows.
 
-## **How to navigate the web-pages** {.unlisted}
-Please use the menu bar on the top of the page to move through the lessons.
+## **How to navigate the web pages** {.unlisted}
+Please use the Menu bar to move between lessons. We will start Day 1 with the `Setup` page and then naviate to the right. Each main menu header has sub-header which will be visible when you click on the main-menu, as shown below.
 
 ![](/fig/MenuBar_Day2.png)
 
 ## **Course survey!** {.unlisted}
 
-Please fill out our **[course survey](https://redcap.sydney.edu.au/surveys/?s=FJ33MYNCRR)** before you leave! Help us help you! :grin:
+Please fill out our **[course survey](https://www.surveymonkey.com/r/rnaseq2022)** before you leave! Help us help you! :grin:
+
+## **Credits**{.unlisted}
+This workshop series developed by the Sydney Informatics Hub, University of Sydney in partnership with the Pawsey Supercomputing Research Centre, AARnet, QCIF, and the Australian BioCommons.
+
+![](/fig/partners.png)
