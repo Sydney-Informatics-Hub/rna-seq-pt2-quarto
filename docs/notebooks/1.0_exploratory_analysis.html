@@ -339,7 +339,7 @@ Solution
 <p>Let’s recreate the plot, now colouring samples by their experimental group.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DESeq2's plotPCA function will create a PCA plot using an object that has rlog or vst values</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>DESeq2<span class="sc">::</span><span class="fu">plotPCA</span>(rlog)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="challenge-3" class="level3 unlisted">
+<section id="challenge-3" class="level3 unlisted challenge">
 <h3 class="unlisted anchored" data-anchor-id="challenge-3"><strong>Challenge</strong></h3>
 <ul>
 <li>Can you comment on how the samples cluster together in the plot?</li>
@@ -358,11 +358,10 @@ Solution
 <li>90%. As PC1 and PC2 explain most of the variance observed in the dataset, we do not check the other PCs.</li>
 </ul>
 </details>
-</section></section></section><p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main></div>
+</section>
 <p>Plotting the other PCs is something you may want to do until you have explored most of the variation in the dataset and what their potential sources might be. We will not have time to cover this in the workshop, but do recommend you look into scree plots and observing the genes contributing to each PC.</p>
-
 <section id="sample-to-sample-distances-heatmap" class="level3">
-<h3 data-anchor-id="sample-to-sample-distances-heatmap"><strong>Sample-to-sample distances heatmap</strong></h3>
+<h3 class="anchored" data-anchor-id="sample-to-sample-distances-heatmap"><strong>Sample-to-sample distances heatmap</strong></h3>
 <p>Another way to visualise how similar or dissimilar our samples are is to plot sample distances in a heatmap and a hierarchical cluster.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dist() calculates eucleadean distance, which requires data to be in a specific format</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sampleDists <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">t</span>(<span class="fu">assay</span>(rlog)))</span>
@@ -380,7 +379,7 @@ Solution
 <p>Dark blue indicates samples that are more similar (distance = 0).</p>
 </section>
 <section id="challenge-4" class="level3 unlisted challenge">
-<h3 class="unlisted" data-anchor-id="challenge-4"><strong>Challenge</strong></h3>
+<h3 class="unlisted anchored" data-anchor-id="challenge-4"><strong>Challenge</strong></h3>
 <p>What do you notice about sample KO3?</p>
 <details>
 <summary>
@@ -390,7 +389,7 @@ Solution
 </details>
 </section>
 <section id="key-points" class="level3 unlisted keypoints">
-<h3 class="unlisted" data-anchor-id="key-points"><strong>Key points</strong></h3>
+<h3 class="unlisted anchored" data-anchor-id="key-points"><strong>Key points</strong></h3>
 <ul>
 <li>Performing exploratory analysis is required in order to understand our data and decide if the experimental variability is explained by the conditions of interest.</li>
 <li>Exploratory analysis can also help to identify and avoid possible outlier samples from the experiment.</li>
@@ -398,10 +397,10 @@ Solution
 </section>
 
 
+</section>
+</section>
 
-
-
- <!-- /main -->
+<p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -500,7 +499,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
- <!-- /content -->
+</div> <!-- /content -->
 
 
 
