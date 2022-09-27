@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>RNA-Seq using Nextflow: Day 2 – recap_casestudy</title>
+<title>RNA-Seq using Nextflow: Day 2 – about</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../notebooks/0.0_about.html">About</a>
+    <a class="nav-link active" href="../notebooks/0.0_about.html" aria-current="page">About</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../setup.html">Setup</a>
@@ -140,57 +140,19 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#revisit-the-case-study" id="toc-revisit-the-case-study" class="nav-link active" data-scroll-target="#revisit-the-case-study"><strong>Revisit the case study</strong></a>
-  <ul class="collapse">
-  <li><a href="#the-study-design" id="toc-the-study-design" class="nav-link" data-scroll-target="#the-study-design"><strong>The study design</strong></a></li>
-  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><strong>Research questions</strong></a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="revisit-the-case-study" class="level1">
-<h1><strong>Revisit the case study</strong></h1>
-<p>In this workshop series we are working with a real dataset from a knockout mouse model study by <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2801-4">Corley et al.&nbsp;(2016)</a>. This study used the mouse model to study Williams-Beuren Syndrome (WBS), a rare genetic disease in people.</p>
-<p><img src="../fig/caseStudy_reference.png" class="img-fluid"></p>
-<p>WBS affects multiple body systems and has physical, cognitive, and behavioural components. Previous studies of WBS patients with deletions of the 7q11.23 chromosomal region have led to the conclusion that a disruption of <em>Gtf2ird1</em> and <em>Gtf2i</em> genes explain the features of WBS, including:</p>
-<ul>
-<li>Delays in prenatal and postnatal growth</li>
-<li>Short stature</li>
-<li>Intellectual disabilities</li>
-<li>Distinctive facial features</li>
-</ul>
-<p><a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2801-4">Corley et al.&nbsp;(2016)</a> used lip tissue from a <em>Gtf2ird1</em> knockout mouse model to capture phenotypic effects most present in the epidermal tissues. <em>Gtf2ird1</em> is located on <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=mm10&amp;lastVirtModeType=default&amp;lastVirtModeExtraState=&amp;virtModeType=default&amp;virtMode=0&amp;nonVirtPosition=&amp;position=chr5%3A134357669%2D134456716&amp;hgsid=1456220341_mnD8xWDvrPHm8X2fFTJs0p1vMHoU">chromosome 5 (5qG2) of the mouse genome</a>. We <a href="https://sydney-informatics-hub.github.io/rna-seq-pt1-quarto/notebooks/3.4_Alignment_using_STAR.html#alignment-to-reference-genome">visualised this region</a> of our alignment files using IGV, yesterday.</p>
-<section id="the-study-design" class="level3">
-<h3 class="anchored" data-anchor-id="the-study-design"><strong>The study design</strong></h3>
-<ul>
-<li>6 mice
-<ul>
-<li>3 knockouts (missing exon 1 of <em>Gtf2ird1</em>)</li>
-<li>3 wildtypes</li>
-</ul></li>
-<li>Total RNA extracted from epidermal (lip) tissue</li>
-<li>101 bp single end reads sequenced on Illumina HiSeq2000</li>
-</ul>
-<p><img src="../fig/caseStudy_design.png" class="img-fluid" style="width:70.0%"></p>
-</section>
-<section id="research-questions" class="level3">
-<h3 class="anchored" data-anchor-id="research-questions"><strong>Research questions</strong></h3>
-<ul>
-<li>Which genes (if any) are upregulated or downregulated in our knockout mice compared with normal mice?</li>
-<li>How do these differentially expressed genes relate to the disease phenotype?​</li>
-</ul>
+<section id="about-this-series" class="level1 unlisted">
+<h1 class="unlisted"><strong>About this series</strong></h1>
+<p>This training was developed under the <a href="https://www.biocommons.org.au/byod-expansion">Australian BioCommons ‘Bring Your Own Data’ - Command Line Interface (CLI) Platform Expansion Project</a> by the Sydney Informatics Hub, in partnership with Pawsey Supercomputing Centre, Queensland Cyberinfrastructure Foundation (QCIF) and Australian Academic Research Network (AARNet). This project aims to create highly accessible, highly available, highly scalable analysis and data sharing capabilities for the benefit of life science researchers nationally.</p>
+<p><img src="../fig/partners.png" class="img-fluid"></p>
 
 
-</section>
 </section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->

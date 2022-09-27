@@ -28,6 +28,11 @@ Please use the Menu bar to move between lessons. We will start Day 1 with the `S
 Please fill out our **[course survey](https://www.surveymonkey.com/r/rnaseq2022)** before you leave! Help us help you! :grin:
 
 ## **Credits**{.unlisted}
-This workshop series developed by the Sydney Informatics Hub, University of Sydney in partnership with the Pawsey Supercomputing Research Centre, AARnet, QCIF, and the Australian BioCommons.
+
+Acknowledgements are an important way for us to demonstrate the value we bring to your research. Your research outcomes are vital for ongoing funding of the Sydney Informatics Hub and national compute facilities.
+
+Suggested acknowledgements:
+
+The authors acknowledge bioinformatics support and advanced computing resources provided by the Sydney Informatics Hub, a Core Research Facility at the University of Sydney, Pawsey Supercomputing Research Centre, Queensland Cyberinfrastructure Foundation (QCIF) and Australia’s National Research Education Network (AARNet) enabled through the Australian BioCommons (NCRIS via Bioplatforms Australia).
 
 ![](/fig/partners.png)

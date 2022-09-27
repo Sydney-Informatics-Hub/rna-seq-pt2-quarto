@@ -9,6 +9,8 @@ website:
     left:
       - href: https://sydney-informatics-hub.github.io/training.RNAseq.series-quarto/
         text: Home
+      - href: notebooks/0.0_about.html
+        text: "About"
       - href: setup.html 
         text: "Setup"
       - text: "Day 2 kick off"
