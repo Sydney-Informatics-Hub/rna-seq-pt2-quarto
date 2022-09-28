@@ -284,7 +284,7 @@
     "href": "notebooks/2.0_Day2_wrapup.html",
     "title": "RNA-Seq using Nextflow: Day 2",
     "section": "",
-    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Today, we performed differential expression and functional enrichment analysis using a gene count matrix file generated from nfcore/rnaseq (Day 1). We learnt:\n\nHow to perform exploratory analysis to understand the quality and properties of our data\nHow to use DESeq2 to perform differential expression analysis and check that the model was applied correctly\nHow to perform gene ontology (GO) enrichment with clusterProfiler\nHow to visualise our data and results with clusterProfiler:\n\nBar plots\nPrincipal components analysis plots\nVolcano plots\nHeatmaps\n\n\nWe performed this analysis with recommended scientific practices that allow for portable and reproducible analysis including:\n\nUsing a singularity container with pre-installed libraries and R environment.\n\nThis container is on CVMFS (a filesystem), available through Pawsey Nimbus for your own analysis\n\nUsing Rmd to run code interactively and include commentary/documentation around the analysis\nAll materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "notebooks/3-LoadCountMatrix.html",
@@ -313,5 +313,12 @@
     "title": "RNA-Seq using Nextflow: Day 2",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/2.0_Day2_wrapup.html#course-survey",
+    "href": "notebooks/2.0_Day2_wrapup.html#course-survey",
+    "title": "RNA-Seq using Nextflow: Day 2",
+    "section": "Course survey!",
+    "text": "Course survey!\nPlease fill out our course survey before you leave! Help us help you! 😁"
   }
 ]
